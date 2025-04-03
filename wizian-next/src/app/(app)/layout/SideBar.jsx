@@ -17,27 +17,27 @@ const SideBar = () => {
                 <nav>
                     <ul className="nav">
                         <li>
-                            <Link href="/">
+                            <Link href="/dashboard">
                                 <i className="lnr lnr-home"></i> <span>Dashboard</span>
                             </Link>
                         </li>
                         <li>
-                            <Link href="/elements/elements">
+                            <Link href="/elements">
                                 <i className="lnr lnr-code"></i> <span>Elements</span>
                             </Link>
                         </li>
                         <li>
-                            <Link href="/charts/charts">
+                            <Link href="/charts">
                                 <i className="lnr lnr-chart-bars"></i> <span>Charts</span>
                             </Link>
                         </li>
                         <li>
-                            <Link href="/panels/panels">
+                            <Link href="/panels">
                                 <i className="lnr lnr-cog"></i> <span>Panels</span>
                             </Link>
                         </li>
                         <li>
-                            <Link href="/notifications/notifications">
+                            <Link href="/notifications">
                                 <i className="lnr lnr-alarm"></i> <span>Notifications</span>
                             </Link>
                         </li>
@@ -55,30 +55,30 @@ const SideBar = () => {
                             <div id="subPages" className={`collapse ${isCollapsed ? "" : "show"}`}>
                                 <ul className="nav">
                                     <li>
-                                        <Link href="/pages/pageProfile">Profile</Link>
+                                        <Link href="/pageProfile">Profile</Link>
                                     </li>
                                     <li>
-                                        <Link href="/pages/pageLogin">Login</Link>
+                                        <Link href="/pageLogin">Login</Link>
                                     </li>
                                     <li>
-                                        <Link href="/pages/pageLockscreen">Lockscreen</Link>
+                                        <Link href="/pageLockscreen">Lockscreen</Link>
                                     </li>
                                 </ul>
                             </div>
                         </li>
 
                         <li>
-                            <Link href="/tables/tables">
+                            <Link href="/tables">
                                 <i className="lnr lnr-dice"></i> <span>Tables</span>
                             </Link>
                         </li>
                         <li>
-                            <Link href="/typography/typography">
+                            <Link href="/typography">
                                 <i className="lnr lnr-text-format"></i> <span>Typography</span>
                             </Link>
                         </li>
                         <li>
-                            <Link href="/icons/icons">
+                            <Link href="/icons">
                                 <i className="lnr lnr-linearicons"></i> <span>Icons</span>
                             </Link>
                         </li>
