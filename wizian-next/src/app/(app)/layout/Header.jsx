@@ -81,7 +81,7 @@ const Header = () => {
     return (
         <nav className="navbar navbar-default navbar-fixed-top">
             <div className="brand">
-                <a href="/">
+                <a href="/dashboard">
                     <img src="/assets/img/logo-dark.png" alt="Klorofil Logo" className="img-responsive logo" />
                 </a>
             </div>

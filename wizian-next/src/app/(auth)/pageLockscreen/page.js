@@ -13,7 +13,7 @@ const PageLockscreen = () => {
                             <img src="/assets/img/user-medium.png" className="img-circle" alt="Avatar"/>
                             <h2 className="name">Samuel Gold</h2>
                         </div>
-                        <form action="/">
+                        <form action="/public">
                             <div className="input-group">
                                 <input type="password" className="form-control" placeholder="Enter your password ..."/>
                                 <span className="input-group-btn"><button type="submit" className="btn btn-primary"><i
