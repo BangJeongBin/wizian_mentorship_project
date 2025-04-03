@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export default function Home() {
   const [tasks, setTasks] = useState([
-    { id: 1, title: "투두 리스트1", description: "있으면 좋긴 할듯", date: "Oct 9, 2016", completed: false },
+    { id: 1, title: "투두 리스트", description: "있으면 좋긴 할듯", date: "Oct 9, 2016", completed: false },
     { id: 2, title: "사용여부", description: "Compellingly implement clicks-and-mortar relationships without highly efficient metrics.", date: "Oct 23, 2016", completed: false },
     { id: 3, title: "재고좀여", description: "Monotonectally formulate client-focused core competencies after parallel web-readiness.", date: "Oct 11, 2016", completed: false }
   ]);
