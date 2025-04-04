@@ -50,7 +50,7 @@ const AllCourse = () => {
                     <div className="col-md-8">
                         <div className="panel panel-scrolling">
                             <div className="panel-heading">
-                                <h3 className="panel-title">과정</h3>
+                                <h3 className="panel-title">과정 리스트</h3>
                             </div>
                             <div className="panel-body">
                                 <table className="table table-striped">
@@ -113,7 +113,6 @@ const AllCourse = () => {
                                 <br/>
                                 <p>총 수업시간</p>
                                 <input type="password" className="form-control" value="asecret"/>
-                                
                             </div>
                         </div>
                     </div>
