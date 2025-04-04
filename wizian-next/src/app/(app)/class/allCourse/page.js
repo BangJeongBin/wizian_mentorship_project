@@ -113,6 +113,7 @@ const AllCourse = () => {
                                 <br/>
                                 <p>총 수업시간</p>
                                 <input type="password" className="form-control" value="asecret"/>
+
                             </div>
                         </div>
                     </div>
