@@ -49,7 +49,7 @@ const CourseAttend = () => {
                 <div className="row">
                     <div className="col-md-12">
                         
-                        <div className="col-lg-offset-9">
+                        <div className="col-lg-offset-10">
                             <button className="btn btn-primary" type="button">
                                 출석
                             </button>
