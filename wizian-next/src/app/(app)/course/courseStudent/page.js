@@ -16,9 +16,9 @@ const CourseStudent = () => {
                 <div id="toastr-demo" className="panel col">
                     <div className="panel-body row">
                         <div className="col-md-3">
-                            <strong>캠퍼스 위치</strong>&emsp;&emsp;&emsp;
+                            <strong>강의 종류</strong>&emsp;&emsp;&emsp;
                             <select className="navbar">
-                                <option value="cheese">Cheese</option>
+                                <option value="cheese">Cheese(진행중)</option>
                                 <option value="tomatoes">Tomatoes</option>
                                 <option value="mozarella">Mozzarella</option>
                                 <option value="mushrooms">Mushrooms</option>
@@ -28,10 +28,10 @@ const CourseStudent = () => {
                         </div>
 
                         <div className="col-md-3">
-                            <strong>개설여부</strong>&emsp;&emsp;&emsp;
+                            <strong>진행 상태</strong>&emsp;&emsp;&emsp;
                             <select className="navbar">
-                                <option value="cheese">Cheese</option>
-                                <option value="tomatoes">Tomatoes</option>
+                                <option value="cheese">진행중인 학생</option>
+                                <option value="tomatoes">수료한 학생</option>
                                 <option value="mozarella">Mozzarella</option>
                                 <option value="mushrooms">Mushrooms</option>
                                 <option value="pepperoni">Pepperoni</option>
@@ -40,7 +40,7 @@ const CourseStudent = () => {
                         </div>
 
                         <div className="col-md-3">
-                            <strong>대표강사</strong>&emsp;&emsp;&emsp;
+                            <strong>성별</strong>&emsp;&emsp;&emsp;
                             <select className="navbar">
                                 <option value="cheese">Cheese</option>
                                 <option value="tomatoes">Tomatoes</option>
@@ -53,7 +53,7 @@ const CourseStudent = () => {
 
                         <div className="col-md-3">
                             <strong><i className="lnr lnr-magnifier"></i> 검색</strong>
-                            <input type="text" className="form-control" placeholder="강의명 입력"/>
+                            <input type="text" className="form-control" placeholder="학생명 입력"/>
                         </div>
                     </div>
                 </div>
