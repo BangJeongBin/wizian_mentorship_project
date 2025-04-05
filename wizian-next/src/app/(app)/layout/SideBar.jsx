@@ -111,7 +111,7 @@ const SideBar = () => {
                                         <Link href="/course/courseGrade">성적관리</Link>
                                     </li>
                                     <li>
-                                        <Link href="/course/courseBoard">전체알림</Link>
+                                        <Link href="/course/coursealarm">수강생 알림</Link>
                                     </li>
                                 </ul>
                             </div>
