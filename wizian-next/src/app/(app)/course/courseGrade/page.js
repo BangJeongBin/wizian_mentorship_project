@@ -18,7 +18,7 @@ const CourseGrade = () => {
                     <div className="col-md-6">
                         <div id="toastr-demo" className="panel col">
                             <div className="panel-body row">
-                                <div className="col-md-6">
+                                <div className="col-md-6 col-md-offset-1">
                                     <strong>출결현황</strong>&ensp;&ensp;&ensp;&ensp;
                                     <select className="navbar">
                                         <option value="cheese">출석</option>
@@ -30,7 +30,7 @@ const CourseGrade = () => {
                                     </select>
                                 </div>
 
-                                <div className="col-md-6">
+                                <div className="col-md-3">
                                     <strong><i className="lnr lnr-magnifier"></i> 검색</strong>
                                     <input type="text" className="form-control" placeholder="학생명 입력"/>
                                 </div>
@@ -41,7 +41,7 @@ const CourseGrade = () => {
                     <div className="col-md-6">
                         <div id="toastr-demo" className="panel col">
                             <div className="panel-body row">
-                                <div className="col-md-6">
+                                <div className="col-md-6 col-md-offset-1">
                                     <strong>과제명</strong>&ensp;&ensp;&ensp;&ensp;
                                     <select className="navbar">
                                         <option value="cheese">출석</option>
@@ -53,7 +53,7 @@ const CourseGrade = () => {
                                     </select>
                                 </div>
 
-                                <div className="col-md-6">
+                                <div className="col-md-3">
                                     <strong><i className="lnr lnr-magnifier"></i> 검색</strong>
                                     <input type="text" className="form-control" placeholder="과제명 입력"/>
                                 </div>
@@ -228,7 +228,7 @@ const CourseGrade = () => {
                                     <br/>
                                 </div>
 
-                                <div className="col-md-12">
+                                <div className="col-md-6 col-md-offset-3">
                                     <button className="btn btn-success form-control" type="button">
                                         마감 점수 저장
                                     </button>
