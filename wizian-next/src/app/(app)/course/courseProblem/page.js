@@ -228,35 +228,34 @@ const CourseProblem = () => {
                                 <input type="text" className="form-control" placeholder="text field"/>
                                 <br/>
                                 <p>1. 과제 질문</p>
-                                <input type="password" className="form-control" value="asecret"/>
+                                <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
                                 <br/>
                                 <p>1. 과제 답변</p>
-                                <input type="password" className="form-control" value="asecret"/>
+                                <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
                                 <br/>
                                 <p>2. 과제 질문</p>
-                                <input type="password" className="form-control" value="asecret"/>
+                                <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
                                 <br/>
                                 <p>2. 과제 답변</p>
-                                <input type="password" className="form-control" value="asecret"/>
+                                <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
                                 <br/>
                                 <p>3. 과제 질문</p>
-                                <input type="password" className="form-control" value="asecret"/>
+                                <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
                                 <br/>
                                 <p>3. 과제 답변</p>
-                                <input type="password" className="form-control" value="asecret"/>
+                                <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
                                 <br/>
                                 <p>4. 과제 질문</p>
-                                <input type="password" className="form-control" value="asecret"/>
+                                <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
                                 <br/>
                                 <p>4. 과제 답변</p>
-                                <input type="password" className="form-control" value="asecret"/>
+                                <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
                                 <br/>
                                 <p>5. 과제 질문</p>
-                                <input type="password" className="form-control" value="asecret"/>
+                                <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
                                 <br/>
                                 <p>5. 과제 답변</p>
-                                <input type="password" className="form-control" value="asecret"/>
-
+                                <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
                             </div>
                         </div>
                     </div>
