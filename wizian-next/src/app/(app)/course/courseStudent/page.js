@@ -59,10 +59,10 @@ const CourseStudent = () => {
                 </div>
 
                 <div className="row">
-                    <div className="col-md-8">
+                    <div className="col">
                         <div className="panel panel-scrolling">
                             <div className="panel-heading">
-                                <h3 className="panel-title">강의 리스트</h3>
+                                <h3 className="panel-title">학생 리스트</h3>
                             </div>
                             <div className="panel-body">
                                 <table className="table table-striped">
@@ -72,77 +72,8 @@ const CourseStudent = () => {
                                         <th>First Name</th>
                                         <th>Last Name</th>
                                         <th>Username</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Steve</td>
-                                        <td>Jobs</td>
-                                        <td>@steve</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Simon</td>
-                                        <td>Philips</td>
-                                        <td>@simon</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Jane</td>
-                                        <td>Doe</td>
-                                        <td>@jane</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="col-md-4">
-                        <div className="panel">
-                            <div className="panel-heading">
-                                <h3 className="panel-title">과정정보</h3>
-                            </div>
-                            <div className="panel-body">
-                                <p>번호</p>
-                                <input type="text" className="form-control" placeholder="text field"/>
-                                <br/>
-                                <p>강의명</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>대표강사</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>강의실</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>수료일</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>수강인원</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>개설여부</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="row">
-                    <div className="col-md-6">
-                        <div className="panel">
-                            <div className="panel-heading">
-                                <h3 className="panel-title">강의 시간표</h3>
-                            </div>
-                            <div className="panel-body">
-                                <table className="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
+                                        <th>Username</th>
+                                        <th>Username</th>
                                         <th>Username</th>
                                     </tr>
                                     </thead>
@@ -152,43 +83,110 @@ const CourseStudent = () => {
                                         <td>Steve</td>
                                         <td>Jobs</td>
                                         <td>@steve</td>
+                                        <td>@steve</td>
+                                        <td>@steve</td>
+                                        <td>@steve</td>
                                     </tr>
                                     <tr>
                                         <td>2</td>
                                         <td>Simon</td>
                                         <td>Philips</td>
                                         <td>@simon</td>
+                                        <td>@steve</td>
+                                        <td>@steve</td>
+                                        <td>@steve</td>
                                     </tr>
                                     <tr>
                                         <td>3</td>
                                         <td>Jane</td>
                                         <td>Doe</td>
                                         <td>@jane</td>
+                                        <td>@steve</td>
+                                        <td>@steve</td>
+                                        <td>@steve</td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
+                </div>
 
+                <div className="row">
                     <div className="col-md-6">
-                        <div id="panel-scrolling-demo" className="panel">
+                        <div className="panel">
                             <div className="panel-heading">
-                                <h3 className="panel-title">강의계획서</h3>
+                                <h3 className="panel-title">학생 정보</h3>
                             </div>
                             <div className="panel-body">
-                                <p>Objectively network visionary methodologies via best-of-breed users.
-                                    Phosfluorescently initiate go forward leadership skills before an expanded array of
-                                    infomediaries. Monotonectally incubate web-enabled communities rather than
-                                    process-centric.</p>
-                                <p>Objectively network visionary methodologies via best-of-breed users.
-                                    Phosfluorescently initiate go forward leadership skills before an expanded array of
-                                    infomediaries. Monotonectally incubate web-enabled communities rather than
-                                    process-centric.</p>
-                                <p>Objectively network visionary methodologies via best-of-breed users.
-                                    Phosfluorescently initiate go forward leadership skills before an expanded array of
-                                    infomediaries. Monotonectally incubate web-enabled communities rather than
-                                    process-centric.</p>
+                                <p>학생 번호</p>
+                                <input type="text" className="form-control" placeholder="text field"/>
+                                <br/>
+                                <p>이름</p>
+                                <input type="password" className="form-control" value="asecret"/>
+                                <br/>
+                                <p>이메일</p>
+                                <input type="password" className="form-control" value="asecret"/>
+                                <br/>
+                                <p>성별</p>
+                                <input type="password" className="form-control" value="asecret"/>
+                                <br/>
+                                <p>연락처</p>
+                                <input type="password" className="form-control" value="asecret"/>
+                                <br/>
+                                <p>주소</p>
+                                <input type="password" className="form-control" value="asecret"/>
+                                <br/>
+                                <p>회원가입일</p>
+                                <input type="password" className="form-control" value="asecret"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="col-md-6">
+                        <div className="panel">
+                            <div className="panel-heading">
+                                <h3 className="panel-title">수강신청 정보</h3>
+                            </div>
+                            <div className="panel-body">
+                                <p>수강신청 번호</p>
+                                <input type="text" className="form-control" placeholder="text field"/>
+                                <br/>
+                                <p>신청 날짜</p>
+                                <input type="password" className="form-control" value="asecret"/>
+                                <br/>
+                                <p>신청 마감일</p>
+                                <input type="password" className="form-control" value="asecret"/>
+                            </div>
+                        </div>
+
+                        <div id="panel-scrolling-demo" className="panel">
+                            <div className="panel-heading">
+                                <h3 className="panel-title">전체 알림</h3>
+                            </div>
+                            <div className="panel-body">
+                                <textarea className="form-control"
+                                          placeholder="Objectively network visionary methodologies via best-of-breed users.
+                                                            Phosfluorescently initiate go forward leadership skills before an expanded array of
+                                                            infomediaries. Monotonectally incubate web-enabled communities rather than
+                                                            process-centric.
+                                                        Objectively network visionary methodologies via best-of-breed users.
+                                                            Phosfluorescently initiate go forward leadership skills before an expanded array of
+                                                            infomediaries. Monotonectally incubate web-enabled communities rather than
+                                                            process-centric.
+                                                        Objectively network visionary methodologies via best-of-breed users.
+                                                            Phosfluorescently initiate go forward leadership skills before an expanded array of
+                                                            infomediaries. Monotonectally incubate web-enabled communities rather than
+                                                            process-centric."
+                                          rows="10" defaultValue="">
+
+                                </textarea>
+
+                                <div className="margin-top-30">
+                                <button className="btn btn-primary" type="button">
+                                    알림보내기 <span className="badge">4명</span>
+                                </button>
+                                </div>
                             </div>
                         </div>
                     </div>
