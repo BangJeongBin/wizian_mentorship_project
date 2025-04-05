@@ -60,6 +60,15 @@ const CourseStudent = () => {
 
                 <div className="row">
                     <div className="col-md-12">
+                        <div className="col-lg-offset-10">
+                            <button className="btn btn-primary" type="button">
+                                수정
+                            </button>
+                            &emsp;
+                            <button className="btn btn-danger" type="button">
+                                삭제
+                            </button>
+                        </div>
                         <div className="panel panel-scrolling">
                             <div className="panel-heading">
                                 <h3 className="panel-title">학생 리스트</h3>
