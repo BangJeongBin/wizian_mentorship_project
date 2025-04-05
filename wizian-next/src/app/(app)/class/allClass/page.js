@@ -68,6 +68,7 @@ const AllClass = () => {
                                 <table className="table table-striped">
                                     <thead>
                                     <tr>
+                                        <th><input type="checkbox"/></th>
                                         <th>#</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
@@ -76,18 +77,21 @@ const AllClass = () => {
                                     </thead>
                                     <tbody>
                                     <tr>
+                                        <td><input type="checkbox"/></td>
                                         <td>1</td>
                                         <td>Steve</td>
                                         <td>Jobs</td>
                                         <td>@steve</td>
                                     </tr>
                                     <tr>
+                                        <td><input type="checkbox"/></td>
                                         <td>2</td>
                                         <td>Simon</td>
                                         <td>Philips</td>
                                         <td>@simon</td>
                                     </tr>
                                     <tr>
+                                        <td><input type="checkbox"/></td>
                                         <td>3</td>
                                         <td>Jane</td>
                                         <td>Doe</td>

@@ -48,6 +48,7 @@ const CourseInfo = () => {
                                 <table className="table table-striped">
                                     <thead>
                                     <tr>
+                                        <th><input type="checkbox"/></th>
                                         <th>Order No.</th>
                                         <th>Name</th>
                                         <th>Amount</th>
@@ -57,6 +58,7 @@ const CourseInfo = () => {
                                     </thead>
                                     <tbody>
                                     <tr>
+                                        <td><input type="checkbox"/></td>
                                         <td><a href="#">763648</a></td>
                                         <td>Steve</td>
                                         <td>$122</td>
@@ -64,6 +66,7 @@ const CourseInfo = () => {
                                         <td><span className="label label-success">COMPLETED</span></td>
                                     </tr>
                                     <tr>
+                                        <td><input type="checkbox"/></td>
                                         <td><a href="#">763649</a></td>
                                         <td>Amber</td>
                                         <td>$62</td>
@@ -71,6 +74,7 @@ const CourseInfo = () => {
                                         <td><span className="label label-warning">PENDING</span></td>
                                     </tr>
                                     <tr>
+                                        <td><input type="checkbox"/></td>
                                         <td><a href="#">763650</a></td>
                                         <td>Michael</td>
                                         <td>$34</td>
@@ -78,6 +82,7 @@ const CourseInfo = () => {
                                         <td><span className="label label-danger">FAILED</span></td>
                                     </tr>
                                     <tr>
+                                        <td><input type="checkbox"/></td>
                                         <td><a href="#">763651</a></td>
                                         <td>Roger</td>
                                         <td>$186</td>
@@ -85,6 +90,7 @@ const CourseInfo = () => {
                                         <td><span className="label label-success">SUCCESS</span></td>
                                     </tr>
                                     <tr>
+                                        <td><input type="checkbox"/></td>
                                         <td><a href="#">763652</a></td>
                                         <td>Smith</td>
                                         <td>$362</td>

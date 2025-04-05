@@ -59,7 +59,7 @@ const CourseStudent = () => {
                 </div>
 
                 <div className="row">
-                    <div className="col">
+                    <div className="col-md-12">
                         <div className="panel panel-scrolling">
                             <div className="panel-heading">
                                 <h3 className="panel-title">학생 리스트</h3>
@@ -68,6 +68,7 @@ const CourseStudent = () => {
                                 <table className="table table-striped">
                                     <thead>
                                     <tr>
+                                        <th><input type="checkbox"/></th>
                                         <th>#</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
@@ -79,6 +80,7 @@ const CourseStudent = () => {
                                     </thead>
                                     <tbody>
                                     <tr>
+                                        <td><input type="checkbox"/></td>
                                         <td>1</td>
                                         <td>Steve</td>
                                         <td>Jobs</td>
@@ -88,6 +90,7 @@ const CourseStudent = () => {
                                         <td>@steve</td>
                                     </tr>
                                     <tr>
+                                        <td><input type="checkbox"/></td>
                                         <td>2</td>
                                         <td>Simon</td>
                                         <td>Philips</td>
@@ -97,6 +100,7 @@ const CourseStudent = () => {
                                         <td>@steve</td>
                                     </tr>
                                     <tr>
+                                        <td><input type="checkbox"/></td>
                                         <td>3</td>
                                         <td>Jane</td>
                                         <td>Doe</td>
@@ -157,36 +161,6 @@ const CourseStudent = () => {
                                 <br/>
                                 <p>신청 마감일</p>
                                 <input type="password" className="form-control" value="asecret"/>
-                            </div>
-                        </div>
-
-                        <div id="panel-scrolling-demo" className="panel">
-                            <div className="panel-heading">
-                                <h3 className="panel-title">전체 알림</h3>
-                            </div>
-                            <div className="panel-body">
-                                <textarea className="form-control"
-                                          placeholder="Objectively network visionary methodologies via best-of-breed users.
-                                                            Phosfluorescently initiate go forward leadership skills before an expanded array of
-                                                            infomediaries. Monotonectally incubate web-enabled communities rather than
-                                                            process-centric.
-                                                        Objectively network visionary methodologies via best-of-breed users.
-                                                            Phosfluorescently initiate go forward leadership skills before an expanded array of
-                                                            infomediaries. Monotonectally incubate web-enabled communities rather than
-                                                            process-centric.
-                                                        Objectively network visionary methodologies via best-of-breed users.
-                                                            Phosfluorescently initiate go forward leadership skills before an expanded array of
-                                                            infomediaries. Monotonectally incubate web-enabled communities rather than
-                                                            process-centric."
-                                          rows="10" defaultValue="">
-
-                                </textarea>
-
-                                <div className="margin-top-30">
-                                <button className="btn btn-primary" type="button">
-                                    알림보내기 <span className="badge">4명</span>
-                                </button>
-                                </div>
                             </div>
                         </div>
                     </div>

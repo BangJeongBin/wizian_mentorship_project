@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import styles from "../../page.module.css";
+import Swal from "sweetalert2";
 import { useState } from "react";
 
 export default function Home() {
@@ -45,6 +46,29 @@ export default function Home() {
       [panelKey]: { ...prev[panelKey], collapsed: !prev[panelKey].collapsed }
     }));
   };
+
+  // sweetAlert
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    Swal.fire({
+      title: '변경사항을 적용하시겠습니까?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: '예',
+      cancelButtonText: '아니오',
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: '변경 완료되었습니다!',
+          icon: 'success',
+          confirmButtonText: '확인'
+        });
+      }
+    });
+  };
+
 
   return (
       <div className="main-content">
@@ -127,6 +151,22 @@ export default function Home() {
               </div>
           )}
 
+          <div className="flex justify-between mt-6">
+            <button
+                type="submit"
+                className="btn-complate"
+            >
+              수정 완료
+            </button>
+            <button
+                type="button"
+                onClick={handleSubmit}
+                className="btn-cansle"
+            >
+              취소
+            </button>
+          </div>
+
           <div className="row">
             <div className="col-md-6">
               {/* RECENT PURCHASES */}
@@ -202,6 +242,7 @@ export default function Home() {
                   </div>
               )}
             </div>
+
             <div className="col-md-6">
               {/* MULTI CHARTS */}
               {panels.multiCharts.visible && (
