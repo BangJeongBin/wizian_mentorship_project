@@ -237,6 +237,25 @@ const CourseAttend = () => {
                                 </table>
                             </div>
                         </div>
+
+                        <div className="panel">
+                            <div className="panel-heading">
+                                <h3 className="panel-title">출결 점수 입력</h3>
+                            </div>
+                            <div className="panel-body">
+                                <p>학생 번호</p>
+                                <input type="text" className="form-control" placeholder="text field"/>
+                                <br/>
+                                <p>학생 이름</p>
+                                <input type="text" className="form-control" placeholder="text field"/>
+                                <br/>
+                                <input type="text" className="form-control" placeholder="점수를 입력하세요"/>
+                                <br/>
+                                <button className="btn btn-warning form-control" type="button">
+                                    점수 저장
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
