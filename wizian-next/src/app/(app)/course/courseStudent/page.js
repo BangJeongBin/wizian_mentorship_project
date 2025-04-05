@@ -2,11 +2,11 @@
 
 import React from "react";
 
-const AllClass = () => {
+const CourseStudent = () => {
     return (
         <div className="main-content">
             <div className="container-fluid">
-                <a href="/dashboard">메인 페이지 /</a>&ensp;<a href="#">모든 강의 정보</a>
+                <a href="/dashboard">메인 페이지 /</a>&ensp;<a href="#">진행중인 강의 /</a>&ensp;<a href="#">수강학생</a>
                 <div className="row">
                     <button type="button" className="btn btn-success col-lg-offset-10 margin-bottom-30">
                         <i className="fa fa-refresh fa-spin"></i> 조회하기
@@ -199,4 +199,4 @@ const AllClass = () => {
     )
 }
 
-export default AllClass;
+export default CourseStudent;

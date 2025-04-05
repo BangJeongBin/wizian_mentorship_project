@@ -6,7 +6,7 @@ const AllCourse = () => {
     return (
         <div className="main-content">
             <div className="container-fluid">
-                <a href="/dashboard">메인 페이지 /</a>&ensp;<a href="#">모든 과정 정보</a>
+                <a href="/dashboard">메인 페이지 /</a>&ensp;<a href="#">모든 강의 /</a>&ensp;<a href="#">모든 과정 정보</a>
                 <div className="row">
                     <button type="button" className="btn btn-success col-lg-offset-10 margin-bottom-30">
                         <i className="fa fa-refresh fa-spin"></i> 조회하기
