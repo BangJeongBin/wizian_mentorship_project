@@ -6,7 +6,7 @@ const CourseInfo = () => {
     return (
         <div className="main-content">
             <div className="container-fluid">
-                <a href="/dashboard">메인 페이지 /</a>&ensp;<a href="#">진행중인 강의 /</a>&ensp;<a href="/archive/myProblem">나의 과제 /</a>&ensp;<a href="#">과제 작성</a>
+                <a href="/dashboard">메인 페이지 /</a>&ensp;<a href="#">진행중인 강의 /</a>&ensp;<a href="/archive/myProblem">나의 게시글 /</a>&ensp;<a href="#">게시글 작성</a>
                 <div className="row">
                     <button type="button" className="btn btn-primary col-lg-offset-10 margin-bottom-30">
                         <i className="fa fa-refresh fa-spin"></i> 등록하기
