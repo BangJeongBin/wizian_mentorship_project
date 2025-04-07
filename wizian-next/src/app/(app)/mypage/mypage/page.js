@@ -1,8 +1,32 @@
 "use client"
 
 import React from "react";
+import Swal from "sweetalert2";
 
 const MyPage = () => {
+    // sweetAlert
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        Swal.fire({
+            title: '변경사항을 적용하시겠습니까?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '예',
+            cancelButtonText: '아니오',
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: '변경 완료되었습니다!',
+                    icon: 'success',
+                    confirmButtonText: '확인'
+                });
+            }
+        });
+    };
+
+
     return (
         <div className="main-content">
             <div className="container-fluid">
@@ -64,7 +88,8 @@ const MyPage = () => {
                         <div className="profile-right">
                             <h4 className="heading">정보 수정</h4>
 
-                            {/* AWARDS */}
+                            {/* 정보수정 */}
+                            <form name="" id="" method="post" onSubmit={handleSubmit}>
                             <div className="awards">
                                 <div className="row">
                                     <div className="col-md-4">
@@ -101,10 +126,12 @@ const MyPage = () => {
                                 </div>
                                 
                                 <div className="text-center">
-                                    <a href="#" className="btn btn-primary">프로필 수정</a>
+                                    <button type="submit" className="btn btn-primary">프로필 수정</button>
                                 </div>
                             </div>
-                            {/* END AWARDS */}
+                            </form>
+                            {/* END 정보수정 */}
+
 
                             {/* TABBED CONTENT */}
                             <div className="custom-tabs-line tabs-line-bottom left-aligned">

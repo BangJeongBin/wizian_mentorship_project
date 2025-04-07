@@ -134,14 +134,13 @@ export default function Home() {
           )}
 
           {/* sweetalert example */}
-          <div className="flex justify-between mt-6">
-            <button type="submit" className="btn-complate">
-              수정 완료
-            </button>
-            <button type="button" onClick={handleSubmit} className="btn-cansle">
-              취소
-            </button>
-          </div>
+          <form name="" id="" method="post" onSubmit={handleSubmit}>
+            <div className="flex justify-between mt-6">
+              <button type="submit" className="btn-complate">
+                수정 완료
+              </button>
+            </div>
+          </form>
 
           <div className="row">
             <div className="col-md-6">
