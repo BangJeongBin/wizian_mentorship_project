@@ -170,7 +170,7 @@ const MyBoard = () => {
                     <div className="col-md-2">
                         <div className="panel">
                             <div className="panel-heading">
-                                <h3 className="panel-title">게시판 정보</h3>
+                                <h3 className="panel-title">첨부파일</h3>
                             </div>
                             <div className="panel-body">
                                 <p>첨부파일 1</p>
