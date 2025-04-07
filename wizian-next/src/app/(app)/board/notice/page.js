@@ -1,49 +1,98 @@
 "use client"
 
 import React from "react";
+import Swal from "sweetalert2";
 
 const Notice = () => {
+    // sweetAlert
+    const SearchSubmit = (e) => {
+        e.preventDefault();
+
+        Swal.fire({
+            title: '변경사항을 적용하시겠습니까?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '예',
+            cancelButtonText: '아니오',
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: '변경 완료되었습니다!',
+                    icon: 'success',
+                    confirmButtonText: '확인'
+                });
+            }
+        });
+    };
+
+    // sweetAlert
+    const DownloadSubmit = (e) => {
+        e.preventDefault();
+
+        Swal.fire({
+            title: '변경사항을 적용하시겠습니까?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '예',
+            cancelButtonText: '아니오',
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: '변경 완료되었습니다!',
+                    icon: 'success',
+                    confirmButtonText: '확인'
+                });
+            }
+        });
+    };
+
+
     return (
         <div className="main-content">
             <div className="container-fluid">
                 <a href="/dashboard">메인 페이지 /</a>&ensp;<a href="#">게시판 /</a>&ensp;<a href="#">공지사항</a>
-                <div className="row">
-                    <button type="button" className="btn btn-success col-lg-offset-10 margin-bottom-30">
-                        <i className="fa fa-refresh fa-spin"></i> 조회하기
-                    </button>
-                </div>
 
-                <div id="toastr-demo" className="panel col">
-                    <div className="panel-body row">
-                        <div className="col-md-6 col-lg-offset-1">
-                            <strong>정렬</strong>&emsp;&emsp;&emsp;
-                            <select className="navbar">
-                                <option value="cheese">최신순</option>
-                                <option value="tomatoes">오래된 순</option>
-                                <option value="mozarella">조회수 순</option>
-                                <option value="mushrooms">추천 순</option>
-                                <option value="pepperoni">Pepperoni</option>
-                                <option value="onions">Onions</option>
-                            </select>
-                        </div>
+                <form name="" id="" method="post" onSubmit={SearchSubmit}>
+                    <div className="row">
+                        <button type="submit" className="btn btn-success col-lg-offset-10 margin-bottom-30">
+                            <i className="fa fa-refresh fa-spin"></i> 조회하기
+                        </button>
+                    </div>
 
-                        <div className="col-md-1">
-                            <select className="navbar">
-                                <option value="cheese">제목</option>
-                                <option value="tomatoes">내용</option>
-                                <option value="mozarella">작성자</option>
-                                <option value="mushrooms">Mushrooms</option>
-                                <option value="pepperoni">Pepperoni</option>
-                                <option value="onions">Onions</option>
-                            </select>
-                        </div>
+                    <div id="toastr-demo" className="panel col">
+                        <div className="panel-body row">
+                            <div className="col-md-6 col-lg-offset-1">
+                                <strong>정렬</strong>&emsp;&emsp;&emsp;
+                                <select className="navbar">
+                                    <option value="cheese">최신순</option>
+                                    <option value="tomatoes">오래된 순</option>
+                                    <option value="mozarella">조회수 순</option>
+                                    <option value="mushrooms">추천 순</option>
+                                    <option value="pepperoni">Pepperoni</option>
+                                    <option value="onions">Onions</option>
+                                </select>
+                            </div>
 
-                        <div className="col-md-3">
-                            <strong><i className="lnr lnr-magnifier"></i> 검색</strong>
-                            <input type="text" className="form-control" placeholder="게시글 제목 입력"/>
+                            <div className="col-md-1">
+                                <select className="navbar">
+                                    <option value="cheese">제목</option>
+                                    <option value="tomatoes">내용</option>
+                                    <option value="mozarella">작성자</option>
+                                    <option value="mushrooms">Mushrooms</option>
+                                    <option value="pepperoni">Pepperoni</option>
+                                    <option value="onions">Onions</option>
+                                </select>
+                            </div>
+
+                            <div className="col-md-3">
+                                <strong><i className="lnr lnr-magnifier"></i> 검색</strong>
+                                <input type="text" className="form-control" placeholder="게시글 제목 입력"/>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
 
                 <div className="row">
                     <div className="col-md-12">
@@ -172,7 +221,7 @@ const Notice = () => {
                                 <p>첨부파일 3</p>
                                 <input type="text" className="form-control" placeholder="text field"/>
                                 <br/>
-                                <button className="btn btn-success form-control" type="button">
+                                <button className="btn btn-success form-control" type="button" onClick={SearchSubmit}>
                                     일괄 다운로드
                                 </button>
                             </div>
