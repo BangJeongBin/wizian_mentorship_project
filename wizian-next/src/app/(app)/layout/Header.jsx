@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from "react";
+import { Dropdown, Badge, Image } from 'react-bootstrap';
+
 
 const Header = () => {
     // 상태 관리
@@ -77,6 +79,7 @@ const Header = () => {
             }
         }
     };
+
 
     return (
         <nav className="navbar navbar-default navbar-fixed-top">
