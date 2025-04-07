@@ -1,71 +1,164 @@
 "use client"
 
 import React from "react";
+import Swal from "sweetalert2";
 
 const MyProblem = () => {
+    // sweetAlert
+    const SearchSubmit = (e) => {
+        e.preventDefault();
+
+        Swal.fire({
+            title: '변경사항을 적용하시겠습니까?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '예',
+            cancelButtonText: '아니오',
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: '변경 완료되었습니다!',
+                    icon: 'success',
+                    confirmButtonText: '확인'
+                });
+            }
+        });
+    };
+
+    // sweetAlert
+    const ProblemModify = (e) => {
+        e.preventDefault();
+
+        Swal.fire({
+            title: '변경사항을 적용하시겠습니까?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '예',
+            cancelButtonText: '아니오',
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: '변경 완료되었습니다!',
+                    icon: 'success',
+                    confirmButtonText: '확인'
+                });
+            }
+        });
+    };
+
+    // sweetAlert
+    const ProblemDelete = (e) => {
+        e.preventDefault();
+
+        Swal.fire({
+            title: '변경사항을 적용하시겠습니까?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '예',
+            cancelButtonText: '아니오',
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: '변경 완료되었습니다!',
+                    icon: 'success',
+                    confirmButtonText: '확인'
+                });
+            }
+        });
+    };
+
+    // sweetAlert
+    const ProblemSubmit = (e) => {
+        e.preventDefault();
+
+        Swal.fire({
+            title: '변경사항을 적용하시겠습니까?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '예',
+            cancelButtonText: '아니오',
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: '변경 완료되었습니다!',
+                    icon: 'success',
+                    confirmButtonText: '확인'
+                });
+            }
+        });
+    };
+
+
     return (
         <div className="main-content">
             <div className="container-fluid">
                 <a href="/dashboard">메인 페이지 /</a>&ensp;<a href="#">나의 자료실 /</a>&ensp;<a href="#">나의 과제</a>
-                <div className="row">
-                    <button type="button" className="btn btn-success col-lg-offset-10 margin-bottom-30">
-                        <i className="fa fa-refresh fa-spin"></i> 조회하기
-                    </button>
-                </div>
 
-                <div id="toastr-demo" className="panel col">
-                    <div className="panel-body row">
-                        <div className="col-md-3">
-                            <strong>강의 종류</strong>&emsp;&emsp;&emsp;
-                            <select className="navbar">
-                                <option value="cheese">Cheese(진행중)</option>
-                                <option value="tomatoes">Tomatoes</option>
-                                <option value="mozarella">Mozzarella</option>
-                                <option value="mushrooms">Mushrooms</option>
-                                <option value="pepperoni">Pepperoni</option>
-                                <option value="onions">Onions</option>
-                            </select>
-                        </div>
+                <form name="" id="" method="post" onSubmit={SearchSubmit}>
+                    <div className="row">
+                        <button type="submit" className="btn btn-success col-lg-offset-10 margin-bottom-30">
+                            <i className="fa fa-refresh fa-spin"></i> 조회하기
+                        </button>
+                    </div>
 
-                        <div className="col-md-3">
-                            <strong>과제 년도</strong>&emsp;&emsp;&emsp;
-                            <select className="navbar">
-                                <option value="cheese">진행중인 학생</option>
-                                <option value="tomatoes">수료한 학생</option>
-                                <option value="mozarella">Mozzarella</option>
-                                <option value="mushrooms">Mushrooms</option>
-                                <option value="pepperoni">Pepperoni</option>
-                                <option value="onions">Onions</option>
-                            </select>
-                        </div>
+                    <div id="toastr-demo" className="panel col">
+                        <div className="panel-body row">
+                            <div className="col-md-3">
+                                <strong>강의 종류</strong>&emsp;&emsp;&emsp;
+                                <select className="navbar">
+                                    <option value="cheese">Cheese(진행중)</option>
+                                    <option value="tomatoes">Tomatoes</option>
+                                    <option value="mozarella">Mozzarella</option>
+                                    <option value="mushrooms">Mushrooms</option>
+                                    <option value="pepperoni">Pepperoni</option>
+                                    <option value="onions">Onions</option>
+                                </select>
+                            </div>
 
-                        <div className="col-md-3">
-                            <strong>과제 상하반기 분류</strong>&emsp;&emsp;&emsp;
-                            <select className="navbar">
-                                <option value="cheese">Cheese</option>
-                                <option value="tomatoes">Tomatoes</option>
-                                <option value="mozarella">Mozzarella</option>
-                                <option value="mushrooms">Mushrooms</option>
-                                <option value="pepperoni">Pepperoni</option>
-                                <option value="onions">Onions</option>
-                            </select>
-                        </div>
+                            <div className="col-md-3">
+                                <strong>과제 년도</strong>&emsp;&emsp;&emsp;
+                                <select className="navbar">
+                                    <option value="cheese">진행중인 학생</option>
+                                    <option value="tomatoes">수료한 학생</option>
+                                    <option value="mozarella">Mozzarella</option>
+                                    <option value="mushrooms">Mushrooms</option>
+                                    <option value="pepperoni">Pepperoni</option>
+                                    <option value="onions">Onions</option>
+                                </select>
+                            </div>
 
-                        <div className="col-md-3">
-                            <strong><i className="lnr lnr-magnifier"></i> 검색</strong>
-                            <input type="text" className="form-control" placeholder="과제명 입력"/>
+                            <div className="col-md-3">
+                                <strong>과제 상하반기 분류</strong>&emsp;&emsp;&emsp;
+                                <select className="navbar">
+                                    <option value="cheese">Cheese</option>
+                                    <option value="tomatoes">Tomatoes</option>
+                                    <option value="mozarella">Mozzarella</option>
+                                    <option value="mushrooms">Mushrooms</option>
+                                    <option value="pepperoni">Pepperoni</option>
+                                    <option value="onions">Onions</option>
+                                </select>
+                            </div>
+
+                            <div className="col-md-3">
+                                <strong><i className="lnr lnr-magnifier"></i> 검색</strong>
+                                <input type="text" className="form-control" placeholder="과제명 입력"/>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
 
                 <div className="row">
                     <div className="col-md-12">
                         <div className="col-lg-offset-10">
-                            <button className="btn btn-primary" type="button">
+                            <button className="btn btn-primary" type="button" onClick={ProblemModify}>
                                 수정
                             </button>
                             &emsp;
-                            <button className="btn btn-danger" type="button">
+                            <button className="btn btn-danger" type="button" onClick={ProblemDelete}>
                                 삭제
                             </button>
                         </div>
@@ -218,24 +311,26 @@ const MyProblem = () => {
                         </div>
                     </div>
 
-                    <div className="col-md-3">
-                        <div className="panel">
-                            <div className="panel-heading">
-                                <h3 className="panel-title">과제 마감</h3>
-                            </div>
-                            <div className="panel-body">
-                                <p>제출된 과제 수</p>
-                                <input type="text" className="form-control" placeholder="text field"/>
-                                <br/>
-                                <p>현재 시간</p>
-                                <input type="text" className="form-control" placeholder="2000.00.00 00/00/00"/>
-                                <br/>
-                                <button className="btn btn-success form-control" type="button">
-                                    과제 마감
-                                </button>
+                    <form name="" id="" method="post" onSubmit={ProblemSubmit}>
+                        <div className="col-md-3">
+                            <div className="panel">
+                                <div className="panel-heading">
+                                    <h3 className="panel-title">과제 마감</h3>
+                                </div>
+                                <div className="panel-body">
+                                    <p>제출된 과제 수</p>
+                                    <input type="text" className="form-control" placeholder="text field"/>
+                                    <br/>
+                                    <p>현재 시간</p>
+                                    <input type="text" className="form-control" placeholder="2000.00.00 00/00/00"/>
+                                    <br/>
+                                    <button className="btn btn-success form-control" type="submit">
+                                        과제 마감
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
 
             </div>
