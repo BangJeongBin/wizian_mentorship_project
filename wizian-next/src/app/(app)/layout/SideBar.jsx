@@ -157,9 +157,6 @@ const SideBar = () => {
                                         <Link href="/board/notice">공지사항</Link>
                                     </li>
                                     <li>
-                                        <Link href="/board/classBoard">강의게시판</Link>
-                                    </li>
-                                    <li>
                                         <Link href="/board/qnaBoard">QnA</Link>
                                     </li>
                                 </ul>
