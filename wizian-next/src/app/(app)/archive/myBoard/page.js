@@ -15,7 +15,7 @@ const MyBoard = () => {
 
                 <div id="toastr-demo" className="panel col">
                     <div className="panel-body row">
-                        <div className="col-md-3">
+                        <div className="col-md-4">
                             <strong>강의 종류</strong>&emsp;&emsp;&emsp;
                             <select className="navbar">
                                 <option value="cheese">Cheese(진행중)</option>
@@ -27,23 +27,11 @@ const MyBoard = () => {
                             </select>
                         </div>
 
-                        <div className="col-md-3">
-                            <strong>진행 상태</strong>&emsp;&emsp;&emsp;
+                        <div className="col-md-4">
+                            <strong>게시일자</strong>&emsp;&emsp;&emsp;
                             <select className="navbar">
-                                <option value="cheese">진행중인 학생</option>
-                                <option value="tomatoes">수료한 학생</option>
-                                <option value="mozarella">Mozzarella</option>
-                                <option value="mushrooms">Mushrooms</option>
-                                <option value="pepperoni">Pepperoni</option>
-                                <option value="onions">Onions</option>
-                            </select>
-                        </div>
-
-                        <div className="col-md-3">
-                            <strong>성별</strong>&emsp;&emsp;&emsp;
-                            <select className="navbar">
-                                <option value="cheese">Cheese</option>
-                                <option value="tomatoes">Tomatoes</option>
+                                <option value="cheese">내림차순</option>
+                                <option value="tomatoes">오름차순</option>
                                 <option value="mozarella">Mozzarella</option>
                                 <option value="mushrooms">Mushrooms</option>
                                 <option value="pepperoni">Pepperoni</option>
@@ -53,7 +41,7 @@ const MyBoard = () => {
 
                         <div className="col-md-3">
                             <strong><i className="lnr lnr-magnifier"></i> 검색</strong>
-                            <input type="text" className="form-control" placeholder="학생명 입력"/>
+                            <input type="text" className="form-control" placeholder="게시글 제목 입력"/>
                         </div>
                     </div>
                 </div>
@@ -71,7 +59,7 @@ const MyBoard = () => {
                         </div>
                         <div className="panel panel-scrolling">
                             <div className="panel-heading">
-                                <h3 className="panel-title">학생 리스트</h3>
+                                <h3 className="panel-title">게시판 리스트</h3>
                             </div>
                             <div className="panel-body">
                                 <table className="table table-striped">
@@ -126,50 +114,77 @@ const MyBoard = () => {
                 </div>
 
                 <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-md-10">
                         <div className="panel">
                             <div className="panel-heading">
-                                <h3 className="panel-title">학생 정보</h3>
+                                <h3 className="panel-title">게시판 정보</h3>
                             </div>
                             <div className="panel-body">
-                                <p>학생 번호</p>
-                                <input type="text" className="form-control" placeholder="text field"/>
+                                <div className="col-md-4">
+                                    <p>게시판 번호</p>
+                                    <input type="text" className="form-control" placeholder="text field"/>
+                                    <br/>
+                                </div>
+                                <div className="col-md-4">
+                                    <p>게시판 이름</p>
+                                    <input type="password" className="form-control" value="asecret"/>
+                                    <br/>
+                                </div>
+                                <div className="col-md-4">
+                                    <p>게시글 번호</p>
+                                    <input type="password" className="form-control" value="asecret"/>
+                                    <br/>
+                                </div>
+
+                                <div className="col-md-3">
+                                    <p>작성자</p>
+                                    <input type="password" className="form-control" value="asecret"/>
+                                    <br/>
+                                </div>
+                                <div className="col-md-3">
+                                    <p>조회수</p>
+                                    <input type="password" className="form-control" value="asecret"/>
+                                    <br/>
+                                </div>
+                                <div className="col-md-3">
+                                    <p>작성일자</p>
+                                    <input type="password" className="form-control" value="asecret"/>
+                                    <br/>
+                                </div>
+                                <div className="col-md-3">
+                                    <p>비밀글 여부</p>
+                                    <input type="password" className="form-control" value="asecret"/>
+                                    <br/>
+                                </div>
+                                
+                                <p>제목</p>
+                                <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
                                 <br/>
-                                <p>이름</p>
-                                <input type="password" className="form-control" value="asecret"/>
+                                <p>본문 글</p>
+                                <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="5" defaultValue=""></textarea>
                                 <br/>
-                                <p>이메일</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>성별</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>연락처</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>주소</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>회원가입일</p>
-                                <input type="password" className="form-control" value="asecret"/>
                             </div>
                         </div>
                     </div>
 
-                    <div className="col-md-6">
+                    <div className="col-md-2">
                         <div className="panel">
                             <div className="panel-heading">
-                                <h3 className="panel-title">수강신청 정보</h3>
+                                <h3 className="panel-title">게시판 정보</h3>
                             </div>
                             <div className="panel-body">
-                                <p>수강신청 번호</p>
+                                <p>첨부파일 1</p>
                                 <input type="text" className="form-control" placeholder="text field"/>
                                 <br/>
-                                <p>신청 날짜</p>
-                                <input type="password" className="form-control" value="asecret"/>
+                                <p>첨부파일 2</p>
+                                <input type="text" className="form-control" placeholder="text field"/>
                                 <br/>
-                                <p>신청 마감일</p>
-                                <input type="password" className="form-control" value="asecret"/>
+                                <p>첨부파일 3</p>
+                                <input type="text" className="form-control" placeholder="text field"/>
+                                <br/>
+                                <button className="btn btn-success form-control" type="button">
+                                    일괄 다운로드
+                                </button>
                             </div>
                         </div>
                     </div>

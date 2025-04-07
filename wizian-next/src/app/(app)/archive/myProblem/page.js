@@ -136,11 +136,13 @@ const MyProblem = () => {
                                 <div className="col-md-4">
                                     <p>과제 정보 번호</p>
                                     <input type="text" className="form-control" placeholder="text field"/>
+                                    <br />
                                 </div>
 
                                 <div className="col-md-4">
                                     <p>강의 번호</p>
                                     <input type="text" className="form-control" placeholder="text field"/>
+                                    <br />
                                 </div>
 
                                 <div className="col-md-4">
@@ -152,6 +154,7 @@ const MyProblem = () => {
                                 <div className="col-md-4">
                                     <p>과제 상하반기 분류</p>
                                     <input type="text" className="form-control" placeholder="text field"/>
+                                    <br />
                                 </div>
 
                                 <div className="col-md-4">
@@ -163,11 +166,13 @@ const MyProblem = () => {
                                 <div className="col-md-6">
                                     <p>과제 부여 일자</p>
                                     <input type="text" className="form-control" placeholder="text field"/>
+                                    <br />
                                 </div>
 
                                 <div className="col-md-6">
                                     <p>과제 마감 일자</p>
                                     <input type="text" className="form-control" placeholder="text field"/>
+                                    <br />
                                 </div>
                             </div>
                         </div>
@@ -225,7 +230,7 @@ const MyProblem = () => {
                                 <p>현재 시간</p>
                                 <input type="text" className="form-control" placeholder="2000.00.00 00/00/00"/>
                                 <br/>
-                                <button className="btn btn-warning form-control" type="button">
+                                <button className="btn btn-success form-control" type="button">
                                     과제 마감
                                 </button>
                             </div>

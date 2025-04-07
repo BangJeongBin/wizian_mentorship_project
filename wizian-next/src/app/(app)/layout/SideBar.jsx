@@ -131,7 +131,13 @@ const SideBar = () => {
                                         <Link href="/archive/myProblem">나의 과제</Link>
                                     </li>
                                     <li>
+                                        <Link href="/archive/problemWrite">&emsp;&emsp; 과제 작성</Link>
+                                    </li>
+                                    <li>
                                         <Link href="/archive/myBoard">나의 게시글</Link>
+                                    </li>
+                                    <li>
+                                        <Link href="/archive/boardWrite">&emsp;&emsp; 게시글 작성</Link>
                                     </li>
                                 </ul>
                             </div>
