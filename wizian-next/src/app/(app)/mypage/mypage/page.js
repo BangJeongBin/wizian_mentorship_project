@@ -2,7 +2,7 @@
 
 import React from "react";
 
-const PageProfile = () => {
+const MyPage = () => {
     return (
         <div className="main-content">
             <div className="container-fluid">
@@ -288,4 +288,4 @@ const PageProfile = () => {
     )
 }
 
-export default PageProfile;
+export default MyPage;

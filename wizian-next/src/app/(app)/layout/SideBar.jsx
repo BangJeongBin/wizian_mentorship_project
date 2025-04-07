@@ -58,9 +58,6 @@ const SideBar = () => {
                                     <li>
                                         <Link href="/mypage/resetPassword">비밀번호 변경</Link>
                                     </li>
-                                    <li>
-                                        <Link href="/mypage/lookScreen">화면 잠금</Link>
-                                    </li>
                                 </ul>
                             </div>
                         </li>
