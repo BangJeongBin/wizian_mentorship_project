@@ -206,24 +206,24 @@ const CourseGrade = () => {
 
                             <div className="panel-body">
                                 <div className="col-md-4">
-                                    <p>출석점수</p>
+                                    <p className="text-center">출석점수</p>
                                     <input type="text" className="form-control" placeholder="text field"/>
                                 </div>
 
                                 <div className="col-md-4">
-                                    <p>상반기 과제점수</p>
+                                    <p className="text-center">상반기 과제점수</p>
                                     <input type="text" className="form-control" placeholder="text field"/>
                                 </div>
 
                                 <div className="col-md-4">
-                                    <p>하반기 과제점수</p>
+                                    <p className="text-center">하반기 과제점수</p>
                                     <input type="text" className="form-control" placeholder="text field"/>
                                 </div>
 
 
                                 <div className="col-md-6 col-md-offset-3">
                                     <br/>
-                                    <p>마감점수 입력</p>
+                                    <p className="text-center">마감점수 입력</p>
                                     <input type="text" className="form-control" placeholder="점수를 입력하세요"/>
                                     <br/>
                                 </div>

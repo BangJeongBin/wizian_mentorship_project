@@ -111,38 +111,38 @@ const Notice = () => {
                             </div>
                             <div className="panel-body">
                                 <div className="col-md-4">
-                                    <p>게시판 번호</p>
+                                    <p className="text-center">게시판 번호</p>
                                     <input type="text" className="form-control" placeholder="text field"/>
                                     <br/>
                                 </div>
                                 <div className="col-md-4">
-                                    <p>게시판 이름</p>
+                                    <p className="text-center">게시판 이름</p>
                                     <input type="password" className="form-control" value="asecret"/>
                                     <br/>
                                 </div>
                                 <div className="col-md-4">
-                                    <p>게시글 번호</p>
+                                    <p className="text-center">게시글 번호</p>
                                     <input type="password" className="form-control" value="asecret"/>
                                     <br/>
                                 </div>
 
                                 <div className="col-md-3">
-                                    <p>작성자</p>
+                                    <p className="text-center">작성자</p>
                                     <input type="password" className="form-control" value="asecret"/>
                                     <br/>
                                 </div>
                                 <div className="col-md-3">
-                                    <p>조회수</p>
+                                    <p className="text-center">조회수</p>
                                     <input type="password" className="form-control" value="asecret"/>
                                     <br/>
                                 </div>
                                 <div className="col-md-3">
-                                    <p>작성일자</p>
+                                    <p className="text-center">작성일자</p>
                                     <input type="password" className="form-control" value="asecret"/>
                                     <br/>
                                 </div>
                                 <div className="col-md-3">
-                                    <p>비밀글 여부</p>
+                                    <p className="text-center">비밀글 여부</p>
                                     <input type="password" className="form-control" value="asecret"/>
                                     <br/>
                                 </div>
