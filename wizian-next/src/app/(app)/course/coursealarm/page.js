@@ -1,62 +1,111 @@
 "use client"
 
 import React from "react";
+import Swal from "sweetalert2";
 
 const CourseAlarm = () => {
+    // sweetAlert
+    const SearchSubmit = (e) => {
+        e.preventDefault();
+
+        Swal.fire({
+            title: '변경사항을 적용하시겠습니까?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '예',
+            cancelButtonText: '아니오',
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: '변경 완료되었습니다!',
+                    icon: 'success',
+                    confirmButtonText: '확인'
+                });
+            }
+        });
+    };
+
+    // sweetAlert
+    const AlarmSubmit = (e) => {
+        e.preventDefault();
+
+        Swal.fire({
+            title: '변경사항을 적용하시겠습니까?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '예',
+            cancelButtonText: '아니오',
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: '변경 완료되었습니다!',
+                    icon: 'success',
+                    confirmButtonText: '확인'
+                });
+            }
+        });
+    };
+
+
     return (
         <div className="main-content">
             <div className="container-fluid">
                 <a href="/dashboard">메인 페이지 /</a>&ensp;<a href="#">진행중인 강의 /</a>&ensp;<a href="#">수강생 알림</a>
-                <div className="row">
-                    <button type="button" className="btn btn-success col-lg-offset-10 margin-bottom-30">
-                        <i className="fa fa-refresh fa-spin"></i> 조회하기
-                    </button>
-                </div>
 
-                <div id="toastr-demo" className="panel col">
-                    <div className="panel-body row">
-                        <div className="col-md-3">
-                            <strong>강의명</strong>&emsp;&emsp;&emsp;
-                            <select className="navbar">
-                                <option value="cheese">Cheese(진행중)</option>
-                                <option value="tomatoes">Tomatoes</option>
-                                <option value="mozarella">Mozzarella</option>
-                                <option value="mushrooms">Mushrooms</option>
-                                <option value="pepperoni">Pepperoni</option>
-                                <option value="onions">Onions</option>
-                            </select>
-                        </div>
+                <form name="" id="" method="post" onSubmit={SearchSubmit}>
+                    <div className="row">
+                        <button type="submit" className="btn btn-success col-lg-offset-10 margin-bottom-30">
+                            <i className="fa fa-refresh fa-spin"></i> 조회하기
+                        </button>
+                    </div>
 
-                        <div className="col-md-3">
-                            <strong>학생 상태</strong>&emsp;&emsp;&emsp;
-                            <select className="navbar">
-                                <option value="cheese">진행중인 학생</option>
-                                <option value="tomatoes">수료한 학생</option>
-                                <option value="mozarella">수강 실패 학생</option>
-                                <option value="mushrooms">Mushrooms</option>
-                                <option value="pepperoni">Pepperoni</option>
-                                <option value="onions">Onions</option>
-                            </select>
-                        </div>
+                    <div id="toastr-demo" className="panel col">
+                        <div className="panel-body row">
+                            <div className="col-md-3">
+                                <strong>강의명</strong>&emsp;&emsp;&emsp;
+                                <select className="navbar">
+                                    <option value="cheese">Cheese(진행중)</option>
+                                    <option value="tomatoes">Tomatoes</option>
+                                    <option value="mozarella">Mozzarella</option>
+                                    <option value="mushrooms">Mushrooms</option>
+                                    <option value="pepperoni">Pepperoni</option>
+                                    <option value="onions">Onions</option>
+                                </select>
+                            </div>
 
-                        <div className="col-md-3">
-                            <strong>성적 안내</strong>&emsp;&emsp;&emsp;
-                            <select className="navbar">
-                                <option value="cheese">과제 제출 학생</option>
-                                <option value="tomatoes">과제 미제출 학생</option>
-                                <option value="mozarella">금일 출석 학생</option>
-                                <option value="mushrooms">금일 미출석 학생</option>
-                                <option value="pepperoni">Pepperoni</option>
-                                <option value="onions">Onions</option>
-                            </select>
-                        </div>
+                            <div className="col-md-3">
+                                <strong>학생 상태</strong>&emsp;&emsp;&emsp;
+                                <select className="navbar">
+                                    <option value="cheese">진행중인 학생</option>
+                                    <option value="tomatoes">수료한 학생</option>
+                                    <option value="mozarella">수강 실패 학생</option>
+                                    <option value="mushrooms">Mushrooms</option>
+                                    <option value="pepperoni">Pepperoni</option>
+                                    <option value="onions">Onions</option>
+                                </select>
+                            </div>
 
-                        <div className="col-md-3">
-                            <strong><i className="lnr lnr-magnifier"></i> 검색</strong>
-                            <input type="text" className="form-control" placeholder="학생명 입력"/>
+                            <div className="col-md-3">
+                                <strong>성적 안내</strong>&emsp;&emsp;&emsp;
+                                <select className="navbar">
+                                    <option value="cheese">과제 제출 학생</option>
+                                    <option value="tomatoes">과제 미제출 학생</option>
+                                    <option value="mozarella">금일 출석 학생</option>
+                                    <option value="mushrooms">금일 미출석 학생</option>
+                                    <option value="pepperoni">Pepperoni</option>
+                                    <option value="onions">Onions</option>
+                                </select>
+                            </div>
+
+                            <div className="col-md-3">
+                                <strong><i className="lnr lnr-magnifier"></i> 검색</strong>
+                                <input type="text" className="form-control" placeholder="학생명 입력"/>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
 
                 <div className="row">
                     <div className="col-md-8">
@@ -146,28 +195,31 @@ const CourseAlarm = () => {
                             <div className="panel-heading">
                                 <h3 className="panel-title">알림 전송</h3>
                             </div>
-                            <div className="panel-body">
-                                <div className="col-md-10">
-                                    <textarea className="form-control" placeholder="알림 내용을 입력하세요" rows="10" defaultValue=""></textarea>
-                                </div>
-                                <div className="col-md-2">
-                                    <strong>날짜 예약</strong>&emsp;&emsp;&emsp;
-                                    <select className="navbar">
-                                        <option value="cheese">달력 변경 해야함</option>
-                                        <option value="tomatoes">Tomatoes</option>
-                                        <option value="mozarella">Mozzarella</option>
-                                        <option value="mushrooms">Mushrooms</option>
-                                        <option value="pepperoni">Pepperoni</option>
-                                        <option value="onions">Onions</option>
-                                    </select>
-                                    <p>전송 시간</p>
-                                    <input type="password" className="form-control" value="asecret"/>
 
-                                    <button type="button" className="btn btn-primary form-control margin-top-30">
-                                        <i className="fa fa-refresh fa-spin"></i> 알림 전송
-                                    </button>
+                            <form name="" id="" method="post" onSubmit={AlarmSubmit}>
+                                <div className="panel-body">
+                                    <div className="col-md-10">
+                                        <textarea className="form-control" placeholder="알림 내용을 입력하세요" rows="10" defaultValue=""></textarea>
+                                    </div>
+                                    <div className="col-md-2">
+                                        <strong>날짜 예약</strong>&emsp;&emsp;&emsp;
+                                        <select className="navbar">
+                                            <option value="cheese">달력 변경 해야함</option>
+                                            <option value="tomatoes">Tomatoes</option>
+                                            <option value="mozarella">Mozzarella</option>
+                                            <option value="mushrooms">Mushrooms</option>
+                                            <option value="pepperoni">Pepperoni</option>
+                                            <option value="onions">Onions</option>
+                                        </select>
+                                        <p>전송 시간</p>
+                                        <input type="password" className="form-control" value="asecret"/>
+
+                                        <button type="submit" className="btn btn-primary form-control margin-top-30">
+                                            <i className="fa fa-refresh fa-spin"></i> 알림 전송
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
