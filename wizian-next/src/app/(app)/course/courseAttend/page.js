@@ -1,50 +1,99 @@
 "use client"
 
 import React from "react";
+import Swal from "sweetalert2";
 
 const CourseAttend = () => {
+    // sweetAlert
+    const SearchSubmit = (e) => {
+        e.preventDefault();
+
+        Swal.fire({
+            title: '변경사항을 적용하시겠습니까?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '예',
+            cancelButtonText: '아니오',
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: '변경 완료되었습니다!',
+                    icon: 'success',
+                    confirmButtonText: '확인'
+                });
+            }
+        });
+    };
+
+    // sweetAlert
+    const AttendSubmit = (e) => {
+        e.preventDefault();
+
+        Swal.fire({
+            title: '변경사항을 적용하시겠습니까?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '예',
+            cancelButtonText: '아니오',
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: '변경 완료되었습니다!',
+                    icon: 'success',
+                    confirmButtonText: '확인'
+                });
+            }
+        });
+    };
+
+
     return (
         <div className="main-content">
             <div className="container-fluid">
                 <a href="/dashboard">메인 페이지 /</a>&ensp;<a href="#">진행중인 강의 /</a>&ensp;<a href="#">출결관리</a>
-                <div className="row">
-                    <button type="button" className="btn btn-success col-lg-offset-10 margin-bottom-30">
-                        <i className="fa fa-refresh fa-spin"></i> 조회하기
-                    </button>
-                </div>
 
-                <div id="toastr-demo" className="panel col">
-                    <div className="panel-body row">
-                        <div className="col-md-4">
-                            <strong>출결현황</strong>&emsp;&emsp;&emsp;
-                            <select className="navbar">
-                                <option value="cheese">출석</option>
-                                <option value="tomatoes">결석</option>
-                                <option value="mozarella">지각</option>
-                                <option value="mushrooms">Mushrooms</option>
-                                <option value="pepperoni">Pepperoni</option>
-                                <option value="onions">Onions</option>
-                            </select>
-                        </div>
+                <form name="" id="" method="post" onSubmit={SearchSubmit}>
+                    <div className="row">
+                        <button type="submit" className="btn btn-success col-lg-offset-10 margin-bottom-30">
+                            <i className="fa fa-refresh fa-spin"></i> 조회하기
+                        </button>
+                    </div>
 
-                        <div className="col-md-4">
-                            <strong>출결일자</strong>&emsp;&emsp;&emsp;
-                            <select className="navbar">
-                                <option value="cheese">Cheese</option>
-                                <option value="tomatoes">Tomatoes</option>
-                                <option value="mozarella">Mozzarella</option>
-                                <option value="mushrooms">Mushrooms</option>
-                                <option value="pepperoni">Pepperoni</option>
-                                <option value="onions">Onions</option>
-                            </select>
-                        </div>
+                    <div id="toastr-demo" className="panel col">
+                        <div className="panel-body row">
+                            <div className="col-md-4">
+                                <strong>출결현황</strong>&emsp;&emsp;&emsp;
+                                <select className="navbar">
+                                    <option value="cheese">출석</option>
+                                    <option value="tomatoes">결석</option>
+                                    <option value="mozarella">지각</option>
+                                    <option value="mushrooms">Mushrooms</option>
+                                    <option value="pepperoni">Pepperoni</option>
+                                    <option value="onions">Onions</option>
+                                </select>
+                            </div>
 
-                        <div className="col-md-2">
-                            <strong><i className="lnr lnr-magnifier"></i> 검색</strong>
-                            <input type="text" className="form-control" placeholder="학생명 입력"/>
+                            <div className="col-md-4">
+                                <strong>출결일자</strong>&emsp;&emsp;&emsp;
+                                <select className="navbar">
+                                    <option value="cheese">Cheese</option>
+                                    <option value="tomatoes">Tomatoes</option>
+                                    <option value="mozarella">Mozzarella</option>
+                                    <option value="mushrooms">Mushrooms</option>
+                                    <option value="pepperoni">Pepperoni</option>
+                                    <option value="onions">Onions</option>
+                                </select>
+                            </div>
+
+                            <div className="col-md-2">
+                                <strong><i className="lnr lnr-magnifier"></i> 검색</strong>
+                                <input type="text" className="form-control" placeholder="학생명 입력"/>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
 
                 <div className="row">
                     <div className="col-md-12">
@@ -238,24 +287,26 @@ const CourseAttend = () => {
                             </div>
                         </div>
 
-                        <div className="panel">
-                            <div className="panel-heading">
-                                <h3 className="panel-title">출결 점수 입력</h3>
+                        <form name="" id="" method="post" onSubmit={SearchSubmit}>
+                            <div className="panel">
+                                <div className="panel-heading">
+                                    <h3 className="panel-title">출결 점수 입력</h3>
+                                </div>
+                                <div className="panel-body">
+                                    <p>학생 번호</p>
+                                    <input type="text" className="form-control" placeholder="text field"/>
+                                    <br/>
+                                    <p>학생 이름</p>
+                                    <input type="text" className="form-control" placeholder="text field"/>
+                                    <br/>
+                                    <input type="text" className="form-control" placeholder="점수를 입력하세요"/>
+                                    <br/>
+                                    <button className="btn btn-warning form-control" type="submit">
+                                        점수 저장
+                                    </button>
+                                </div>
                             </div>
-                            <div className="panel-body">
-                                <p>학생 번호</p>
-                                <input type="text" className="form-control" placeholder="text field"/>
-                                <br/>
-                                <p>학생 이름</p>
-                                <input type="text" className="form-control" placeholder="text field"/>
-                                <br/>
-                                <input type="text" className="form-control" placeholder="점수를 입력하세요"/>
-                                <br/>
-                                <button className="btn btn-warning form-control" type="button">
-                                    점수 저장
-                                </button>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
 
