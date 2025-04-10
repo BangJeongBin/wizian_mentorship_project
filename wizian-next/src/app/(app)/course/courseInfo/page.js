@@ -318,7 +318,9 @@ const CourseInfo = () => {
                                                     <td>{classes.lectSchd}</td>
                                                 </tr>
                                                 :
-                                                <></>
+                                                <tr>
+                                                    <td colSpan="2">데이터를 조회해 주세요.</td>
+                                                </tr>
                                         ))
                                     }
                                     </tbody>
