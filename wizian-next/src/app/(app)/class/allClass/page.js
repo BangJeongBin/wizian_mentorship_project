@@ -344,7 +344,8 @@ const AllClass = () => {
                                 {
                                     Array.isArray(classData?.classlist) && classData.classlist.map(classes => (
                                         classes.lectNo === checkedData ?
-                                            <p>{classes.lectDesc}</p>
+                                            <textarea className="form-control" placeholder={classes.lectDesc}
+                                                rows="10" readOnly></textarea>
                                         :
                                         <></>
                                     ))

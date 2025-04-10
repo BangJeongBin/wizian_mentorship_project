@@ -8,7 +8,7 @@ const CourseInfo = () => {
     const [selectedCourNos, setSelectedCourNos] = useState([]); // 체크박스 상태 저장
     const [checkedData, setCheckedData] = useState([]); // 체크박스 값 저장
 
-    const [classData, setClassData] = useState({});
+    const [courseData, setCourseData] = useState({});
 
     // 초기 값 저장
     const params = useParams();
@@ -44,7 +44,7 @@ const CourseInfo = () => {
 
                 const data = await response.json();
                 console.log(data);
-                setClassData(data);
+                setCourseData(data);
 
                 await Swal.fire({
                     title: '조회가 완료되었습니다!',
@@ -86,7 +86,7 @@ const CourseInfo = () => {
 
                 const data = await response.json();
                 console.log(data);
-                setClassData(data);
+                setCourseData(data);
 
                 await Swal.fire({
                     title: '조회가 완료되었습니다!',
@@ -138,7 +138,7 @@ const CourseInfo = () => {
                 headers: { 'Accept': 'application/json' }
             });
             const data = await res.json();
-            setClassData(data);
+            setCourseData(data);
         } catch (err) {
             console.error('오류 발생:', err);
         }
@@ -159,15 +159,15 @@ const CourseInfo = () => {
     // 헤더 체크박스 선택
     const handleAllCheckbox = (e) => {
         if (e.target.checked) {
-            const allNos = classData.classlist.map(cls => cls.lectNo);
+            const allNos = courseData.courselist.map(cls => cls.stdntNo);
             setSelectedCourNos(allNos);
         } else {
             setSelectedCourNos([]);
         }
     };
 
-    const isAllChecked = classData.classlist && classData.classlist.length > 0 &&
-        selectedCourNos.length === classData.classlist.length;
+    const isAllChecked = courseData.courselist && courseData.courselist.length > 0 &&
+        selectedCourNos.length === courseData.courselist.length;
 
 
     return (
@@ -195,23 +195,41 @@ const CourseInfo = () => {
                                 <h3 className="panel-title">내 강의 정보</h3>
                             </div>
                             <div className="panel-body">
-                                <p>번호</p>
-                                <input type="text" className="form-control" placeholder="text field"/>
-                                <br/>
-                                <p>강의명</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>강의실</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>수료일</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>수강인원</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>개설여부</p>
-                                <input type="password" className="form-control" value="asecret"/>
+                                {
+                                    !courseData.courseOne ?
+                                        <>
+                                            <input type="text" className="form-control" placeholder="데이터를 조회해 주세요." />
+                                        </>
+                                    :
+                                        <>
+                                        <p>번호</p>
+                                        <input type="text" className="form-control" placeholder={courseData.courseOne.lectNo} />
+                                        <br/>
+                                        <p>강의명</p>
+                                        <input type="text" className="form-control" placeholder={courseData.courseOne.lectNm} />
+                                        <br/>
+                                        <p>대표강사</p>
+                                        <input type="text" className="form-control" placeholder={courseData.courseOne.instNm} />
+                                        <br/>
+                                        <p>강의금액</p>
+                                        <input type="text" className="form-control" placeholder={courseData.courseOne.lectPrice} />
+                                        <br/>
+                                        <p>개강일</p>
+                                        <input type="text" className="form-control" placeholder={courseData.courseOne.lectStart} />
+                                        <br/>
+                                        <p>수료일</p>
+                                        <input type="text" className="form-control" placeholder={courseData.courseOne.lectSubmit} />
+                                        <br/>
+                                        <p>수강인원</p>
+                                        <input type="text" className="form-control" placeholder={courseData.courseOne.lectPers} />
+                                        <br/>
+                                        <p>강의실 위치</p>
+                                        <input type="text" className="form-control" placeholder={courseData.courseOne.lectLoc} />
+                                        <br/>
+                                        <p>개설여부</p>
+                                        <input type="text" className="form-control" placeholder={courseData.courseOne.lectStatus} />
+                                        </>
+                                }
                             </div>
                         </div>
 
@@ -222,58 +240,50 @@ const CourseInfo = () => {
                             <div className="panel-body no-padding">
                                 <table className="table table-striped">
                                     <thead>
-                                    <tr>
-                                        <th><input type="checkbox"/></th>
-                                        <th>Order No.</th>
-                                        <th>Name</th>
-                                        <th>Amount</th>
-                                        <th>Date &amp; Time</th>
-                                        <th>Status</th>
-                                    </tr>
+                                        <tr>
+                                            <th style={{width: "20px"}}>
+                                                <input type="checkbox" checked={isAllChecked}
+                                                       onChange={handleAllCheckbox}/></th>
+                                            <th>#</th>
+                                            <th>학생이름</th>
+                                            <th>ID</th>
+                                            <th>이메일</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td><input type="checkbox"/></td>
-                                        <td><a href="#">763648</a></td>
-                                        <td>Steve</td>
-                                        <td>$122</td>
-                                        <td>Oct 21, 2016</td>
-                                        <td><span className="label label-success">COMPLETED</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox"/></td>
-                                        <td><a href="#">763649</a></td>
-                                        <td>Amber</td>
-                                        <td>$62</td>
-                                        <td>Oct 21, 2016</td>
-                                        <td><span className="label label-warning">PENDING</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox"/></td>
-                                        <td><a href="#">763650</a></td>
-                                        <td>Michael</td>
-                                        <td>$34</td>
-                                        <td>Oct 18, 2016</td>
-                                        <td><span className="label label-danger">FAILED</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox"/></td>
-                                        <td><a href="#">763651</a></td>
-                                        <td>Roger</td>
-                                        <td>$186</td>
-                                        <td>Oct 17, 2016</td>
-                                        <td><span className="label label-success">SUCCESS</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox"/></td>
-                                        <td><a href="#">763652</a></td>
-                                        <td>Smith</td>
-                                        <td>$362</td>
-                                        <td>Oct 16, 2016</td>
-                                        <td><span className="label label-success">SUCCESS</span></td>
-                                    </tr>
+                                    {
+                                        (!Array.isArray(courseData.courselist) || courseData.courselist.length === 0) ?
+                                            <tr>
+                                                <td colSpan={4}>해당하는 데이터가 없습니다.</td>
+                                            </tr>
+                                            :
+                                            (courseData.courselist.map(classes => (
+                                                <tr>
+                                                    <td><input type="checkbox" checked={selectedCourNos.includes(classes.stdntNo)}
+                                                               onChange={() => handleCheckbox(classes.stdntNo)}/></td>
+                                                    <td>{classes.stdntNo}</td>
+                                                    <td>{classes.stdntNm}</td>
+                                                    <td>{classes.stdntId}</td>
+                                                    <td>{classes.stdntEmail}</td>
+                                                </tr>
+                                            )))
+                                    }
                                     </tbody>
                                 </table>
+                                {/* PAGINATION */}
+                                <div className="col-md-offset-5">
+                                    <ul className="pagination">
+                                        {(courseData.cpg > 1) &&
+                                            (<li className="page-item">
+                                                <a onClick={preListPage} className="page-link">이전</a></li>)
+                                        }
+
+                                        {(courseData.cpg < courseData.cntpg) &&
+                                            (<li className="page-item">
+                                                <a onClick={nextListPage} className="page-link">다음</a></li>)
+                                        }
+                                    </ul>
+                                </div>
                             </div>
                             <div className="panel-footer">
                                 <div className="row">
@@ -295,31 +305,22 @@ const CourseInfo = () => {
                                 <table className="table table-bordered">
                                     <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
+                                        <th style={{width: "20px"}}>#</th>
+                                        <th>시간표</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Steve</td>
-                                        <td>Jobs</td>
-                                        <td>@steve</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Simon</td>
-                                        <td>Philips</td>
-                                        <td>@simon</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Jane</td>
-                                        <td>Doe</td>
-                                        <td>@jane</td>
-                                    </tr>
+                                    {
+                                        Array.isArray(courseData?.courseOne) && courseData.courseOne.map(classes => (
+                                            classes.stdntNo === checkedData ?
+                                                <tr>
+                                                    <td>{classes.lectNo}</td>
+                                                    <td>{classes.lectSchd}</td>
+                                                </tr>
+                                                :
+                                                <></>
+                                        ))
+                                    }
                                     </tbody>
                                 </table>
                             </div>
@@ -330,22 +331,17 @@ const CourseInfo = () => {
                                 <h3 className="panel-title">강의계획서</h3>
                             </div>
                             <div className="panel-body">
-                                <textarea className="form-control"
-                                          placeholder="Objectively network visionary methodologies via best-of-breed users.
-                                                            Phosfluorescently initiate go forward leadership skills before an expanded array of
-                                                            infomediaries. Monotonectally incubate web-enabled communities rather than
-                                                            process-centric.
-                                                        Objectively network visionary methodologies via best-of-breed users.
-                                                            Phosfluorescently initiate go forward leadership skills before an expanded array of
-                                                            infomediaries. Monotonectally incubate web-enabled communities rather than
-                                                            process-centric.
-                                                        Objectively network visionary methodologies via best-of-breed users.
-                                                            Phosfluorescently initiate go forward leadership skills before an expanded array of
-                                                            infomediaries. Monotonectally incubate web-enabled communities rather than
-                                                            process-centric."
-                                          rows="20" defaultValue="">
-
-                                </textarea>
+                                {
+                                    !courseData.courseOne ?
+                                        <>
+                                            <textarea className="form-control" placeholder="데이터를 조회해 주세요." rows="10"></textarea>
+                                        </>
+                                        :
+                                        <>
+                                            <textarea className="form-control" placeholder={courseData.courseOne.lectDesc}
+                                                      rows="10"></textarea>
+                                        </>
+                                }
                             </div>
                         </div>
                     </div>
