@@ -29,7 +29,7 @@ const AllCourse = () => {
     const sortWeek = params.sortWeek || "default";
     const findkey = params.findkey || "all";
 
-    const pglink = `http://localhost:8080/api/inst/class/find`
+    const pglink = `http://localhost:8080/api/inst/class/allCourse/list`
 
 
     // useEffect(() => {
@@ -114,7 +114,7 @@ const AllCourse = () => {
         const sortWeek = sortWeekRef.current.value;
         const findkey = findkeyRef.current.value || "all";
 
-        const fetchURL = `http://localhost:8080/api/inst/class/find/${sortYear}/${sortWeek}/${findkey}/${page}`;
+        const fetchURL = `http://localhost:8080/api/inst/class/allCourse/list/${sortYear}/${sortWeek}/${findkey}/${page}`;
 
         try {
             const res = await fetch(fetchURL, {
@@ -151,7 +151,6 @@ const AllCourse = () => {
 
     const isAllChecked = classData.classlist && classData.classlist.length > 0 &&
         selectedCourNos.length === classData.classlist.length;
-
 
 
     return (
@@ -264,7 +263,6 @@ const AllCourse = () => {
                                             }
                                         </ul>
                                 </div>
-
                             </div>
                         </div>
                     </div>
