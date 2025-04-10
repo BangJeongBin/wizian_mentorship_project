@@ -266,33 +266,35 @@ const CourseStudent = () => {
                             </div>
                             <div className="panel-body">
                             {
-                                !courseData.courseOne ?
-                                    <>
-                                        <input type="text" className="form-control" placeholder="데이터를 조회해 주세요." readOnly/>
-                                    </>
-                                :
-                                    <>
-                                        <p>학생 번호</p>
-                                        <input type="text" className="form-control" placeholder={courseData.courseOne.stdntNo}/>
-                                        <br/>
-                                        <p>이름</p>
-                                        <input type="text" className="form-control" placeholder={courseData.courseOne.stdntNm}/>
-                                        <br/>
-                                        <p>이메일</p>
-                                        <input type="text" className="form-control" placeholder={courseData.courseOne.stdntEmail}/>
-                                        <br/>
-                                        <p>성별</p>
-                                        <input type="text" className="form-control" placeholder={courseData.courseOne.genCd}/>
-                                        <br/>
-                                        <p>연락처</p>
-                                        <input type="text" className="form-control" placeholder={courseData.courseOne.phone}/>
-                                        <br/>
-                                        <p>주소</p>
-                                        <input type="text" className="form-control" placeholder={courseData.courseOne.addr}/>
-                                        <br/>
-                                        <p>회원가입일</p>
-                                        <input type="text" className="form-control" placeholder={courseData.courseOne.stdntRegdate}/>
-                                    </>
+                                Array.isArray(courseData?.courseOne) && courseData.courseOne.map(classes => (
+                                    classes.stdntNo === checkedData ?
+                                        <>
+                                            <p>학생 번호</p>
+                                            <input type="text" className="form-control" placeholder={courseData.courseOne.stdntNo}/>
+                                            <br/>
+                                            <p>이름</p>
+                                            <input type="text" className="form-control" placeholder={courseData.courseOne.stdntNm}/>
+                                            <br/>
+                                            <p>이메일</p>
+                                            <input type="text" className="form-control" placeholder={courseData.courseOne.stdntEmail}/>
+                                            <br/>
+                                            <p>성별</p>
+                                            <input type="text" className="form-control" placeholder={courseData.courseOne.genCd}/>
+                                            <br/>
+                                            <p>연락처</p>
+                                            <input type="text" className="form-control" placeholder={courseData.courseOne.phone}/>
+                                            <br/>
+                                            <p>주소</p>
+                                            <input type="text" className="form-control" placeholder={courseData.courseOne.addr}/>
+                                            <br/>
+                                            <p>회원가입일</p>
+                                            <input type="text" className="form-control" placeholder={courseData.courseOne.stdntRegdate}/>
+                                        </>
+                                        :
+                                        <>
+                                            <input type="text" className="form-control" placeholder="데이터를 조회해 주세요." readOnly/>
+                                        </>
+                                ))
                             }
                             </div>
                         </div>
@@ -305,24 +307,26 @@ const CourseStudent = () => {
                             </div>
                             <div className="panel-body">
                             {
-                                !courseData.courseOne ?
-                                    <>
-                                        <input type="text" className="form-control" placeholder="데이터를 조회해 주세요." readOnly/>
-                                    </>
-                                    :
-                                    <>
-                                        <p>수강신청 번호</p>
-                                        <input type="text" className="form-control" placeholder={courseData.courseOne.applyNo}/>
-                                        <br/>
-                                        <p>신청 날짜</p>
-                                        <input type="text" className="form-control" placeholder={courseData.courseOne.applyDate}/>
-                                        <br/>
-                                        <p>신청 마감일</p>
-                                        <input type="text" className="form-control" placeholder={courseData.courseOne.applyEnddate}/>
-                                        <br/>
-                                        <p>신청 상태</p>
-                                        <input type="text" className="form-control" placeholder={courseData.courseOne.applyStatus}/>
-                                    </>
+                                Array.isArray(courseData?.courseOne) && courseData.courseOne.map(classes => (
+                                    classes.stdntNo === checkedData ?
+                                        <>
+                                            <p>수강신청 번호</p>
+                                            <input type="text" className="form-control" placeholder={courseData.courseOne.applyNo}/>
+                                            <br/>
+                                            <p>신청 날짜</p>
+                                            <input type="text" className="form-control" placeholder={courseData.courseOne.applyDate}/>
+                                            <br/>
+                                            <p>신청 마감일</p>
+                                            <input type="text" className="form-control" placeholder={courseData.courseOne.applyEnddate}/>
+                                            <br/>
+                                            <p>신청 상태</p>
+                                            <input type="text" className="form-control" placeholder={courseData.courseOne.applyStatus}/>
+                                        </>
+                                        :
+                                        <>
+                                            <input type="text" className="form-control" placeholder="데이터를 조회해 주세요." readOnly/>
+                                        </>
+                                ))
                             }
                             </div>
                         </div>
