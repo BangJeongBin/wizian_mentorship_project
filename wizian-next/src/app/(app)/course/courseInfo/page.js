@@ -198,7 +198,7 @@ const CourseInfo = () => {
                                 {
                                     !courseData.courseOne ?
                                         <>
-                                            <input type="text" className="form-control" placeholder="데이터를 조회해 주세요." />
+                                            <input type="text" className="form-control" placeholder="데이터를 조회해 주세요." readOnly/>
                                         </>
                                     :
                                         <>
@@ -336,7 +336,7 @@ const CourseInfo = () => {
                                 {
                                     !courseData.courseOne ?
                                         <>
-                                            <textarea className="form-control" placeholder="데이터를 조회해 주세요." rows="10"></textarea>
+                                            <textarea className="form-control" placeholder="데이터를 조회해 주세요." rows="10" readOnly></textarea>
                                         </>
                                         :
                                         <>

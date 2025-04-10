@@ -251,26 +251,35 @@ const CourseStudent = () => {
                                 <h3 className="panel-title">학생 정보</h3>
                             </div>
                             <div className="panel-body">
-                                <p>학생 번호</p>
-                                <input type="text" className="form-control" placeholder="text field"/>
-                                <br/>
-                                <p>이름</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>이메일</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>성별</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>연락처</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>주소</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>회원가입일</p>
-                                <input type="password" className="form-control" value="asecret"/>
+                            {
+                                !courseData.courseOne ?
+                                    <>
+                                        <input type="text" className="form-control" placeholder="데이터를 조회해 주세요." readOnly/>
+                                    </>
+                                :
+                                    <>
+                                        <p>학생 번호</p>
+                                        <input type="text" className="form-control" placeholder={courseData.courseOne}/>
+                                        <br/>
+                                        <p>이름</p>
+                                        <input type="password" className="form-control" value="asecret"/>
+                                        <br/>
+                                        <p>이메일</p>
+                                        <input type="password" className="form-control" value="asecret"/>
+                                        <br/>
+                                        <p>성별</p>
+                                        <input type="password" className="form-control" value="asecret"/>
+                                        <br/>
+                                        <p>연락처</p>
+                                        <input type="password" className="form-control" value="asecret"/>
+                                        <br/>
+                                        <p>주소</p>
+                                        <input type="password" className="form-control" value="asecret"/>
+                                        <br/>
+                                        <p>회원가입일</p>
+                                        <input type="password" className="form-control" value="asecret"/>
+                                    </>
+                            }
                             </div>
                         </div>
                     </div>
