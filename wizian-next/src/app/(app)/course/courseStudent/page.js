@@ -239,6 +239,20 @@ const CourseStudent = () => {
                                     }
                                     </tbody>
                                 </table>
+                                {/* PAGINATION */}
+                                <div className="col-md-offset-5">
+                                    <ul className="pagination">
+                                        {(courseData.cpg > 1) &&
+                                            (<li className="page-item">
+                                                <a onClick={preListPage} className="page-link">이전</a></li>)
+                                        }
+
+                                        {(courseData.cpg < courseData.cntpg) &&
+                                            (<li className="page-item">
+                                                <a onClick={nextListPage} className="page-link">다음</a></li>)
+                                        }
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -259,25 +273,25 @@ const CourseStudent = () => {
                                 :
                                     <>
                                         <p>학생 번호</p>
-                                        <input type="text" className="form-control" placeholder={courseData.courseOne}/>
+                                        <input type="text" className="form-control" placeholder={courseData.courseOne.stdntNo}/>
                                         <br/>
                                         <p>이름</p>
-                                        <input type="password" className="form-control" value="asecret"/>
+                                        <input type="text" className="form-control" placeholder={courseData.courseOne.stdntNm}/>
                                         <br/>
                                         <p>이메일</p>
-                                        <input type="password" className="form-control" value="asecret"/>
+                                        <input type="text" className="form-control" placeholder={courseData.courseOne.stdntEmail}/>
                                         <br/>
                                         <p>성별</p>
-                                        <input type="password" className="form-control" value="asecret"/>
+                                        <input type="text" className="form-control" placeholder={courseData.courseOne.genCd}/>
                                         <br/>
                                         <p>연락처</p>
-                                        <input type="password" className="form-control" value="asecret"/>
+                                        <input type="text" className="form-control" placeholder={courseData.courseOne.phone}/>
                                         <br/>
                                         <p>주소</p>
-                                        <input type="password" className="form-control" value="asecret"/>
+                                        <input type="text" className="form-control" placeholder={courseData.courseOne.addr}/>
                                         <br/>
                                         <p>회원가입일</p>
-                                        <input type="password" className="form-control" value="asecret"/>
+                                        <input type="text" className="form-control" placeholder={courseData.courseOne.stdntRegdate}/>
                                     </>
                             }
                             </div>
@@ -290,19 +304,30 @@ const CourseStudent = () => {
                                 <h3 className="panel-title">수강신청 정보</h3>
                             </div>
                             <div className="panel-body">
-                                <p>수강신청 번호</p>
-                                <input type="text" className="form-control" placeholder="text field"/>
-                                <br/>
-                                <p>신청 날짜</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>신청 마감일</p>
-                                <input type="password" className="form-control" value="asecret"/>
+                            {
+                                !courseData.courseOne ?
+                                    <>
+                                        <input type="text" className="form-control" placeholder="데이터를 조회해 주세요." readOnly/>
+                                    </>
+                                    :
+                                    <>
+                                        <p>수강신청 번호</p>
+                                        <input type="text" className="form-control" placeholder={courseData.courseOne.applyNo}/>
+                                        <br/>
+                                        <p>신청 날짜</p>
+                                        <input type="text" className="form-control" placeholder={courseData.courseOne.applyDate}/>
+                                        <br/>
+                                        <p>신청 마감일</p>
+                                        <input type="text" className="form-control" placeholder={courseData.courseOne.applyEnddate}/>
+                                        <br/>
+                                        <p>신청 상태</p>
+                                        <input type="text" className="form-control" placeholder={courseData.courseOne.applyStatus}/>
+                                    </>
+                            }
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     )
