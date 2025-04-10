@@ -76,13 +76,15 @@ const AllCourse = () => {
 
     // }, []);
 
-    // <select> 옵션 처음 1회 저장
-    // if (yearOptions.length === 0 && weekOptions.length === 0 && Array.isArray(data.classlist)) {
-    //     const years = [...new Set(data.classlist.map(item => item.courYear))];
-    //     const weeks = [...new Set(data.classlist.map(item => item.courWeek))];
-    //     setYearOptions(years);
-    //     setWeekOptions(weeks);
-    // }
+    // useEffect(() => {
+    //     // <select> 옵션 처음 1회 저장
+    //     if (yearOptions.length === 0 && weekOptions.length === 0 && Array.isArray(data.classlist)) {
+    //         const years = [...new Set(data.classlist.map(item => item.courYear))];
+    //         const weeks = [...new Set(data.classlist.map(item => item.courWeek))];
+    //         setYearOptions(years);
+    //         setWeekOptions(weeks);
+    //     }
+    // }, []);
 
 
     // 조회하기 버튼 클릭 시 이벤트
