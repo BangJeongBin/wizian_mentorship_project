@@ -90,6 +90,7 @@ const CourseStudent = () => {
         const sortStatus = sortStatusRef.current.value;
         const sortGender = sortGenderRef.current.value;
         const findkey = findkeyRef.current.value || "all";
+        console.log("ssssssssssssss", courseData.applyMap)
 
         fetchData(sortStatus, sortGender, findkey);
     };
@@ -128,13 +129,13 @@ const CourseStudent = () => {
     };
 
     // 개별 체크박스 선택
-    const handleCheckbox = (courNo) => {
-        setCheckedData(courNo); // courNo 상태 저장
-        console.log(courNo);
-        if (selectedCourNos.includes(courNo)) {
-            setSelectedCourNos(selectedCourNos.filter(no => no !== courNo));
+    const handleCheckbox = (stdntNo) => {
+        setCheckedData(stdntNo); // courNo 상태 저장
+        console.log(stdntNo);
+        if (selectedCourNos.includes(stdntNo)) {
+            setSelectedCourNos(selectedCourNos.filter(no => no !== stdntNo));
         } else {
-            setSelectedCourNos([...selectedCourNos, courNo]);
+            setSelectedCourNos([...selectedCourNos, stdntNo]);
         }
 
     };
@@ -142,7 +143,7 @@ const CourseStudent = () => {
     // 헤더 체크박스 선택
     const handleAllCheckbox = (e) => {
         if (e.target.checked) {
-            const allNos = courseData.courselist.map(cls => cls.stdntNo);
+            const allNos = courseData.applyMap.students.map(cls => cls.stdntNo);
             setSelectedCourNos(allNos);
         } else {
             setSelectedCourNos([]);
@@ -269,34 +270,37 @@ const CourseStudent = () => {
                             </div>
                             <div className="panel-body">
                             {
-                                Array.isArray(courseData?.courseOne) && courseData.courseOne.map(classes => (
+                                !courseData.applyMap ?
+                                    <>
+                                        <input type="text" className="form-control" placeholder="데이터를 조회해 주세요." readOnly/>
+                                    </>
+                                    :
+                                Array.isArray(courseData?.applyMap.students) && courseData.applyMap.students.map(classes => (
                                     classes.stdntNo === checkedData ?
                                         <>
                                             <p>학생 번호</p>
-                                            <input type="text" className="form-control" placeholder={courseData.courseOne.stdntNo}/>
+                                            <input type="text" className="form-control" placeholder={classes.stdntNo}/>
                                             <br/>
                                             <p>이름</p>
-                                            <input type="text" className="form-control" placeholder={courseData.courseOne.stdntNm}/>
+                                            <input type="text" className="form-control" placeholder={classes.stdntNm}/>
                                             <br/>
                                             <p>이메일</p>
-                                            <input type="text" className="form-control" placeholder={courseData.courseOne.stdntEmail}/>
+                                            <input type="text" className="form-control" placeholder={classes.stdntEmail}/>
                                             <br/>
                                             <p>성별</p>
-                                            <input type="text" className="form-control" placeholder={courseData.courseOne.genCd}/>
-                                            <br/>
+                                            <input type="text" className="form-control" placeholder={classes.genCd}/>
+                                            applyMap
                                             <p>연락처</p>
-                                            <input type="text" className="form-control" placeholder={courseData.courseOne.phone}/>
+                                            <input type="text" className="form-control" placeholder={classes.phone}/>
                                             <br/>
                                             <p>주소</p>
-                                            <input type="text" className="form-control" placeholder={courseData.courseOne.addr}/>
+                                            <input type="text" className="form-control" placeholder={classes.addr}/>
                                             <br/>
                                             <p>회원가입일</p>
-                                            <input type="text" className="form-control" placeholder={courseData.courseOne.stdntRegdate}/>
+                                            <input type="text" className="form-control" placeholder={classes.stdntRegdate}/>
                                         </>
                                         :
-                                        <>
-                                            <input type="text" className="form-control" placeholder="데이터를 조회해 주세요." readOnly/>
-                                        </>
+                                        <></>
                                 ))
                             }
                             </div>
@@ -310,25 +314,28 @@ const CourseStudent = () => {
                             </div>
                             <div className="panel-body">
                             {
-                                Array.isArray(courseData?.courseOne) && courseData.courseOne.map(classes => (
-                                    classes.stdntNo === checkedData ?
+                                !courseData.applyMap ?
+                                    <>
+                                        <input type="text" className="form-control" placeholder="데이터를 조회해 주세요." readOnly/>
+                                    </>
+                                    :
+                                Array.isArray(courseData?.applyMap.applys) && courseData.applyMap.applys.map(classes => (
+                                    classes.studnt.stdntNo === checkedData ?
                                         <>
                                             <p>수강신청 번호</p>
-                                            <input type="text" className="form-control" placeholder={courseData.courseOne.applyNo}/>
+                                            <input type="text" className="form-control" placeholder={classes.applyNo}/>
                                             <br/>
                                             <p>신청 날짜</p>
-                                            <input type="text" className="form-control" placeholder={courseData.courseOne.applyDate}/>
+                                            <input type="text" className="form-control" placeholder={classes.applyDate}/>
                                             <br/>
                                             <p>신청 마감일</p>
-                                            <input type="text" className="form-control" placeholder={courseData.courseOne.applyEnddate}/>
+                                            <input type="text" className="form-control" placeholder={classes.applyEnddate}/>
                                             <br/>
                                             <p>신청 상태</p>
-                                            <input type="text" className="form-control" placeholder={courseData.courseOne.applyStatus}/>
+                                            <input type="text" className="form-control" placeholder={classes.applyStatus}/>
                                         </>
                                         :
-                                        <>
-                                            <input type="text" className="form-control" placeholder="데이터를 조회해 주세요." readOnly/>
-                                        </>
+                                        <></>
                                 ))
                             }
                             </div>
