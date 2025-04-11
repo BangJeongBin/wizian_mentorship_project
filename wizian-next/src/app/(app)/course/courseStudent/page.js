@@ -275,33 +275,33 @@ const CourseStudent = () => {
                                         <input type="text" className="form-control" placeholder="데이터를 조회해 주세요." readOnly/>
                                     </>
                                     :
-                                Array.isArray(courseData?.applyMap.students) && courseData.applyMap.students.map(classes => (
-                                    classes.stdntNo === checkedData ?
-                                        <>
-                                            <p>학생 번호</p>
-                                            <input type="text" className="form-control" placeholder={classes.stdntNo}/>
-                                            <br/>
-                                            <p>이름</p>
-                                            <input type="text" className="form-control" placeholder={classes.stdntNm}/>
-                                            <br/>
-                                            <p>이메일</p>
-                                            <input type="text" className="form-control" placeholder={classes.stdntEmail}/>
-                                            <br/>
-                                            <p>성별</p>
-                                            <input type="text" className="form-control" placeholder={classes.genCd}/>
-                                            applyMap
-                                            <p>연락처</p>
-                                            <input type="text" className="form-control" placeholder={classes.phone}/>
-                                            <br/>
-                                            <p>주소</p>
-                                            <input type="text" className="form-control" placeholder={classes.addr}/>
-                                            <br/>
-                                            <p>회원가입일</p>
-                                            <input type="text" className="form-control" placeholder={classes.stdntRegdate}/>
-                                        </>
-                                        :
-                                        <></>
-                                ))
+                                    Array.isArray(courseData?.applyMap.students) && courseData.applyMap.students.map(classes => (
+                                        classes.stdntNo === checkedData ?
+                                            <>
+                                                <p>학생 번호</p>
+                                                <input type="text" className="form-control" placeholder={classes.stdntNo}/>
+                                                <br/>
+                                                <p>이름</p>
+                                                <input type="text" className="form-control" placeholder={classes.stdntNm}/>
+                                                <br/>
+                                                <p>이메일</p>
+                                                <input type="text" className="form-control" placeholder={classes.stdntEmail}/>
+                                                <br/>
+                                                <p>성별</p>
+                                                <input type="text" className="form-control" placeholder={classes.genCd}/>
+                                                applyMap
+                                                <p>연락처</p>
+                                                <input type="text" className="form-control" placeholder={classes.phone}/>
+                                                <br/>
+                                                <p>주소</p>
+                                                <input type="text" className="form-control" placeholder={classes.addr}/>
+                                                <br/>
+                                                <p>회원가입일</p>
+                                                <input type="text" className="form-control" placeholder={classes.stdntRegdate}/>
+                                            </>
+                                            :
+                                            <></>
+                                    ))
                             }
                             </div>
                         </div>
@@ -319,24 +319,24 @@ const CourseStudent = () => {
                                         <input type="text" className="form-control" placeholder="데이터를 조회해 주세요." readOnly/>
                                     </>
                                     :
-                                Array.isArray(courseData?.applyMap.applys) && courseData.applyMap.applys.map(classes => (
-                                    classes.studnt.stdntNo === checkedData ?
-                                        <>
-                                            <p>수강신청 번호</p>
-                                            <input type="text" className="form-control" placeholder={classes.applyNo}/>
-                                            <br/>
-                                            <p>신청 날짜</p>
-                                            <input type="text" className="form-control" placeholder={classes.applyDate}/>
-                                            <br/>
-                                            <p>신청 마감일</p>
-                                            <input type="text" className="form-control" placeholder={classes.applyEnddate}/>
-                                            <br/>
-                                            <p>신청 상태</p>
-                                            <input type="text" className="form-control" placeholder={classes.applyStatus}/>
-                                        </>
-                                        :
-                                        <></>
-                                ))
+                                    Array.isArray(courseData?.applyMap.applys) && courseData.applyMap.applys.map(classes => (
+                                        classes.studnt.stdntNo === checkedData ?
+                                            <>
+                                                <p>수강신청 번호</p>
+                                                <input type="text" className="form-control" placeholder={classes.applyNo}/>
+                                                <br/>
+                                                <p>신청 날짜</p>
+                                                <input type="text" className="form-control" placeholder={classes.applyDate}/>
+                                                <br/>
+                                                <p>신청 마감일</p>
+                                                <input type="text" className="form-control" placeholder={classes.applyEnddate}/>
+                                                <br/>
+                                                <p>신청 상태</p>
+                                                <input type="text" className="form-control" placeholder={classes.applyStatus}/>
+                                            </>
+                                            :
+                                            <></>
+                                    ))
                             }
                             </div>
                         </div>
