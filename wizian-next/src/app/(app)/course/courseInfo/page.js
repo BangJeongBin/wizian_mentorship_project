@@ -232,7 +232,9 @@ const CourseInfo = () => {
                                 }
                             </div>
                         </div>
+                    </div>
 
+                    <div className="col-md-6">
                         <div className="panel panel-scrolling">
                             <div className="panel-heading">
                                 <h3 className="panel-title">수강학생</h3>
@@ -240,15 +242,15 @@ const CourseInfo = () => {
                             <div className="panel-body no-padding">
                                 <table className="table table-striped">
                                     <thead>
-                                        <tr>
-                                            <th style={{width: "20px"}}>
-                                                <input type="checkbox" checked={isAllChecked}
-                                                       onChange={handleAllCheckbox}/></th>
-                                            <th>#</th>
-                                            <th>학생이름</th>
-                                            <th>ID</th>
-                                            <th>이메일</th>
-                                        </tr>
+                                    <tr>
+                                        <th style={{width: "20px"}}>
+                                            <input type="checkbox" checked={isAllChecked}
+                                                   onChange={handleAllCheckbox}/></th>
+                                        <th>#</th>
+                                        <th>학생이름</th>
+                                        <th>ID</th>
+                                        <th>이메일</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
                                     {
@@ -294,9 +296,7 @@ const CourseInfo = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="col-md-6">
                         <div className="panel">
                             <div className="panel-heading">
                                 <h3 className="panel-title">강의 시간표</h3>
@@ -311,17 +311,15 @@ const CourseInfo = () => {
                                     </thead>
                                     <tbody>
                                     {
-                                        Array.isArray(courseData?.courseOne) && courseData.courseOne.map(classes => (
-                                            classes.stdntNo === checkedData ?
-                                                <tr>
-                                                    <td>{classes.lectNo}</td>
-                                                    <td>{classes.lectSchd}</td>
-                                                </tr>
-                                                :
-                                                <tr>
-                                                    <td colSpan="2">데이터를 조회해 주세요.</td>
-                                                </tr>
-                                        ))
+                                        !courseData.courseOne ?
+                                            <tr>
+                                                <td colSpan="2">데이터를 조회해 주세요.</td>
+                                            </tr>
+                                            :
+                                            <tr>
+                                                <td>{courseData.courseOne.lectNo}</td>
+                                                <td>{courseData.courseOne.lectSchd}</td>
+                                            </tr>
                                     }
                                     </tbody>
                                 </table>

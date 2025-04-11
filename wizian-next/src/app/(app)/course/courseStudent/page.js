@@ -27,7 +27,7 @@ const CourseStudent = () => {
     const sortGender = params.sortGender || "default";
     const findkey = params.findkey || "all";
 
-    const pglink = `http://localhost:8080/api/inst/class/allCourse/list`
+    const pglink = `http://localhost:8080/api/inst/course/courseStudent/list`
 
 
     // useEffect(() => {
@@ -77,7 +77,7 @@ const CourseStudent = () => {
     useEffect(() => {
         // <select> 옵션 처음 1회 저장
         if (statusOptions.length === 0 && genderOptions.length === 0 && Array.isArray(courseData.courselist)) {
-            const status = [...new Set(courseData.courselist.map(item => item.applyStatus))];
+            const status = [...new Set(courseData.courselist.map(item => item.attendStatus))];
             const gender = [...new Set(courseData.courselist.map(item => item.genCd))];
             setStatusOptions(status);
             setGenderOptions(gender);
@@ -114,7 +114,7 @@ const CourseStudent = () => {
         const sortGender = sortGenderRef.current.value;
         const findkey = findkeyRef.current.value || "all";
 
-        const fetchURL = `http://localhost:8080/api/inst/class/allCourse/list/${sortStatus}/${sortGender}/${findkey}/${page}`;
+        const fetchURL = `http://localhost:8080/api/inst/course/courseStudent/list/${sortStatus}/${sortGender}/${findkey}/${page}`;
 
         try {
             const res = await fetch(fetchURL, {
@@ -211,12 +211,12 @@ const CourseStudent = () => {
                                                 <input type="checkbox" checked={isAllChecked}
                                                        onChange={handleAllCheckbox}/></th>
                                             <th>#</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Username</th>
-                                            <th>Username</th>
-                                            <th>Username</th>
-                                            <th>Username</th>
+                                            <th>아이디</th>
+                                            <th>이름</th>
+                                            <th>이메일</th>
+                                            <th>연락처</th>
+                                            <th>출결일(최신)</th>
+                                            <th>출결상태</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -231,9 +231,12 @@ const CourseStudent = () => {
                                                     <td><input type="checkbox" checked={selectedCourNos.includes(classes.stdntNo)}
                                                                onChange={() => handleCheckbox(classes.stdntNo)}/></td>
                                                     <td>{classes.stdntNo}</td>
-                                                    <td>{classes.stdntNm}</td>
                                                     <td>{classes.stdntId}</td>
+                                                    <td>{classes.stdntNm}</td>
                                                     <td>{classes.stdntEmail}</td>
+                                                    <td>{classes.phone}</td>
+                                                    <td>{classes.attendDate}</td>
+                                                    <td>{classes.attendStatus}</td>
                                                 </tr>
                                             )))
                                     }
