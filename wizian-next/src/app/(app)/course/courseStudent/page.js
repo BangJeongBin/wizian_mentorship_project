@@ -158,7 +158,7 @@ const CourseStudent = () => {
                 <a href="/dashboard">메인 페이지 /</a>&ensp;<a href="#">진행중인 강의 /</a>&ensp;<a href="#">수강학생</a>
 
                 <div className="row">
-                    <button type="submit" className="btn btn-success col-lg-offset-10 margin-bottom-30"  onClick={goListSearch}>
+                    <button type="submit" className="btn btn-success col-lg-offset-10 margin-bottom-30" onClick={goListSearch}>
                         <i className="fa fa-refresh fa-spin"></i> 조회하기
                     </button>
                 </div>
@@ -287,7 +287,7 @@ const CourseStudent = () => {
                                                 <br/>
                                                 <p>성별</p>
                                                 <input type="text" className="form-control" placeholder={classes.genCd}/>
-                                                applyMap
+                                                <br />
                                                 <p>연락처</p>
                                                 <input type="text" className="form-control" placeholder={classes.phone}/>
                                                 <br/>
