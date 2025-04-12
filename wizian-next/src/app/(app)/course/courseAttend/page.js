@@ -145,8 +145,8 @@ const CourseAttend = () => {
         }
     };
 
-    const isAllChecked = courseData.courselist && courseData.courselist.length > 0 &&
-        selectedCourNos.length === courseData.courselist.length;
+    const isAllChecked = courseData.applyMap.students && courseData.applyMap.students.length > 0 &&
+        selectedCourNos.length === courseData.applyMap.students.length;
 
     // sweetAlert
     const AttendSubmit = (e) => {
