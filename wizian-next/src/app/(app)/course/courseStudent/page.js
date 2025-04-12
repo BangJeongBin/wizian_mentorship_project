@@ -74,16 +74,6 @@ const CourseStudent = () => {
 
     // }, []);
 
-    useEffect(() => {
-        // <select> 옵션 처음 1회 저장
-        if (statusOptions.length === 0 && genderOptions.length === 0 && Array.isArray(courseData.courselist)) {
-            const status = [...new Set(courseData.courselist.map(item => item.attendStatus))];
-            const gender = [...new Set(courseData.courselist.map(item => item.genCd))];
-            setStatusOptions(status);
-            setGenderOptions(gender);
-        }
-    }, []);
-
 
     // 조회하기 버튼 클릭 시 이벤트
     const goListSearch = async (e) => {
@@ -91,6 +81,14 @@ const CourseStudent = () => {
         const sortGender = sortGenderRef.current.value;
         const findkey = findkeyRef.current.value || "all";
         console.log("ssssssssssssss", courseData.applyMap)
+
+        // <select> 옵션 처음 1회 저장
+        if (statusOptions.length === 0 && genderOptions.length === 0 && Array.isArray(courseData.courselist)) {
+            const status = [...new Set(courseData.courselist.map(item => item.attendStatus))];
+            const gender = [...new Set(courseData.courselist.map(item => item.genCd))];
+            setStatusOptions(status);
+            setGenderOptions(gender);
+        }
 
         fetchData(sortStatus, sortGender, findkey);
     };
@@ -224,7 +222,7 @@ const CourseStudent = () => {
                                     {
                                         (!Array.isArray(courseData.courselist) || courseData.courselist.length === 0) ?
                                             <tr>
-                                                <td colSpan={4}>해당하는 데이터가 없습니다.</td>
+                                                <td colSpan={8}>데이터를 조회해 주세요.</td>
                                             </tr>
                                             :
                                             (courseData.courselist.map(classes => (
