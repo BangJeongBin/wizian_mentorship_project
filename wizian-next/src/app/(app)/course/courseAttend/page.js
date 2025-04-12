@@ -145,7 +145,7 @@ const CourseAttend = () => {
         }
     };
 
-    const isAllChecked = courseData.applyMap.students && courseData.applyMap.students.length > 0 &&
+    const isAllChecked = courseData?.applyMap?.students?.length > 0 &&
         selectedCourNos.length === courseData.applyMap.students.length;
 
     // sweetAlert
