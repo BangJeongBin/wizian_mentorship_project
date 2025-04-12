@@ -1,30 +1,157 @@
 "use client"
 
-import React from "react";
+import React, {useEffect, useRef, useState} from "react";
 import Swal from "sweetalert2";
+import {useParams} from "next/navigation";
 
 const CourseStudent = () => {
-    // sweetAlert
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const [statusOptions, setStatusOptions] = useState([]);
+    const [genderOptions, setGenderOptions] = useState([]);
+    const sortStatusRef = useRef(null);
+    const sortGenderRef = useRef(null);
+    const findkeyRef = useRef(null);
 
-        Swal.fire({
-            title: '변경사항을 적용하시겠습니까?',
-            icon: 'warning',
+    const [selectedCourNos, setSelectedCourNos] = useState([]); // 체크박스 상태 저장
+    const [checkedData, setCheckedData] = useState([]); // 체크박스 값 저장
+
+    const [courseData, setCourseData] = useState({});
+
+    // 초기 값 저장
+    const params = useParams();
+
+    // 페이지네이션 사용
+    const cpg = params.cpg || 1;
+    const [cpgs, setCpgs] = useState(cpg);
+
+    const sortStatus = params.sortStatus || "default";
+    const sortGender = params.sortGender || "default";
+    const findkey = params.findkey || "all";
+
+    const pglink = `http://localhost:8080/api/inst/course/courseStudent/list`
+
+
+    // useEffect(() => {
+    const fetchData = async (sortStatus, sortGender, findkey) => {
+        const fetchURL = `${pglink}/${sortStatus}/${sortGender}/${findkey}/${cpg}`;
+
+        const result = await Swal.fire({
+            title: '모든 과정 정보를 조회하시겠습니까?',
+            icon: 'question',
             showCancelButton: true,
             confirmButtonText: '예',
             cancelButtonText: '아니오',
             reverseButtons: true,
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: '변경 완료되었습니다!',
+        });
+
+        if (result.isConfirmed) {
+            try {
+                const response = await fetch(fetchURL, {
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (!response.ok) {
+                    throw new Error(`HTTP 오류! 상태 코드: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log(data);
+                setCourseData(data);
+
+                await Swal.fire({
+                    title: '조회가 완료되었습니다!',
                     icon: 'success',
                     confirmButtonText: '확인'
                 });
+            } catch (err) {
+                console.error('오류발생!', err);
+                Swal.fire({
+                    title: '데이터 조회 중 오류가 발생했습니다!',
+                    icon: 'error',
+                    confirmButtonText: '확인'
+                });
             }
-        });
+        }
     };
+
+    // }, []);
+
+    useEffect(() => {
+        // <select> 옵션 처음 1회 저장
+        if (statusOptions.length === 0 && genderOptions.length === 0 && Array.isArray(courseData.courselist)) {
+            const status = [...new Set(courseData.courselist.map(item => item.attendStatus))];
+            const gender = [...new Set(courseData.courselist.map(item => item.genCd))];
+            setStatusOptions(status);
+            setGenderOptions(gender);
+        }
+    }, []);
+
+
+    // 조회하기 버튼 클릭 시 이벤트
+    const goListSearch = async (e) => {
+        const sortStatus = sortStatusRef.current.value;
+        const sortGender = sortGenderRef.current.value;
+        const findkey = findkeyRef.current.value || "all";
+        console.log("ssssssssssssss", courseData.applyMap)
+
+        fetchData(sortStatus, sortGender, findkey);
+    };
+
+    // 페이지네이션 다음 버튼
+    const nextListPage = async () => {
+        const nextPage = cpgs + 1;
+        setCpgs(nextPage);
+        await fetchDataPage(nextPage);
+    };
+
+    // 페이지네이션 이전 버튼
+    const preListPage = async () => {
+        const nextPage = cpgs - 1;
+        setCpgs(nextPage);
+        await fetchDataPage(nextPage);
+    };
+
+    // 페이지네이션 함수
+    const fetchDataPage = async (page) => {
+        const sortStatus = sortStatusRef.current.value;
+        const sortGender = sortGenderRef.current.value;
+        const findkey = findkeyRef.current.value || "all";
+
+        const fetchURL = `http://localhost:8080/api/inst/course/courseStudent/list/${sortStatus}/${sortGender}/${findkey}/${page}`;
+
+        try {
+            const res = await fetch(fetchURL, {
+                headers: { 'Accept': 'application/json' }
+            });
+            const data = await res.json();
+            setClassData(data);
+        } catch (err) {
+            console.error('오류 발생:', err);
+        }
+    };
+
+    // 개별 체크박스 선택
+    const handleCheckbox = (stdntNo) => {
+        setCheckedData(stdntNo); // courNo 상태 저장
+        console.log(stdntNo);
+        if (selectedCourNos.includes(stdntNo)) {
+            setSelectedCourNos(selectedCourNos.filter(no => no !== stdntNo));
+        } else {
+            setSelectedCourNos([...selectedCourNos, stdntNo]);
+        }
+
+    };
+
+    // 헤더 체크박스 선택
+    const handleAllCheckbox = (e) => {
+        if (e.target.checked) {
+            const allNos = courseData.applyMap.students.map(cls => cls.stdntNo);
+            setSelectedCourNos(allNos);
+        } else {
+            setSelectedCourNos([]);
+        }
+    };
+
+    const isAllChecked = courseData.courselist && courseData.courselist.length > 0 &&
+        selectedCourNos.length === courseData.courselist.length;
 
 
     return (
@@ -32,58 +159,44 @@ const CourseStudent = () => {
             <div className="container-fluid">
                 <a href="/dashboard">메인 페이지 /</a>&ensp;<a href="#">진행중인 강의 /</a>&ensp;<a href="#">수강학생</a>
 
-                <form name="" id="" method="post" onSubmit={handleSubmit}>
-                    <div className="row">
-                        <button type="submit" className="btn btn-success col-lg-offset-10 margin-bottom-30">
-                            <i className="fa fa-refresh fa-spin"></i> 조회하기
-                        </button>
-                    </div>
+                <div className="row">
+                    <button type="submit" className="btn btn-success col-lg-offset-10 margin-bottom-30"  onClick={goListSearch}>
+                        <i className="fa fa-refresh fa-spin"></i> 조회하기
+                    </button>
+                </div>
 
-                    <div id="toastr-demo" className="panel col">
-                        <div className="panel-body row">
-                            <div className="col-md-3">
-                                <strong>강의 종류</strong>&emsp;&emsp;&emsp;
-                                <select className="navbar">
-                                    <option value="cheese">Cheese(진행중)</option>
-                                    <option value="tomatoes">Tomatoes</option>
-                                    <option value="mozarella">Mozzarella</option>
-                                    <option value="mushrooms">Mushrooms</option>
-                                    <option value="pepperoni">Pepperoni</option>
-                                    <option value="onions">Onions</option>
-                                </select>
-                            </div>
+                <div id="toastr-demo" className="panel col">
+                    <div className="panel-body row">
+                        <div className="col-md-4">
+                            <strong>진행 상태</strong>&emsp;&emsp;&emsp;
+                            <select className="navbar" name="sortStatus" id="sortStatus" ref={sortStatusRef}>
+                                <option value="default">---전체---</option>
+                                {
+                                    statusOptions.map(status => (
+                                        <option key={status} value={status}>{status}</option>
+                                    ))
+                                }
+                            </select>
+                        </div>
 
-                            <div className="col-md-3">
-                                <strong>진행 상태</strong>&emsp;&emsp;&emsp;
-                                <select className="navbar">
-                                    <option value="cheese">진행중인 학생</option>
-                                    <option value="tomatoes">수료한 학생</option>
-                                    <option value="mozarella">Mozzarella</option>
-                                    <option value="mushrooms">Mushrooms</option>
-                                    <option value="pepperoni">Pepperoni</option>
-                                    <option value="onions">Onions</option>
-                                </select>
-                            </div>
+                        <div className="col-md-4">
+                            <strong>성별</strong>&emsp;&emsp;&emsp;
+                            <select className="navbar" name="sortGender" id="sortGender" ref={sortGenderRef}>
+                                <option value="default">---전체---</option>
+                                {
+                                    genderOptions.map(gender => (
+                                        <option key={gender} value={gender}>{gender}</option>
+                                    ))
+                                }
+                            </select>
+                        </div>
 
-                            <div className="col-md-3">
-                                <strong>성별</strong>&emsp;&emsp;&emsp;
-                                <select className="navbar">
-                                    <option value="cheese">Cheese</option>
-                                    <option value="tomatoes">Tomatoes</option>
-                                    <option value="mozarella">Mozzarella</option>
-                                    <option value="mushrooms">Mushrooms</option>
-                                    <option value="pepperoni">Pepperoni</option>
-                                    <option value="onions">Onions</option>
-                                </select>
-                            </div>
-
-                            <div className="col-md-3">
-                                <strong><i className="lnr lnr-magnifier"></i> 검색</strong>
-                                <input type="text" className="form-control" placeholder="학생명 입력"/>
-                            </div>
+                        <div className="col-md-3">
+                            <strong><i className="lnr lnr-magnifier"></i> 검색</strong>
+                            <input type="text" className="form-control" id="findkey" name="findkey" ref={findkeyRef} placeholder="학생명 입력"/>
                         </div>
                     </div>
-                </form>
+                </div>
 
                 <div className="row">
                     <div className="col-md-12">
@@ -94,50 +207,56 @@ const CourseStudent = () => {
                             <div className="panel-body">
                                 <table className="table table-striped">
                                     <thead>
-                                    <tr>
-                                        <th><input type="checkbox"/></th>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
-                                        <th>Username</th>
-                                        <th>Username</th>
-                                        <th>Username</th>
-                                    </tr>
+                                        <tr>
+                                            <th style={{width: "20px"}}>
+                                                <input type="checkbox" checked={isAllChecked}
+                                                       onChange={handleAllCheckbox}/></th>
+                                            <th>#</th>
+                                            <th>아이디</th>
+                                            <th>이름</th>
+                                            <th>이메일</th>
+                                            <th>연락처</th>
+                                            <th>출결일(최신)</th>
+                                            <th>출결상태</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td><input type="checkbox"/></td>
-                                        <td>1</td>
-                                        <td>Steve</td>
-                                        <td>Jobs</td>
-                                        <td>@steve</td>
-                                        <td>@steve</td>
-                                        <td>@steve</td>
-                                        <td>@steve</td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox"/></td>
-                                        <td>2</td>
-                                        <td>Simon</td>
-                                        <td>Philips</td>
-                                        <td>@simon</td>
-                                        <td>@steve</td>
-                                        <td>@steve</td>
-                                        <td>@steve</td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox"/></td>
-                                        <td>3</td>
-                                        <td>Jane</td>
-                                        <td>Doe</td>
-                                        <td>@jane</td>
-                                        <td>@steve</td>
-                                        <td>@steve</td>
-                                        <td>@steve</td>
-                                    </tr>
+                                    {
+                                        (!Array.isArray(courseData.courselist) || courseData.courselist.length === 0) ?
+                                            <tr>
+                                                <td colSpan={4}>해당하는 데이터가 없습니다.</td>
+                                            </tr>
+                                            :
+                                            (courseData.courselist.map(classes => (
+                                                <tr>
+                                                    <td><input type="checkbox" checked={selectedCourNos.includes(classes.stdntNo)}
+                                                               onChange={() => handleCheckbox(classes.stdntNo)}/></td>
+                                                    <td>{classes.stdntNo}</td>
+                                                    <td>{classes.stdntId}</td>
+                                                    <td>{classes.stdntNm}</td>
+                                                    <td>{classes.stdntEmail}</td>
+                                                    <td>{classes.phone}</td>
+                                                    <td>{classes.attendDate}</td>
+                                                    <td>{classes.attendStatus}</td>
+                                                </tr>
+                                            )))
+                                    }
                                     </tbody>
                                 </table>
+                                {/* PAGINATION */}
+                                <div className="col-md-offset-5">
+                                    <ul className="pagination">
+                                        {(courseData.cpg > 1) &&
+                                            (<li className="page-item">
+                                                <a onClick={preListPage} className="page-link">이전</a></li>)
+                                        }
+
+                                        {(courseData.cpg < courseData.cntpg) &&
+                                            (<li className="page-item">
+                                                <a onClick={nextListPage} className="page-link">다음</a></li>)
+                                        }
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -150,26 +269,40 @@ const CourseStudent = () => {
                                 <h3 className="panel-title">학생 정보</h3>
                             </div>
                             <div className="panel-body">
-                                <p>학생 번호</p>
-                                <input type="text" className="form-control" placeholder="text field"/>
-                                <br/>
-                                <p>이름</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>이메일</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>성별</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>연락처</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>주소</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>회원가입일</p>
-                                <input type="password" className="form-control" value="asecret"/>
+                            {
+                                !courseData.applyMap ?
+                                    <>
+                                        <input type="text" className="form-control" placeholder="데이터를 조회해 주세요." readOnly/>
+                                    </>
+                                    :
+                                    Array.isArray(courseData?.applyMap.students) && courseData.applyMap.students.map(classes => (
+                                        classes.stdntNo === checkedData ?
+                                            <>
+                                                <p>학생 번호</p>
+                                                <input type="text" className="form-control" placeholder={classes.stdntNo}/>
+                                                <br/>
+                                                <p>이름</p>
+                                                <input type="text" className="form-control" placeholder={classes.stdntNm}/>
+                                                <br/>
+                                                <p>이메일</p>
+                                                <input type="text" className="form-control" placeholder={classes.stdntEmail}/>
+                                                <br/>
+                                                <p>성별</p>
+                                                <input type="text" className="form-control" placeholder={classes.genCd}/>
+                                                applyMap
+                                                <p>연락처</p>
+                                                <input type="text" className="form-control" placeholder={classes.phone}/>
+                                                <br/>
+                                                <p>주소</p>
+                                                <input type="text" className="form-control" placeholder={classes.addr}/>
+                                                <br/>
+                                                <p>회원가입일</p>
+                                                <input type="text" className="form-control" placeholder={classes.stdntRegdate}/>
+                                            </>
+                                            :
+                                            <></>
+                                    ))
+                            }
                             </div>
                         </div>
                     </div>
@@ -180,19 +313,35 @@ const CourseStudent = () => {
                                 <h3 className="panel-title">수강신청 정보</h3>
                             </div>
                             <div className="panel-body">
-                                <p>수강신청 번호</p>
-                                <input type="text" className="form-control" placeholder="text field"/>
-                                <br/>
-                                <p>신청 날짜</p>
-                                <input type="password" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>신청 마감일</p>
-                                <input type="password" className="form-control" value="asecret"/>
+                            {
+                                !courseData.applyMap ?
+                                    <>
+                                        <input type="text" className="form-control" placeholder="데이터를 조회해 주세요." readOnly/>
+                                    </>
+                                    :
+                                    Array.isArray(courseData?.applyMap.applys) && courseData.applyMap.applys.map(classes => (
+                                        classes.studnt.stdntNo === checkedData ?
+                                            <>
+                                                <p>수강신청 번호</p>
+                                                <input type="text" className="form-control" placeholder={classes.applyNo}/>
+                                                <br/>
+                                                <p>신청 날짜</p>
+                                                <input type="text" className="form-control" placeholder={classes.applyDate}/>
+                                                <br/>
+                                                <p>신청 마감일</p>
+                                                <input type="text" className="form-control" placeholder={classes.applyEnddate}/>
+                                                <br/>
+                                                <p>신청 상태</p>
+                                                <input type="text" className="form-control" placeholder={classes.applyStatus}/>
+                                            </>
+                                            :
+                                            <></>
+                                    ))
+                            }
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     )

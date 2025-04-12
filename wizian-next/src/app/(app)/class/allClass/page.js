@@ -36,7 +36,7 @@ const AllClass = () => {
         const fetchURL = `${pglink}/${sortLoc}/${sortStatus}/${sortInstNm}/${findkey}/${cpg}`;
 
         const result = await Swal.fire({
-            title: '모든 과정 정보를 조회하시겠습니까?',
+            title: '모든 강의 정보를 조회하시겠습니까?',
             icon: 'question',
             showCancelButton: true,
             confirmButtonText: '예',
@@ -344,7 +344,8 @@ const AllClass = () => {
                                 {
                                     Array.isArray(classData?.classlist) && classData.classlist.map(classes => (
                                         classes.lectNo === checkedData ?
-                                            <p>{classes.lectDesc}</p>
+                                            <textarea className="form-control" placeholder={classes.lectDesc}
+                                                rows="10" readOnly></textarea>
                                         :
                                         <></>
                                     ))

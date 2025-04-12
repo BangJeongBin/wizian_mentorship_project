@@ -76,13 +76,15 @@ const AllCourse = () => {
 
     // }, []);
 
-    // <select> 옵션 처음 1회 저장
-    // if (yearOptions.length === 0 && weekOptions.length === 0 && Array.isArray(data.classlist)) {
-    //     const years = [...new Set(data.classlist.map(item => item.courYear))];
-    //     const weeks = [...new Set(data.classlist.map(item => item.courWeek))];
-    //     setYearOptions(years);
-    //     setWeekOptions(weeks);
-    // }
+    // useEffect(() => {
+    //     // <select> 옵션 처음 1회 저장
+    //     if (yearOptions.length === 0 && weekOptions.length === 0 && Array.isArray(data.classlist)) {
+    //         const years = [...new Set(data.classlist.map(item => item.courYear))];
+    //         const weeks = [...new Set(data.classlist.map(item => item.courWeek))];
+    //         setYearOptions(years);
+    //         setWeekOptions(weeks);
+    //     }
+    // }, []);
 
 
     // 조회하기 버튼 클릭 시 이벤트
@@ -273,35 +275,35 @@ const AllCourse = () => {
                                 <h3 className="panel-title">과정정보</h3>
                             </div>
                             <div className="panel-body">
-                                {
-                                    Array.isArray(classData?.classlist) && classData.classlist.map(classes => (
-                                        classes.courNo === checkedData ?
-                                            <>
-                                                <p>번호</p>
-                                                <input type="text" className="form-control" placeholder={classes.courNo} readOnly />
-                                                <br/>
-                                                <p>과정명</p>
-                                                <input type="text" className="form-control" placeholder={classes.courNm} readOnly />
-                                                <br/>
-                                                <p>수업년도</p>
-                                                <input type="text" className="form-control" placeholder={classes.courYear} readOnly />
-                                                <br/>
-                                                <p>과목구분</p>
-                                                <input type="text" className="form-control" placeholder={classes.courDept} readOnly />
-                                                <br/>
-                                                <p>강의주차</p>
-                                                <input type="text" className="form-control" placeholder={classes.courWeek} readOnly />
-                                                <br/>
-                                                <p>주당 수업시간</p>
-                                                <input type="text" className="form-control" placeholder={classes.weekTime} readOnly />
-                                                <br/>
-                                                <p>총 수업시간</p>
-                                                <input type="text" className="form-control" placeholder={classes.fullTime} readOnly />
-                                            </>
-                                            :
-                                            <></>
-                                    ))
-                                }
+                            {
+                                Array.isArray(classData?.classlist) && classData.classlist.map(classes => (
+                                    classes.courNo === checkedData ?
+                                        <>
+                                            <p>번호</p>
+                                            <input type="text" className="form-control" placeholder={classes.courNo} readOnly />
+                                            <br/>
+                                            <p>과정명</p>
+                                            <input type="text" className="form-control" placeholder={classes.courNm} readOnly />
+                                            <br/>
+                                            <p>수업년도</p>
+                                            <input type="text" className="form-control" placeholder={classes.courYear} readOnly />
+                                            <br/>
+                                            <p>과목구분</p>
+                                            <input type="text" className="form-control" placeholder={classes.courDept} readOnly />
+                                            <br/>
+                                            <p>강의주차</p>
+                                            <input type="text" className="form-control" placeholder={classes.courWeek} readOnly />
+                                            <br/>
+                                            <p>주당 수업시간</p>
+                                            <input type="text" className="form-control" placeholder={classes.weekTime} readOnly />
+                                            <br/>
+                                            <p>총 수업시간</p>
+                                            <input type="text" className="form-control" placeholder={classes.fullTime} readOnly />
+                                        </>
+                                        :
+                                        <></>
+                                ))
+                            }
                             </div>
                         </div>
                     </div>
