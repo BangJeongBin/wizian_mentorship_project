@@ -333,7 +333,7 @@ const CourseAttend = () => {
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>강의번호</th>
+                                            <th>강의명</th>
                                             <th>출결일자</th>
                                             <th>출결여부</th>
                                         </tr>
@@ -345,18 +345,16 @@ const CourseAttend = () => {
                                                 <td colSpan={4}>데이터를 조회해 주세요.</td>
                                             </tr>
                                             :
-                                            Array.isArray(courseData?.applyMap.students) && courseData.applyMap.students.map(classes => (
-                                                classes.stdntNo === checkedData ?
+                                            Array.isArray(courseData?.applyMap.applys) && courseData.applyMap.applys.map(classes => (
+                                                classes.studnt.stdntNo === checkedData ?
                                                     <tr>
-                                                        <td>{classes.listNo}</td>
-                                                        <td>{classes.lectNo}</td>
+                                                        <td>{classes.attendNo}</td>
+                                                        <td>{classes.lectInfo.lectNm}</td>
                                                         <td>{classes.attendDate}</td>
                                                         <td>{classes.attendStatus}</td>
                                                     </tr>
                                                     :
-                                                    <tr>
-                                                        <td colSpan={4}>데이터 오류!!!</td>
-                                                    </tr>
+                                                   <></>
                                             ))
                                     }
                                     </tbody>
@@ -364,26 +362,26 @@ const CourseAttend = () => {
                             </div>
                         </div>
 
-                        <form name="" id="" method="post" onSubmit={SearchSubmit}>
-                            <div className="panel">
-                                <div className="panel-heading">
-                                    <h3 className="panel-title">출결 점수 입력</h3>
-                                </div>
-                                <div className="panel-body">
-                                    <p>학생 번호</p>
-                                    <input type="text" className="form-control" placeholder="text field"/>
-                                    <br/>
-                                    <p>학생 이름</p>
-                                    <input type="text" className="form-control" placeholder="text field"/>
-                                    <br/>
-                                    <input type="text" className="form-control" placeholder="점수를 입력하세요"/>
-                                    <br/>
-                                    <button className="btn btn-warning form-control" type="submit">
-                                        점수 저장
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                        {/*<form name="" id="" method="post" onSubmit={SearchSubmit}>*/}
+                        {/*    <div className="panel">*/}
+                        {/*        <div className="panel-heading">*/}
+                        {/*            <h3 className="panel-title">출결 점수 입력</h3>*/}
+                        {/*        </div>*/}
+                        {/*        <div className="panel-body">*/}
+                        {/*            <p>학생 번호</p>*/}
+                        {/*            <input type="text" className="form-control" placeholder="text field"/>*/}
+                        {/*            <br/>*/}
+                        {/*            <p>학생 이름</p>*/}
+                        {/*            <input type="text" className="form-control" placeholder="text field"/>*/}
+                        {/*            <br/>*/}
+                        {/*            <input type="text" className="form-control" placeholder="점수를 입력하세요"/>*/}
+                        {/*            <br/>*/}
+                        {/*            <button className="btn btn-warning form-control" type="submit">*/}
+                        {/*                점수 저장*/}
+                        {/*            </button>*/}
+                        {/*        </div>*/}
+                        {/*    </div>*/}
+                        {/*</form>*/}
                     </div>
                 </div>
 

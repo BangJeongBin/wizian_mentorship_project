@@ -287,7 +287,7 @@ const CourseStudent = () => {
                                                 <br/>
                                                 <p>성별</p>
                                                 <input type="text" className="form-control" placeholder={classes.genCd}/>
-                                                applyMap
+                                                <br />
                                                 <p>연락처</p>
                                                 <input type="text" className="form-control" placeholder={classes.phone}/>
                                                 <br/>
