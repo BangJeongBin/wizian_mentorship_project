@@ -84,11 +84,11 @@ const CourseProblem = () => {
         const sortYear = sortYearRef.current.value;
         const sortHalf = sortHalfRef.current.value;
         const findkey = findkeyRef.current.value || "all";
-        console.log("ssssssssssssss", courseData.applyMap)
+        console.log("ssssssssssssss", courseData.infoList)
 
         // <select> 옵션 처음 1회 저장
-        if (yearOptions.length === 0 && Array.isArray(courseData.courselist)) {
-            const year = [...new Set(courseData.courselist.map(item => item.assignInfoYear))];
+        if (yearOptions.length === 0 && Array.isArray(courseData.infoList)) {
+            const year = [...new Set(courseData.infoList.map(item => item.assignInfoYear))];
             setYearOptions(year);
         }
 
@@ -115,14 +115,14 @@ const CourseProblem = () => {
         const sortHalf = sortHalfRef.current.value;
         const findkey = findkeyRef.current.value || "all";
 
-        const fetchURL = `http://localhost:8080/api/inst/course/courseStudent/list/${sortYear}/${sortHalf}/${findkey}/${page}`;
+        const fetchURL = `http://localhost:8080/api/inst/course/courseProblem/list/${sortYear}/${sortHalf}/${findkey}/${page}`;
 
         try {
             const res = await fetch(fetchURL, {
                 headers: { 'Accept': 'application/json' }
             });
             const data = await res.json();
-            setClassData(data);
+            setCourseData(data);
         } catch (err) {
             console.error('오류 발생:', err);
         }
@@ -130,8 +130,8 @@ const CourseProblem = () => {
 
     // 과제정보 개별 체크박스 선택
     const handleCheckbox = (assignInfoNo) => {
-        setCheckedData(assignInfoNo); // courNo 상태 저장
-        console.log(assignInfoNo);
+        setCheckedData(assignInfoNo);
+        console.log(">>> 과제정보 개별 체크박스 ", checkedData);
         if (selectedCourNos.includes(assignInfoNo)) {
             setSelectedCourNos(selectedCourNos.filter(no => no !== assignInfoNo));
         } else {
@@ -143,25 +143,25 @@ const CourseProblem = () => {
     // 과제정보 헤더 체크박스 선택
     const handleAllCheckbox = (e) => {
         if (e.target.checked) {
-            const allNos = courseData.applyMap.students.map(cls => cls.stdntNo);
+            const allNos = courseData.infoList.map(cls => cls.assignInfoNm);
             setSelectedCourNos(allNos);
         } else {
             setSelectedCourNos([]);
         }
     };
 
-    const isAllChecked = courseData?.applyMap?.students?.length > 0 &&
-        selectedCourNos.length === courseData.applyMap.students.length;
+    const isAllChecked = courseData?.infoList?.length > 0 &&
+        selectedCourNos.length === courseData.infoList.length;
 
 
     // 제출과제 개별 체크박스 선택
     const handleCheckboxsub = (assignInfoNosub) => {
-        setCheckedDatasub(assignInfoNosub); // courNo 상태 저장
-        console.log(assignInfoNosub);
+        setCheckedDatasub(assignInfoNosub);
+        console.log(">>> 제출과제 개별 체크박스 ", checkedDatasub);
         if (selectedCourNossub.includes(assignInfoNosub)) {
             setSelectedCourNossub(selectedCourNossub.filter(no => no !== assignInfoNosub));
         } else {
-            setSelectedCourNos([...selectedCourNossub, assignInfoNosub]);
+            setSelectedCourNossub([...selectedCourNossub, assignInfoNosub]);
         }
 
     };
@@ -169,15 +169,15 @@ const CourseProblem = () => {
     // 제출과제 헤더 체크박스 선택
     const handleAllCheckboxsub = (e) => {
         if (e.target.checked) {
-            const allNos = courseDatasub.applyMap.students.map(cls => cls.stdntNo);
+            const allNos = courseData.submitList.map(cls => cls.studnt.stdntNo);
             setSelectedCourNossub(allNos);
         } else {
             setSelectedCourNossub([]);
         }
     };
 
-    const isAllCheckedsub = courseData?.applyMap?.students?.length > 0 &&
-        selectedCourNossub.length === courseData.applyMap.students.length;
+    const isAllCheckedsub = courseData?.submitList?.length > 0 &&
+        selectedCourNossub.length === courseData.submitList.length;
 
 
 
@@ -261,7 +261,7 @@ const CourseProblem = () => {
                         </div>
                         <div className="col-md-2">
                             <strong><i className="lnr lnr-magnifier"></i> 검색</strong>
-                            <input type="text" className="form-control" id="findkey" name="findkey" ref={findkeyRef} placeholder="수업명 입력"/>
+                            <input type="text" className="form-control" id="findkey" name="findkey" ref={findkeyRef} placeholder="과제명 입력"/>
                         </div>
                     </div>
                 </div>
@@ -301,23 +301,23 @@ const CourseProblem = () => {
                                     </thead>
                                     <tbody>
                                     {
-                                        (!Array.isArray(courseData.courselist) || courseData.courselist.length === 0) ?
+                                        (!Array.isArray(courseData.infoList) || courseData.infoList.length === 0) ?
                                             <tr>
                                                 <td colSpan={8}>데이터를 조회해 주세요.</td>
                                             </tr>
                                             :
-                                            (courseData.courselist.map(classes => (
+                                            (courseData.infoList.map(classes => (
                                                 <tr>
                                                     {/*과제정보번호 넘겨주기*/}
-                                                    <td><input type="checkbox" checked={selectedCourNos.includes(classes.stdntNo)}
-                                                               onChange={() => handleCheckbox(classes.stdntNo)}/></td>
-                                                    <td>{classes.stdntNo}</td>
-                                                    <td>{classes.stdntId}</td>
-                                                    <td>{classes.stdntNm}</td>
-                                                    <td>{classes.stdntEmail}</td>
-                                                    <td>{classes.phone}</td>
-                                                    <td>{classes.attendDate}</td>
-                                                    <td>{classes.attendStatus}</td>
+                                                    <td><input type="checkbox" checked={selectedCourNos.includes(classes.assignInfoNm)}
+                                                               onChange={() => handleCheckbox(classes.assignInfoNm)}/></td>
+                                                    <td>{classes.assignInfoNo}</td>
+                                                    <td>{classes.assignInfoNm}</td>
+                                                    <td>{classes.assignInfoYear}</td>
+                                                    <td>{classes.assignInfoMonth}</td>
+                                                    <td>{classes.assignDate}</td>
+                                                    <td>{classes.assignDuedate}</td>
+                                                    <td>{classes.assignStatus}</td>
                                                 </tr>
                                             )))
                                     }
@@ -356,23 +356,23 @@ const CourseProblem = () => {
                                         </thead>
                                         <tbody>
                                         {
-                                            !courseData.applyMap ?
+                                            !courseData.submitList ?
                                                 <tr>
                                                     <td colSpan={5}>과제정보를 선택해 주세요.</td>
                                                 </tr>
                                                 :
-                                                Array.isArray(courseData?.applyMap.students) && courseData.applyMap.students.map(classes => (
-                                                    classes.stdntNo === checkedData ?
+                                                Array.isArray(courseData?.submitList) && courseData.submitList.map(classes => (
+                                                    classes.assignInfo.assignInfoNm === checkedData ?
 
-                                                        (courseData.courselist.map(classes => (
+                                                        (courseData.submitList.map(classes => (
                                                             <tr>
                                                                 {/*학생번호 넘겨주기*/}
-                                                                <td><input type="checkbox" checked={selectedCourNossub.includes(classes.stdntNo)}
-                                                                           onChange={() => handleCheckboxsub(classes.stdntNo)}/></td>
-                                                                <td>{classes.stdntNo}</td>
-                                                                <td>{classes.stdntId}</td>
-                                                                <td>{classes.stdntNm}</td>
-                                                                <td>{classes.stdntEmail}</td>
+                                                                <td><input type="checkbox" checked={selectedCourNossub.includes(classes.studnt.stdntNo)}
+                                                                           onChange={() => handleCheckboxsub(classes.studnt.stdntNo)}/></td>
+                                                                <td>{classes.studnt.stdntNo}</td>
+                                                                <td>{classes.studnt.stdntNm}</td>
+                                                                <td>{classes.assignPoint}</td>
+                                                                <td>{classes.assignDuedate}</td>
                                                             </tr>
                                                         )))
                                                     :
@@ -381,6 +381,20 @@ const CourseProblem = () => {
                                         }
                                         </tbody>
                                     </table>
+                                    {/* PAGINATION */}
+                                    <div className="col-md-offset-5">
+                                        <ul className="pagination">
+                                            {(courseData.cpg > 1) &&
+                                                (<li className="page-item">
+                                                    <a onClick={preListPage} className="page-link">이전</a></li>)
+                                            }
+
+                                            {(courseData.cpg < courseData.cntpg) &&
+                                                (<li className="page-item">
+                                                    <a onClick={nextListPage} className="page-link">다음</a></li>)
+                                            }
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -396,46 +410,20 @@ const CourseProblem = () => {
                             </div>
                             <div className="panel-body">
                                 {
-                                    !courseData.applyMap ?
+                                    !courseData.submitList ?
                                         <>
                                             <input type="text" className="form-control" placeholder="제출과제를 선택해 주세요." readOnly/>
                                         </>
                                         :
-                                        Array.isArray(courseData?.applyMap.applys) && courseData.applyMap.applys.map(classes => (
-                                            classes.studnt.stdntNo === checkedData && classes.studnt.stdntNo === checkedDatasub ?
+                                        Array.isArray(courseData?.submitList) && courseData.submitList.map(classes => (
+                                            classes.assignInfo.assignInfoNm === checkedData && classes.studnt.stdntNo === checkedDatasub ?
                                                 <>
-                                                    <p>학생 번호</p>
-                                                    <input type="text" className="form-control" placeholder="text field"/>
+                                                    <p>{classes.assignInfo.assignQnum} . 과제 질문</p>
+                                                    <textarea className="form-control" placeholder={classes.assignInfo.assignQue} rows="1" defaultValue="" readOnly></textarea>
                                                     <br/>
-                                                    <p>1. 과제 질문</p>
-                                                    <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
+                                                    <p>{classes.assignInfo.assignQnum}. 과제 답변</p>
+                                                    <textarea className="form-control" placeholder={classes.assignAns} rows="1" defaultValue="" readOnly></textarea>
                                                     <br/>
-                                                    <p>1. 과제 답변</p>
-                                                    <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
-                                                    <br/>
-                                                    <p>2. 과제 질문</p>
-                                                    <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
-                                                    <br/>
-                                                    <p>2. 과제 답변</p>
-                                                    <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
-                                                    <br/>
-                                                    <p>3. 과제 질문</p>
-                                                    <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
-                                                    <br/>
-                                                    <p>3. 과제 답변</p>
-                                                    <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
-                                                    <br/>
-                                                    <p>4. 과제 질문</p>
-                                                    <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
-                                                    <br/>
-                                                    <p>4. 과제 답변</p>
-                                                    <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
-                                                    <br/>
-                                                    <p>5. 과제 질문</p>
-                                                    <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
-                                                    <br/>
-                                                    <p>5. 과제 답변</p>
-                                                    <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
                                                 </>
                                                 :
                                                 <></>
@@ -452,28 +440,17 @@ const CourseProblem = () => {
                             </div>
                             <div className="panel-body">
                                 {
-                                    !courseData.applyMap ?
+                                    !courseData.submitList ?
                                         <>
                                             <input type="text" className="form-control" placeholder="제출과제를 선택해 주세요." readOnly/>
                                         </>
                                         :
-                                        Array.isArray(courseData?.applyMap.applys) && courseData.applyMap.applys.map(classes => (
-                                            classes.studnt.stdntNo === checkedData && classes.studnt.stdntNo === checkedDatasub ?
+                                        Array.isArray(courseData?.submitList) && courseData.submitList.map(classes => (
+                                            classes.assignInfo.assignInfoNm === checkedData && classes.studnt.stdntNo === checkedDatasub ?
                                                 <>
-                                                    <p>1. 과제 정답</p>
-                                                    <input type="text" className="form-control" placeholder="text field"/>
+                                                    <p>{classes.assignInfo.assignQnum}. 과제 정답</p>
+                                                    <textarea className="form-control" placeholder={classes.assignInfo.assignCorct} rows="1" defaultValue="" readOnly></textarea>
                                                     <br/>
-                                                    <p>2. 과제 정답</p>
-                                                    <input type="password" className="form-control" value="asecret"/>
-                                                    <br/>
-                                                    <p>3. 과제 정답</p>
-                                                    <input type="password" className="form-control" value="asecret"/>
-                                                    <br/>
-                                                    <p>4. 과제 정답</p>
-                                                    <input type="password" className="form-control" value="asecret"/>
-                                                    <br/>
-                                                    <p>5. 과제 정답</p>
-                                                    <input type="password" className="form-control" value="asecret"/>
                                                 </>
                                                 :
                                                 <></>
