@@ -169,7 +169,7 @@ const CourseProblem = () => {
     // 제출과제 헤더 체크박스 선택
     const handleAllCheckboxsub = (e) => {
         if (e.target.checked) {
-            const allNos = courseData.submitList.map(cls => cls.studnt.stdntNo);
+            const allNos = courseData.submitList?.map(cls => cls.studnt.stdntNo);
             setSelectedCourNossub(allNos);
         } else {
             setSelectedCourNossub([]);
