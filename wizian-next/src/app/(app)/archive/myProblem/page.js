@@ -284,7 +284,7 @@ const MyProblem = () => {
 
                         <div className="col-md-4">
                             <strong><i className="lnr lnr-magnifier"></i> 검색</strong>
-                            <input type="text" className="form-control" placeholder="과제명 입력"/>
+                            <input type="text" className="form-control" id="findkey" name="findkey" ref={findkeyRef} placeholder="과제명 입력"/>
                         </div>
                     </div>
                 </div>
@@ -307,50 +307,57 @@ const MyProblem = () => {
                             <div className="panel-body">
                                 <table className="table table-striped">
                                     <thead>
-                                    <tr>
-                                        <th><input type="checkbox"/></th>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
-                                        <th>Username</th>
-                                        <th>Username</th>
-                                        <th>Username</th>
-                                    </tr>
+                                        <tr>
+                                            <th style={{width: "20px"}}>
+                                                <input type="checkbox" checked={isAllChecked}
+                                                       onChange={handleAllCheckbox}/></th>
+                                            <th>#</th>
+                                            <th>과제정보분류</th>
+                                            <th>과제년도</th>
+                                            <th>상하반기분류</th>
+                                            <th>부여일자</th>
+                                            <th>마감일자</th>
+                                            <th>마감여부</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td><input type="checkbox"/></td>
-                                        <td>1</td>
-                                        <td>Steve</td>
-                                        <td>Jobs</td>
-                                        <td>@steve</td>
-                                        <td>@steve</td>
-                                        <td>@steve</td>
-                                        <td>@steve</td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox"/></td>
-                                        <td>2</td>
-                                        <td>Simon</td>
-                                        <td>Philips</td>
-                                        <td>@simon</td>
-                                        <td>@steve</td>
-                                        <td>@steve</td>
-                                        <td>@steve</td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox"/></td>
-                                        <td>3</td>
-                                        <td>Jane</td>
-                                        <td>Doe</td>
-                                        <td>@jane</td>
-                                        <td>@steve</td>
-                                        <td>@steve</td>
-                                        <td>@steve</td>
-                                    </tr>
+                                    {
+                                        (!Array.isArray(courseData.infoList) || courseData.infoList.length === 0) ?
+                                            <tr>
+                                                <td colSpan={8}>데이터를 조회해 주세요.</td>
+                                            </tr>
+                                            :
+                                            (courseData.infoList.map(classes => (
+                                                <tr>
+                                                    {/*과제정보번호 넘겨주기*/}
+                                                    <td><input type="checkbox" checked={selectedCourNos.includes(classes.assignInfoNm)}
+                                                               onChange={() => handleCheckbox(classes.assignInfoNm)}/></td>
+                                                    <td>{classes.assignInfoNo}</td>
+                                                    <td>{classes.assignInfoNm}</td>
+                                                    <td>{classes.assignInfoYear}</td>
+                                                    <td>{classes.assignInfoMonth}</td>
+                                                    <td>{classes.assignDate}</td>
+                                                    <td>{classes.assignDuedate}</td>
+                                                    <td>{classes.assignStatus}</td>
+                                                </tr>
+                                            )))
+                                    }
                                     </tbody>
                                 </table>
+                                {/* PAGINATION */}
+                                <div className="col-md-offset-5">
+                                    <ul className="pagination">
+                                        {(courseData.cpg > 1) &&
+                                            (<li className="page-item">
+                                                <a onClick={preListPage} className="page-link">이전</a></li>)
+                                        }
+
+                                        {(courseData.cpg < courseData.cntpg) &&
+                                            (<li className="page-item">
+                                                <a onClick={nextListPage} className="page-link">다음</a></li>)
+                                        }
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -364,47 +371,61 @@ const MyProblem = () => {
                                 <h3 className="panel-title">과제 정보</h3>
                             </div>
                             <div className="panel-body">
-                                <div className="col-md-4">
-                                    <p>과제 정보 번호</p>
-                                    <input type="text" className="form-control" placeholder="text field"/>
-                                    <br />
-                                </div>
+                                {
+                                    !courseData.submitList ?
+                                        <>
+                                            <input type="text" className="form-control" placeholder="과제를 선택해 주세요." readOnly/>
+                                        </>
+                                        :
+                                        Array.isArray(courseData?.submitList) && courseData.submitList.map(classes => (
+                                            classes.assignInfo.assignInfoNm === checkedData ?
+                                                <>
+                                                    <div className="col-md-4">
+                                                        <p>과제 정보 번호</p>
+                                                        <input type="text" className="form-control" placeholder="text field"/>
+                                                        <br />
+                                                    </div>
 
-                                <div className="col-md-4">
-                                    <p>강의 번호</p>
-                                    <input type="text" className="form-control" placeholder="text field"/>
-                                    <br />
-                                </div>
+                                                    <div className="col-md-4">
+                                                        <p>강의 번호</p>
+                                                        <input type="text" className="form-control" placeholder="text field"/>
+                                                        <br />
+                                                    </div>
 
-                                <div className="col-md-4">
-                                    <p>과제 정보 분류</p>
-                                    <input type="text" className="form-control" placeholder="text field"/>
-                                    <br />
-                                </div>
+                                                    <div className="col-md-4">
+                                                        <p>과제 정보 분류</p>
+                                                        <input type="text" className="form-control" placeholder="text field"/>
+                                                        <br />
+                                                    </div>
 
-                                <div className="col-md-4">
-                                    <p>과제 상하반기 분류</p>
-                                    <input type="text" className="form-control" placeholder="text field"/>
-                                    <br />
-                                </div>
+                                                    <div className="col-md-4">
+                                                        <p>과제 상하반기 분류</p>
+                                                        <input type="text" className="form-control" placeholder="text field"/>
+                                                        <br />
+                                                    </div>
 
-                                <div className="col-md-4">
-                                    <p>담당 강사명</p>
-                                    <input type="text" className="form-control" placeholder="text field"/>
-                                    <br />
-                                </div>
+                                                    <div className="col-md-4">
+                                                        <p>담당 강사명</p>
+                                                        <input type="text" className="form-control" placeholder="text field"/>
+                                                        <br />
+                                                    </div>
 
-                                <div className="col-md-6">
-                                    <p>과제 부여 일자</p>
-                                    <input type="text" className="form-control" placeholder="text field"/>
-                                    <br />
-                                </div>
+                                                    <div className="col-md-6">
+                                                        <p>과제 부여 일자</p>
+                                                        <input type="text" className="form-control" placeholder="text field"/>
+                                                        <br />
+                                                    </div>
 
-                                <div className="col-md-6">
-                                    <p>과제 마감 일자</p>
-                                    <input type="text" className="form-control" placeholder="text field"/>
-                                    <br />
-                                </div>
+                                                    <div className="col-md-6">
+                                                        <p>과제 마감 일자</p>
+                                                        <input type="text" className="form-control" placeholder="text field"/>
+                                                        <br />
+                                                    </div>
+                                                </>
+                                                :
+                                                <></>
+                                        ))
+                                }
                             </div>
                         </div>
 
