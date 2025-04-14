@@ -82,7 +82,7 @@ const CourseAttend = () => {
         console.log("ssssssssssssss", courseData.applyMap)
 
         // <select> 옵션 처음 1회 저장
-        if (dateOptions.length === 0 && Array.isArray(courseData.courselist)) {
+        if (true) {
             const date = [...new Set(courseData.courselist.map(item => item.AttendDate))];
             setDateOptions(date);
         }

@@ -87,7 +87,7 @@ const CourseProblem = () => {
         console.log("ssssssssssssss", courseData.infoList)
 
         // <select> 옵션 처음 1회 저장
-        if (yearOptions.length === 0 && Array.isArray(courseData.infoList)) {
+        if (true) {
             const year = [...new Set(courseData.infoList.map(item => item.assignInfoYear))];
             setYearOptions(year);
         }
