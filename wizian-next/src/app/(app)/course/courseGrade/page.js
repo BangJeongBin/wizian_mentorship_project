@@ -15,6 +15,7 @@ const CourseGrade = () => {
     const [checkedData, setCheckedData] = useState([]); // 체크박스 값 저장
 
     const [courseData, setCourseData] = useState({});
+    const [studentData, setstudentData] = useState({});
 
     // 초기 값 저장
     const params = useParams();
@@ -86,7 +87,7 @@ const CourseGrade = () => {
 
         // <select> 옵션 처음 1회 저장
         if (true) {
-            const date = [...new Set(courseData.courselist.map(item => item.AttendDate))];
+            const date = [...new Set(courseData.courselist?.map(item => item.AttendDate))];
             setProNmOptions(date);
         }
 
@@ -114,21 +115,21 @@ const CourseGrade = () => {
         const findkey = findkeyRef.current.value || "all";
         const findkeySub = findkeySubRef.current.value || "all";
 
-        const fetchURL = `http://localhost:8080/api/inst/course/courseAttend/list/${sortAttend}/${sortProNm}/${findkey}/${findkeySub}/${page}`;
+        const fetchURL = `http://localhost:8080/api/inst/course/courseGrade/list/${sortAttend}/${sortProNm}/${findkey}/${findkeySub}/${page}`;
 
         try {
             const res = await fetch(fetchURL, {
                 headers: { 'Accept': 'application/json' }
             });
             const data = await res.json();
-            setClassData(data);
+            setCourseData(data);
         } catch (err) {
             console.error('오류 발생:', err);
         }
     };
 
     // 개별 체크박스 선택
-    const handleCheckbox = (stdntNo) => {
+    const handleCheckbox = async (stdntNo) => {
         setCheckedData(stdntNo); // courNo 상태 저장
         console.log(stdntNo);
         if (selectedCourNos.includes(stdntNo)) {
@@ -136,21 +137,31 @@ const CourseGrade = () => {
         } else {
             setSelectedCourNos([...selectedCourNos, stdntNo]);
         }
-
+        const studentNo = stdntNo;
+        try {
+            const res = await fetch(`http://localhost:8080/api/inst/course/courseGrade/stdentList/${studentNo}`, {
+                headers: { 'Accept': 'application/json' }
+            });
+            const data = await res.json();
+            setstudentData(data);
+            console.log(studentData);
+        } catch (err) {
+            console.error('오류 발생:', err);
+        }
     };
 
     // 헤더 체크박스 선택
     const handleAllCheckbox = (e) => {
         if (e.target.checked) {
-            const allNos = courseData.applyMap.students.map(cls => cls.stdntNo);
+            const allNos = courseData.studentList.map(cls => cls.stdntNo);
             setSelectedCourNos(allNos);
         } else {
             setSelectedCourNos([]);
         }
     };
 
-    const isAllChecked = courseData?.applyMap?.students?.length > 0 &&
-        selectedCourNos.length === courseData.applyMap.students.length;
+    const isAllChecked = courseData?.studentList?.length > 0 &&
+        selectedCourNos.length === courseData.studentList.length;
 
 
     /*// sweetAlert
@@ -262,22 +273,24 @@ const CourseGrade = () => {
                                     </thead>
                                     <tbody>
                                     {
-                                        (!Array.isArray(courseData.courselist) || courseData.courselist.length === 0) ?
+                                        (!Array.isArray(courseData.studentList) || courseData.studentList.length === 0) ?
                                             <tr>
                                                 <td colSpan={10}>데이터를 조회해 주세요.</td>
                                             </tr>
                                             :
-                                            (courseData.courselist.map(classes => (
+                                            (courseData.studentList.map(classes => (
                                                 <tr>
-                                                    <td><input type="checkbox" checked={selectedCourNos.includes(classes.stdntNo)}
-                                                               onChange={() => handleCheckbox(classes.stdntNo)}/></td>
-                                                    <td>{classes.stdntNo}</td>
-                                                    <td>{classes.stdntId}</td>
-                                                    <td>{classes.stdntNm}</td>
-                                                    <td>{classes.stdntEmail}</td>
-                                                    <td>{classes.phone}</td>
-                                                    <td>{classes.attendDate}</td>
-                                                    <td>{classes.attendStatus}</td>
+                                                    <td><input type="checkbox" checked={selectedCourNos.includes(classes.studnt.stdntNo)}
+                                                               onChange={() => handleCheckbox(classes.studnt.stdntNo)}/></td>
+                                                    <td>{classes.gradesNo}</td>
+                                                    <td>{classes.studnt.stdntId}</td>
+                                                    <td>{classes.studnt.stdntNm}</td>
+                                                    <td>{(classes.attenPoint) ? (classes.attenPoint) : '미입력'}</td>
+                                                    <td>{classes.attendOnepoint}</td>
+                                                    <td>{(classes.attendTwopoint) ? (classes.attendTwopoint) : '미입력'}</td>
+                                                    <td>{classes.gradesPoint}</td>
+                                                    <td>{classes.gradesDuedate}</td>
+                                                    <td>{classes.gradesOption}</td>
                                                 </tr>
                                             )))
                                     }
@@ -298,23 +311,32 @@ const CourseGrade = () => {
                                 <h3 className="panel-title">출석 정보</h3>
                             </div>
                             <div className="panel-body">
-                                <p>학생 번호</p>
-                                <input type="text" className="form-control" placeholder="text field"/>
-                                <br/>
-                                <p>학생 이름</p>
-                                <input type="text" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>총 수업일수</p>
-                                <input type="text" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>출석한 수업일수</p>
-                                <input type="text" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>지각한 수업일수</p>
-                                <input type="text" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>결석한 수업일수</p>
-                                <input type="text" className="form-control" value="asecret"/>
+                                {
+                                    !studentData ?
+                                        <input type="text" className="form-control" placeholder="학생을 선택해 주세요." readOnly/>
+                                        :
+                                        studentData && studentData.stdntNo === checkedData && (
+                                            <>
+                                                <p>학생 번호</p>
+                                                <input type="text" className="form-control" placeholder={studentData.stdntNo} readOnly/>
+                                                <br/>
+                                                <p>학생 이름</p>
+                                                <input type="text" className="form-control" placeholder={studentData.stdntNm} readOnly/>
+                                                <br/>
+                                                <p>총 수업일수</p>
+                                                <input type="text" className="form-control" placeholder={studentData.fullTime} readOnly/>
+                                                <br/>
+                                                <p>출석한 수업일수</p>
+                                                <input type="text" className="form-control" placeholder={studentData.attendTime} readOnly/>
+                                                <br/>
+                                                <p>지각한 수업일수</p>
+                                                <input type="text" className="form-control" placeholder={studentData.lateTime} readOnly/>
+                                                <br/>
+                                                <p>결석한 수업일수</p>
+                                                <input type="text" className="form-control" placeholder={studentData.absTime} readOnly/>
+                                            </>
+                                        )
+                                }
                             </div>
                         </div>
                     </div>
@@ -325,20 +347,34 @@ const CourseGrade = () => {
                                 <h3 className="panel-title">과제 정보</h3>
                             </div>
                             <div className="panel-body">
-                                <p>학생 번호</p>
-                                <input type="text" className="form-control" placeholder="text field"/>
-                                <br/>
-                                <p>학생 이름</p>
-                                <input type="text" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>상반기 과제점수</p>
-                                <input type="text" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>하반기 과제점수</p>
-                                <input type="text" className="form-control" value="asecret"/>
-                                <br/>
-                                <p>과제 제출일자</p>
-                                <input type="text" className="form-control" value="asecret"/>
+                                {
+                                    !courseData.gradeList ?
+                                        <>
+                                            <input type="text" className="form-control" placeholder="데이터를 조회해 주세요." readOnly/>
+                                        </>
+                                        :
+                                        Array.isArray(courseData?.gradeList) && courseData.gradeList.map(classes => (
+                                            classes.stdntNo === checkedData ?
+                                                <>
+                                                    <p>학생 번호</p>
+                                                    <input type="text" className="form-control" placeholder={classes.stdntNo} readOnly/>
+                                                    <br/>
+                                                    <p>학생 이름</p>
+                                                    <input type="text" className="form-control" placeholder={classes.stdntNm} readOnly/>
+                                                    <br/>
+                                                    <p>과제점수</p>
+                                                    <input type="text" className="form-control" placeholder={classes.assignPoint} readOnly/>
+                                                    <br/>
+                                                    {/*<p>하반기 과제점수</p>*/}
+                                                    {/*<input type="text" className="form-control" placeholder={classes.absTime} readOnly/>*/}
+                                                    {/*<br/>*/}
+                                                    <p>과제 제출일자</p>
+                                                    <input type="text" className="form-control" placeholder={classes.assignDuedate} readOnly/>
+                                                </>
+                                                :
+                                                <></>
+                                        ))
+                                }
                             </div>
                         </div>
 
