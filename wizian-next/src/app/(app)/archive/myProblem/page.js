@@ -19,6 +19,7 @@ const MyProblem = () => {
     const [checkedDatasub, setCheckedDatasub] = useState([]); // 체크박스 값 저장
 
     const [courseData, setCourseData] = useState({});
+    const [submitData, setSubmitData] = useState({});
 
     // 초기 값 저장
     const params = useParams();
@@ -129,7 +130,7 @@ const MyProblem = () => {
     };
 
     // 과제정보 개별 체크박스 선택
-    const handleCheckbox = (assignInfoNo, assignInfoNm) => {
+    const handleCheckbox = async (assignInfoNo, assignInfoNm) => {
         setCheckedData(assignInfoNo);
         setCheckedDatasub(assignInfoNm);
         console.log(">>> 과제정보 개별 체크박스 ", checkedData);
@@ -139,7 +140,18 @@ const MyProblem = () => {
         } else {
             setSelectedCourNos([...selectedCourNos, assignInfoNo]);
         }
-
+        const infoNo = assignInfoNo;
+        const infoNm = assignInfoNm;
+        try {
+            const res = await fetch(`http://localhost:8080/api/inst/archive/myProblem/countSubmit/${infoNo}/${infoNm}`, {
+                headers: { 'Accept': 'application/json' }
+            });
+            const data = await res.json();
+            setSubmitData(data);
+            console.log(submitData);
+        } catch (err) {
+            console.error('오류 발생:', err);
+        }
     };
 
     // 과제정보 헤더 체크박스 선택
@@ -464,15 +476,27 @@ const MyProblem = () => {
                                     <h3 className="panel-title">과제 마감</h3>
                                 </div>
                                 <div className="panel-body">
-                                    <p>제출된 과제 수</p>
-                                    <input type="text" className="form-control" placeholder="text field"/>
-                                    <br/>
-                                    {/*<p>현재 시간</p>*/}
-                                    {/*<input type="text" className="form-control" placeholder="2000.00.00 00/00/00"/>*/}
-                                    <br/>
-                                    <button className="btn btn-success form-control" type="submit">
-                                        과제 마감
-                                    </button>
+                                    {
+                                        !submitData ?
+                                            <>
+                                                <input type="text" className="form-control" placeholder="과제를 선택해 주세요." readOnly/>
+                                            </>
+                                            :
+                                            <>
+                                                <p>제출된 과제 수</p>
+                                                <input type="text" className="form-control" placeholder={submitData.totalStudent} readOnly/>
+                                                <br/>
+                                                <p>제출된 과제 수</p>
+                                                <input type="text" className="form-control" placeholder={submitData.countSubmit} readOnly/>
+                                                <br/>
+                                                {/*<p>현재 시간</p>*/}
+                                                {/*<input type="text" className="form-control" placeholder="2000.00.00 00/00/00"/>*/}
+                                                <br/>
+                                                <button className="btn btn-success form-control" type="submit">
+                                                과제 마감
+                                                </button>
+                                            </>
+                                    }
                                 </div>
                             </div>
                         </div>
