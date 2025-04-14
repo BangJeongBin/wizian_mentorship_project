@@ -322,26 +322,44 @@ const MyProblem = () => {
                                     </thead>
                                     <tbody>
                                     {
-                                        (!Array.isArray(courseData.infoList) || courseData.infoList.length === 0) ?
+                                        (!Array.isArray(courseData.infoList) || courseData.infoList.length === 0) ? (
                                             <tr>
                                                 <td colSpan={8}>데이터를 조회해 주세요.</td>
                                             </tr>
-                                            :
-                                            (courseData.infoList.map(classes => (
-                                                <tr>
-                                                    {/*과제정보번호 넘겨주기*/}
-                                                    <td><input type="checkbox" checked={selectedCourNos.includes(classes.assignInfoNm)}
-                                                               onChange={() => handleCheckbox(classes.assignInfoNm)}/></td>
-                                                    <td>{classes.assignInfoNo}</td>
-                                                    <td>{classes.assignInfoNm}</td>
-                                                    <td>{classes.assignInfoYear}</td>
-                                                    <td>{classes.assignInfoMonth}</td>
-                                                    <td>{classes.assignDate}</td>
-                                                    <td>{classes.assignDuedate}</td>
-                                                    <td>{classes.assignStatus}</td>
-                                                </tr>
-                                            )))
+                                        ) : (
+                                            (() => {
+                                                let prevAssignNm = null; // 이전 값을 기억할 변수
+
+                                                return courseData.infoList.map(classes => {
+                                                    if (classes.assignInfoNm === prevAssignNm) {
+                                                        return null; // 이전 값과 같으면 렌더링하지 않음
+                                                    }
+
+                                                    prevAssignNm = classes.assignInfoNm; // 현재 값을 기억해두기
+
+                                                    return (
+                                                        <tr key={classes.assignInfoNo}>
+                                                            <td>
+                                                                <input
+                                                                    type="checkbox"
+                                                                    checked={selectedCourNos.includes(classes.assignInfoNm)}
+                                                                    onChange={() => handleCheckbox(classes.assignInfoNm)}
+                                                                />
+                                                            </td>
+                                                            <td>{classes.assignInfoNo}</td>
+                                                            <td>{classes.assignInfoNm}</td>
+                                                            <td>{classes.assignInfoYear}</td>
+                                                            <td>{classes.assignInfoMonth}</td>
+                                                            <td>{classes.assignDate}</td>
+                                                            <td>{classes.assignDuedate}</td>
+                                                            <td>{classes.assignStatus}</td>
+                                                        </tr>
+                                                    );
+                                                });
+                                            })()
+                                        )
                                     }
+
                                     </tbody>
                                 </table>
                                 {/* PAGINATION */}
