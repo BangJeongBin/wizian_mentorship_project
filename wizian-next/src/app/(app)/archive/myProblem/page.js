@@ -439,33 +439,26 @@ const MyProblem = () => {
                                 <h3 className="panel-title">과제 질문지</h3>
                             </div>
                             <div className="panel-body">
-                                <p>(문항번호). 과제 질문</p>
-                                <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
-                                <br/>
-                                <p>(문항번호). 과제 정답</p>
-                                <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
-                                <br/>
-                                <p>(문항번호). 과제 질문</p>
-                                <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
-                                <br/>
-                                <p>(문항번호). 과제 정답</p>
-                                <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
-                                <br/><p>(문항번호). 과제 질문</p>
-                                <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
-                                <br/>
-                                <p>(문항번호). 과제 정답</p>
-                                <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
-                                <br/><p>(문항번호). 과제 질문</p>
-                                <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
-                                <br/>
-                                <p>(문항번호). 과제 정답</p>
-                                <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
-                                <br/><p>(문항번호). 과제 질문</p>
-                                <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
-                                <br/>
-                                <p>(문항번호). 과제 정답</p>
-                                <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
-                                <br/>
+                                {
+                                    !courseData.submitList ?
+                                        <>
+                                            <input type="text" className="form-control" placeholder="과제를 선택해 주세요." readOnly/>
+                                        </>
+                                        :
+                                        Array.isArray(courseData?.submitList) && courseData.submitList.map(classes => (
+                                            classes.assignInfo.assignInfoNm === checkedData ?
+                                                <>
+                                                    <p>(문항번호). 과제 질문</p>
+                                                    <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
+                                                    <br/>
+                                                    <p>(문항번호). 과제 정답</p>
+                                                    <textarea className="form-control" placeholder="ㅂㅂㅂ" rows="1" defaultValue=""></textarea>
+                                                    <br/>
+                                                </>
+                                                :
+                                                <></>
+                                        ))
+                                }
                             </div>
                         </div>
                     </div>
