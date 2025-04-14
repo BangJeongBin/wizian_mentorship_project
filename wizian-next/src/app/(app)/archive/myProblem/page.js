@@ -253,58 +253,41 @@ const MyProblem = () => {
             <div className="container-fluid">
                 <a href="/dashboard">메인 페이지 /</a>&ensp;<a href="#">나의 자료실 /</a>&ensp;<a href="#">나의 과제</a>
 
-                <form name="" id="" method="post" onSubmit={SearchSubmit}>
-                    <div className="row">
-                        <button type="submit" className="btn btn-success col-lg-offset-10 margin-bottom-30">
-                            <i className="fa fa-refresh fa-spin"></i> 조회하기
-                        </button>
-                    </div>
+                <div className="row">
+                    <button type="submit" className="btn btn-success col-lg-offset-10 margin-bottom-30" onClick={goListSearch}>
+                        <i className="fa fa-refresh fa-spin"></i> 조회하기
+                    </button>
+                </div>
 
-                    <div id="toastr-demo" className="panel col">
-                        <div className="panel-body row">
-                            <div className="col-md-3">
-                                <strong>강의 종류</strong>&emsp;&emsp;&emsp;
-                                <select className="navbar">
-                                    <option value="cheese">Cheese(진행중)</option>
-                                    <option value="tomatoes">Tomatoes</option>
-                                    <option value="mozarella">Mozzarella</option>
-                                    <option value="mushrooms">Mushrooms</option>
-                                    <option value="pepperoni">Pepperoni</option>
-                                    <option value="onions">Onions</option>
-                                </select>
-                            </div>
+                <div id="toastr-demo" className="panel col">
+                    <div className="panel-body row">
+                        <div className="col-md-4">
+                            <strong>과제 년도</strong>&emsp;&emsp;&emsp;
+                            <select className="navbar" name="sortYear" id="sortYear" ref={sortYearRef}>
+                                <option value="default">---전체---</option>
+                                {
+                                    yearOptions.map(year => (
+                                        <option key={year} value={year}>{year}</option>
+                                    ))
+                                }
+                            </select>
+                        </div>
 
-                            <div className="col-md-3">
-                                <strong>과제 년도</strong>&emsp;&emsp;&emsp;
-                                <select className="navbar">
-                                    <option value="cheese">진행중인 학생</option>
-                                    <option value="tomatoes">수료한 학생</option>
-                                    <option value="mozarella">Mozzarella</option>
-                                    <option value="mushrooms">Mushrooms</option>
-                                    <option value="pepperoni">Pepperoni</option>
-                                    <option value="onions">Onions</option>
-                                </select>
-                            </div>
+                        <div className="col-md-4">
+                            <strong>과제 상하반기 분류</strong>&emsp;&emsp;&emsp;
+                            <select className="navbar" name="sortHalf" id="sortHalf" ref={sortHalfRef}>
+                                <option value="default">---전체---</option>
+                                <option value="firstHalf">상반기</option>
+                                <option value="secondHalf">하반기</option>
+                            </select>
+                        </div>
 
-                            <div className="col-md-3">
-                                <strong>과제 상하반기 분류</strong>&emsp;&emsp;&emsp;
-                                <select className="navbar">
-                                    <option value="cheese">Cheese</option>
-                                    <option value="tomatoes">Tomatoes</option>
-                                    <option value="mozarella">Mozzarella</option>
-                                    <option value="mushrooms">Mushrooms</option>
-                                    <option value="pepperoni">Pepperoni</option>
-                                    <option value="onions">Onions</option>
-                                </select>
-                            </div>
-
-                            <div className="col-md-3">
-                                <strong><i className="lnr lnr-magnifier"></i> 검색</strong>
-                                <input type="text" className="form-control" placeholder="과제명 입력"/>
-                            </div>
+                        <div className="col-md-4">
+                            <strong><i className="lnr lnr-magnifier"></i> 검색</strong>
+                            <input type="text" className="form-control" placeholder="과제명 입력"/>
                         </div>
                     </div>
-                </form>
+                </div>
 
                 <div className="row">
                     <div className="col-md-12">
