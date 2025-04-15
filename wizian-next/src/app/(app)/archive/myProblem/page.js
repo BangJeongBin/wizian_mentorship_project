@@ -334,13 +334,13 @@ const MyProblem = () => {
                                                                     onChange={() => handleCheckbox(classes.assignInfoNo, classes.assignInfoNm)}
                                                                 />
                                                             </td>
-                                                            <td>{classes.assignInfoNo}</td>
-                                                            <td>{classes.assignInfoNm}</td>
-                                                            <td>{classes.assignInfoYear}</td>
-                                                            <td>{classes.assignInfoMonth}</td>
-                                                            <td>{classes.assignDate}</td>
-                                                            <td>{classes.assignDuedate}</td>
-                                                            <td>{classes.assignStatus}</td>
+                                                            <td>{(classes.assignInfoNo) ? (classes.assignInfoNo) : '미입력'}</td>
+                                                            <td>{classes.assignInfoNm ? (classes.assignInfoNm) : '미입력'}</td>
+                                                            <td>{classes.assignInfoYear ? (classes.assignInfoYear) : '미입력'}</td>
+                                                            <td>{classes.assignInfoMonth ? (classes.assignInfoMonth) : '미입력'}</td>
+                                                            <td>{classes.assignDate ? (classes.assignDate) : '미입력'}</td>
+                                                            <td>{classes.assignDuedate ? (classes.assignDuedate) : '미입력'}</td>
+                                                            <td>{classes.assignStatus ? (classes.assignStatus) : '미입력'}</td>
                                                         </tr>
                                                     );
                                                 });
