@@ -18,7 +18,7 @@ const MyProblem = () => {
     const [selectedCourNossub, setSelectedCourNossub] = useState([]); // 체크박스 상태 저장
     const [checkedDatasub, setCheckedDatasub] = useState([]); // 체크박스 값 저장
 
-    const [courseData, setCourseData] = useState({});
+    const [archiveDate, setArchiveData] = useState({});
     const [submitData, setSubmitData] = useState({});
 
     // 초기 값 저장
@@ -59,7 +59,7 @@ const MyProblem = () => {
 
                 const data = await response.json();
                 console.log(data);
-                setCourseData(data);
+                setArchiveDate(data);
 
                 await Swal.fire({
                     title: '조회가 완료되었습니다!',
@@ -85,11 +85,11 @@ const MyProblem = () => {
         const sortYear = sortYearRef.current.value;
         const sortHalf = sortHalfRef.current.value;
         const findkey = findkeyRef.current.value || "all";
-        console.log("ssssssssssssss", courseData.infoList)
+        console.log("ssssssssssssss", archiveDate.infoList)
 
         // <select> 옵션 처음 1회 저장
         if (true) {
-            const year = [...new Set(courseData.infoList?.map(item => item.assignInfoYear))];
+            const year = [...new Set(archiveDate.infoList?.map(item => item.assignInfoYear))];
             setYearOptions(year);
         }
 
@@ -123,7 +123,7 @@ const MyProblem = () => {
                 headers: { 'Accept': 'application/json' }
             });
             const data = await res.json();
-            setCourseData(data);
+            setArchiveDate(data);
         } catch (err) {
             console.error('오류 발생:', err);
         }
@@ -157,15 +157,15 @@ const MyProblem = () => {
     // 과제정보 헤더 체크박스 선택
     const handleAllCheckbox = (e) => {
         if (e.target.checked) {
-            const allNos = courseData.infoList?.map(cls => cls.assignInfoNo);
+            const allNos = archiveDate.infoList?.map(cls => cls.assignInfoNo);
             setSelectedCourNos(allNos);
         } else {
             setSelectedCourNos([]);
         }
     };
 
-    const isAllChecked = courseData?.infoList?.length > 0 &&
-        selectedCourNos.length === courseData.infoList.length;
+    const isAllChecked = archiveDate?.infoList?.length > 0 &&
+        selectedCourNos.length === archiveDate.infoList.length;
 
 
 
@@ -311,7 +311,7 @@ const MyProblem = () => {
                                     </thead>
                                     <tbody>
                                     {
-                                        (!Array.isArray(courseData.infoList) || courseData.infoList.length === 0) ? (
+                                        (!Array.isArray(archiveDate.infoList) || archiveDate.infoList.length === 0) ? (
                                             <tr>
                                                 <td colSpan={8}>데이터를 조회해 주세요.</td>
                                             </tr>
@@ -319,7 +319,7 @@ const MyProblem = () => {
                                             (() => {
                                                 let prevAssignNm = null;
 
-                                                return courseData.infoList.map(classes => {
+                                                return archiveDate.infoList.map(classes => {
                                                     if (classes.assignInfoNm === prevAssignNm) {
                                                         return null;
                                                     }
@@ -353,12 +353,12 @@ const MyProblem = () => {
                                 {/* PAGINATION */}
                                 <div className="col-md-offset-5">
                                     <ul className="pagination">
-                                        {(courseData.cpg > 1) &&
+                                        {(archiveDate.cpg > 1) &&
                                             (<li className="page-item">
                                                 <a onClick={preListPage} className="page-link">이전</a></li>)
                                         }
 
-                                        {(courseData.cpg < courseData.cntpg) &&
+                                        {(archiveDate.cpg < archiveDate.cntpg) &&
                                             (<li className="page-item">
                                                 <a onClick={nextListPage} className="page-link">다음</a></li>)
                                         }
@@ -378,12 +378,12 @@ const MyProblem = () => {
                             </div>
                             <div className="panel-body">
                                 {
-                                    !courseData.infoList ?
+                                    !archiveDate.infoList ?
                                         <>
                                             <input type="text" className="form-control" placeholder="과제를 선택해 주세요." readOnly/>
                                         </>
                                         :
-                                        Array.isArray(courseData?.infoList) && courseData.infoList.map(classes => (
+                                        Array.isArray(archiveDate?.infoList) && archiveDate.infoList.map(classes => (
                                             classes.assignInfoNo === checkedData ?
                                             <>
                                                 <div className="col-md-4">
@@ -446,12 +446,12 @@ const MyProblem = () => {
                             </div>
                             <div className="panel-body">
                                 {
-                                    !courseData.infoList ?
+                                    !archiveDate.infoList ?
                                         <>
                                             <input type="text" className="form-control" placeholder="과제를 선택해 주세요." readOnly/>
                                         </>
                                         :
-                                        Array.isArray(courseData?.infoList) && courseData.infoList.map(classes => (
+                                        Array.isArray(archiveDate?.infoList) && archiveDate.infoList.map(classes => (
                                             classes.assignInfoNm === checkedDatasub ?
                                                 <>
                                                     <p>{classes.assignQnum}. 과제 질문</p>
