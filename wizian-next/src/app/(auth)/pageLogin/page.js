@@ -35,7 +35,7 @@ const PageLogin = () => {
                                     <span className="helper-text"><i className="fa fa-lock"></i> <a href="#">Forgot password?</a></span>
                                 </div>
                             </form>
-                            <a href="/dashboard">aaaaaaaaa</a>
+                            <a href="/instDashboard">aaaaaaaaa</a>
                         </div>
                     </div>
                     <div className="right">
