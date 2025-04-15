@@ -88,7 +88,7 @@ const CourseProblem = () => {
 
         // <select> 옵션 처음 1회 저장
         if (true) {
-            const year = [...new Set(courseData.infoList.map(item => item.assignInfoYear))];
+            const year = [...new Set(courseData.infoList?.map(item => item.assignInfoYear))];
             setYearOptions(year);
         }
 
@@ -143,7 +143,7 @@ const CourseProblem = () => {
     // 과제정보 헤더 체크박스 선택
     const handleAllCheckbox = (e) => {
         if (e.target.checked) {
-            const allNos = courseData.infoList.map(cls => cls.assignInfoNm);
+            const allNos = courseData.infoList?.map(cls => cls.assignInfoNm);
             setSelectedCourNos(allNos);
         } else {
             setSelectedCourNos([]);
@@ -169,7 +169,7 @@ const CourseProblem = () => {
     // 제출과제 헤더 체크박스 선택
     const handleAllCheckboxsub = (e) => {
         if (e.target.checked) {
-            const allNos = courseData.submitList.map(cls => cls.studnt.stdntNo);
+            const allNos = courseData.submitList?.map(cls => cls.studnt.stdntNo);
             setSelectedCourNossub(allNos);
         } else {
             setSelectedCourNossub([]);

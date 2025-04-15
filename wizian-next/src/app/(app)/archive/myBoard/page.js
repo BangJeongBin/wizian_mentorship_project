@@ -98,46 +98,41 @@ const MyBoard = () => {
             <div className="container-fluid">
                 <a href="/dashboard">메인 페이지 /</a>&ensp;<a href="#">나의 자료실 /</a>&ensp;<a href="#">나의 게시글</a>
 
-                <form name="" id="" method="post" onSubmit={SearchSubmit}>
-                    <div className="row">
-                        <button type="submit" className="btn btn-success col-lg-offset-10 margin-bottom-30">
-                            <i className="fa fa-refresh fa-spin"></i> 조회하기
-                        </button>
-                    </div>
+                <div className="row">
+                    <button type="submit" className="btn btn-success col-lg-offset-10 margin-bottom-30" onClick={goListSearch}>
+                        <i className="fa fa-refresh fa-spin"></i> 조회하기
+                    </button>
+                </div>
 
-                    <div id="toastr-demo" className="panel col">
-                        <div className="panel-body row">
-                            <div className="col-md-4">
-                                <strong>강의 종류</strong>&emsp;&emsp;&emsp;
-                                <select className="navbar">
-                                    <option value="cheese">Cheese(진행중)</option>
-                                    <option value="tomatoes">Tomatoes</option>
-                                    <option value="mozarella">Mozzarella</option>
-                                    <option value="mushrooms">Mushrooms</option>
-                                    <option value="pepperoni">Pepperoni</option>
-                                    <option value="onions">Onions</option>
-                                </select>
-                            </div>
+                <div id="toastr-demo" className="panel col">
+                    <div className="panel-body row">
+                        <div className="col-md-4">
+                            <strong>현재 강의</strong>&emsp;&emsp;&emsp;
+                            <select className="navbar" name="sortLect" id="sortLect" ref={sortLectRef}>
+                                <option value="default">---전체---</option>
+                                {
+                                    lectOptions.map(lect => (
+                                        <option key={lect} value={lect}>{lect}</option>
+                                    ))
+                                }
+                            </select>
+                        </div>
 
-                            <div className="col-md-4">
-                                <strong>게시일자</strong>&emsp;&emsp;&emsp;
-                                <select className="navbar">
-                                    <option value="cheese">내림차순</option>
-                                    <option value="tomatoes">오름차순</option>
-                                    <option value="mozarella">Mozzarella</option>
-                                    <option value="mushrooms">Mushrooms</option>
-                                    <option value="pepperoni">Pepperoni</option>
-                                    <option value="onions">Onions</option>
-                                </select>
-                            </div>
+                        <div className="col-md-4">
+                            <strong>게시일자</strong>&emsp;&emsp;&emsp;
+                            <select className="navbar" name="sortDate" id="sortDate" ref={sortDateRef}>
+                                <option value="default">---전체---</option>
+                                <option value="up">내림차순</option>
+                                <option value="dowm">오름차순</option>
+                            </select>
+                        </div>
 
-                            <div className="col-md-3">
-                                <strong><i className="lnr lnr-magnifier"></i> 검색</strong>
-                                <input type="text" className="form-control" placeholder="게시글 제목 입력"/>
-                            </div>
+                        <div className="col-md-3">
+                            <strong><i className="lnr lnr-magnifier"></i> 검색</strong>
+                            <input type="text" className="form-control"  id="findkey" name="findkey" ref={findkeyRef} placeholder="게시글 제목 입력"/>
                         </div>
                     </div>
-                </form>
+                </div>
 
                 <div className="row">
                     <div className="col-md-12">
@@ -157,48 +152,41 @@ const MyBoard = () => {
                             <div className="panel-body">
                                 <table className="table table-striped">
                                     <thead>
-                                    <tr>
-                                        <th><input type="checkbox"/></th>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
-                                        <th>Username</th>
-                                        <th>Username</th>
-                                        <th>Username</th>
-                                    </tr>
+                                        <tr>
+                                            <th style={{width: "20px"}}>
+                                                <input type="checkbox" checked={isAllChecked}
+                                                       onChange={handleAllCheckbox}/></th>
+                                            <th>#</th>
+                                            <th>제목</th>
+                                            <th>작성자</th>
+                                            <th>조회수</th>
+                                            <th>작성일시</th>
+                                            <th>파일유무</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td><input type="checkbox"/></td>
-                                        <td>1</td>
-                                        <td>Steve</td>
-                                        <td>Jobs</td>
-                                        <td>@steve</td>
-                                        <td>@steve</td>
-                                        <td>@steve</td>
-                                        <td>@steve</td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox"/></td>
-                                        <td>2</td>
-                                        <td>Simon</td>
-                                        <td>Philips</td>
-                                        <td>@simon</td>
-                                        <td>@steve</td>
-                                        <td>@steve</td>
-                                        <td>@steve</td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox"/></td>
-                                        <td>3</td>
-                                        <td>Jane</td>
-                                        <td>Doe</td>
-                                        <td>@jane</td>
-                                        <td>@steve</td>
-                                        <td>@steve</td>
-                                        <td>@steve</td>
-                                    </tr>
+                                    {
+                                        (!Array.isArray(courseData.studentList) || courseData.studentList.length === 0) ?
+                                            <tr>
+                                                <td colSpan={10}>데이터를 조회해 주세요.</td>
+                                            </tr>
+                                            :
+                                            (courseData.studentList.map(classes => (
+                                                <tr>
+                                                    <td><input type="checkbox" checked={selectedCourNos.includes(classes.studnt.stdntNo)}
+                                                               onChange={() => handleCheckbox(classes.studnt.stdntNo)}/></td>
+                                                    <td>{classes.gradesNo ? (classes.gradesNo) : '미입력'}</td>
+                                                    <td>{classes.studnt.stdntId ? (classes.studnt.stdntId) : '미입력'}</td>
+                                                    <td>{classes.studnt.stdntNm ? (classes.studnt.stdntNm) : '미입력'}</td>
+                                                    <td>{(classes.attenPoint) ? (classes.attenPoint) : '미입력'}</td>
+                                                    <td>{classes.attendOnepoint ? (classes.attendOnepoint) : '미입력'}</td>
+                                                    <td>{(classes.attendTwopoint) ? (classes.attendTwopoint) : '미입력'}</td>
+                                                    <td>{classes.gradesPoint ? (classes.gradesPoint) : '미입력'}</td>
+                                                    <td>{classes.gradesDuedate ? (classes.gradesDuedate) : '미입력'}</td>
+                                                    <td>{classes.gradesOption ? (classes.gradesOption) : '미입력'}</td>
+                                                </tr>
+                                            )))
+                                    }
                                     </tbody>
                                 </table>
                             </div>
