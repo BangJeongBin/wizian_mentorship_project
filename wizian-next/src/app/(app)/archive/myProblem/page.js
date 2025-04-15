@@ -334,7 +334,7 @@ const MyProblem = () => {
                                                                     onChange={() => handleCheckbox(classes.assignInfoNo, classes.assignInfoNm)}
                                                                 />
                                                             </td>
-                                                            <td>{(classes.assignInfoNo) ? (classes.assignInfoNo) : '미입력'}</td>
+                                                            <td>{classes.assignInfoNo ? (classes.assignInfoNo) : '미입력'}</td>
                                                             <td>{classes.assignInfoNm ? (classes.assignInfoNm) : '미입력'}</td>
                                                             <td>{classes.assignInfoYear ? (classes.assignInfoYear) : '미입력'}</td>
                                                             <td>{classes.assignInfoMonth ? (classes.assignInfoMonth) : '미입력'}</td>
@@ -388,43 +388,43 @@ const MyProblem = () => {
                                             <>
                                                 <div className="col-md-4">
                                                     <p>과제 정보 번호</p>
-                                                    <input type="text" className="form-control" placeholder={classes.assignInfoNo} readOnly/>
+                                                    <input type="text" className="form-control" placeholder={classes.assignInfoNo ? classes.assignInfoNo : '미입력'} readOnly/>
                                                     <br />
                                                 </div>
 
                                                 <div className="col-md-4">
                                                     <p>강의 번호</p>
-                                                    <input type="text" className="form-control" placeholder={classes.lectInfo.lectNo} readOnly/>
+                                                    <input type="text" className="form-control" placeholder={classes.lectInfo.lectNo ? classes.lectInfo.lectNo : '미입력'} readOnly/>
                                                     <br />
                                                 </div>
 
                                                 <div className="col-md-4">
                                                     <p>과제 정보 분류</p>
-                                                    <input type="text" className="form-control" placeholder={classes.assignInfoNm} readOnly/>
+                                                    <input type="text" className="form-control" placeholder={classes.assignInfoNm ? classes.assignInfoNm : '미입력'} readOnly/>
                                                     <br />
                                                 </div>
 
                                                 <div className="col-md-4">
                                                     <p>과제 상하반기 분류</p>
-                                                    <input type="text" className="form-control" placeholder={classes.assignInfoMonth} readOnly/>
+                                                    <input type="text" className="form-control" placeholder={classes.assignInfoMonth ? classes.assignInfoMonth : '미입력'} readOnly/>
                                                     <br />
                                                 </div>
 
                                                 <div className="col-md-4">
                                                     <p>담당 강사명</p>
-                                                    <input type="text" className="form-control" placeholder={classes.inst.instNm} readOnly/>
+                                                    <input type="text" className="form-control" placeholder={classes.inst.instNm ? classes.inst.instNm : '미입력'} readOnly/>
                                                     <br />
                                                 </div>
 
                                                 <div className="col-md-6">
                                                     <p>과제 부여 일자</p>
-                                                    <input type="text" className="form-control" placeholder={classes.assignDate} readOnly/>
+                                                    <input type="text" className="form-control" placeholder={classes.assignDate ? classes.assignDate : '미입력'} readOnly/>
                                                     <br />
                                                 </div>
 
                                                 <div className="col-md-6">
                                                     <p>과제 마감 일자</p>
-                                                    <input type="text" className="form-control" placeholder={classes.assignDuedate} readOnly/>
+                                                    <input type="text" className="form-control" placeholder={classes.assignDuedate ? classes.assignDuedate : '미입력'} readOnly/>
                                                     <br />
                                                 </div>
                                             </>
