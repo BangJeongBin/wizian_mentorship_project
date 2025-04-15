@@ -282,15 +282,15 @@ const CourseGrade = () => {
                                                 <tr>
                                                     <td><input type="checkbox" checked={selectedCourNos.includes(classes.studnt.stdntNo)}
                                                                onChange={() => handleCheckbox(classes.studnt.stdntNo)}/></td>
-                                                    <td>{classes.gradesNo}</td>
-                                                    <td>{classes.studnt.stdntId}</td>
-                                                    <td>{classes.studnt.stdntNm}</td>
+                                                    <td>{classes.gradesNo ? (classes.gradesNo) : '미입력'}</td>
+                                                    <td>{classes.studnt.stdntId ? (classes.studnt.stdntId) : '미입력'}</td>
+                                                    <td>{classes.studnt.stdntNm ? (classes.studnt.stdntNm) : '미입력'}</td>
                                                     <td>{(classes.attenPoint) ? (classes.attenPoint) : '미입력'}</td>
-                                                    <td>{classes.attendOnepoint}</td>
+                                                    <td>{classes.attendOnepoint ? (classes.attendOnepoint) : '미입력'}</td>
                                                     <td>{(classes.attendTwopoint) ? (classes.attendTwopoint) : '미입력'}</td>
-                                                    <td>{classes.gradesPoint}</td>
-                                                    <td>{classes.gradesDuedate}</td>
-                                                    <td>{classes.gradesOption}</td>
+                                                    <td>{classes.gradesPoint ? (classes.gradesPoint) : '미입력'}</td>
+                                                    <td>{classes.gradesDuedate ? (classes.gradesDuedate) : '미입력'}</td>
+                                                    <td>{classes.gradesOption ? (classes.gradesOption) : '미입력'}</td>
                                                 </tr>
                                             )))
                                     }
