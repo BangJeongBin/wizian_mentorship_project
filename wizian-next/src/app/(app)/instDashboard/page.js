@@ -7,9 +7,9 @@ import React, { useState } from "react";
 
 export default function Home() {
   const [tasks, setTasks] = useState([
-    { id: 1, title: "투두 리스트", description: "있으면 좋긴 할듯", date: "Oct 9, 2016", completed: false },
-    { id: 2, title: "사용여부", description: "Compellingly implement clicks-and-mortar relationships without highly efficient metrics.", date: "Oct 23, 2016", completed: false },
-    { id: 3, title: "재고좀여", description: "Monotonectally formulate client-focused core competencies after parallel web-readiness.", date: "Oct 11, 2016", completed: false }
+    { id: 1, title: "금요일 과제 마감", description: "Monotonectally formulate client-focused core competencies after parallel web-readiness.", date: "Oct 9, 2016", completed: false },
+    { id: 2, title: "출석여부에 대한 공문 확인", description: "Compellingly implement clicks-and-mortar relationships without highly efficient metrics.", date: "Oct 23, 2016", completed: false },
+    { id: 3, title: "내일 오전 9:30 미팅", description: "Monotonectally formulate client-focused core competencies after parallel web-readiness.", date: "Oct 11, 2016", completed: false }
   ]);
 
   // 패널 상태 관리
@@ -93,38 +93,101 @@ export default function Home() {
                   <div className="row">
                     <div className="panel-body col-md-6">
                       <p>번호</p>
-                      <input type="text" className="form-control" placeholder="text field"/>
+                      <input type="text" className="form-control" placeholder="1" readOnly/>
                       <br/>
                       <p>강의명</p>
-                      <input type="password" className="form-control" value="asecret"/>
+                      <input type="text" className="form-control" value="Spring Boot 기반 백엔드 개발 입문 강좌" readOnly/>
                       <br/>
                       <p>강의실</p>
-                      <input type="password" className="form-control" value="asecret"/>
+                      <input type="text" className="form-control" value="서울 강남 캠퍼스" readOnly/>
                       <br/>
                       <p>수료일</p>
-                      <input type="password" className="form-control" value="asecret"/>
+                      <input type="text" className="form-control" value="2025-04-25 23:59:59" readOnly/>
                       <br/>
                       <p>수강인원</p>
-                      <input type="password" className="form-control" value="asecret"/>
+                      <input type="text" className="form-control" value="20" readOnly/>
                       <br/>
                       <p>개설여부</p>
-                      <input type="password" className="form-control" value="asecret"/>
+                      <input type="text" className="form-control" value="OPEN" readOnly/>
                     </div>
 
                     <div className="panel-body col-md-6">
                       <textarea className="form-control" placeholder="
-                          강의 계획서자리Objectively network visionary methodologies via best-of-breed users.
-                          Phosfluorescently initiate go forward leadership skills before an expanded array of
-                          infomediaries. Monotonectally incubate web-enabled communities rather than
-                          process-centric.
-                          Objectively network visionary methodologies via best-of-breed users.
-                          Phosfluorescently initiate go forward leadership skills before an expanded array of
-                          infomediaries. Monotonectally incubate web-enabled communities rather than
-                          process-centric.
-                          Objectively network visionary methodologies via best-of-breed users.
-                          Phosfluorescently initiate go forward leadership skills before an expanded array of
-                          infomediaries. Monotonectally incubate web-enabled communities rather than
-                          process-centric."
+                          JDBC JDBC 드라이브를 이용한 데이터베이스 연동, Connection, Statement, PreparedStatement 객체 Connection Pool을 이용한 JDBC 처리
+
+JSP
+JSP 페이지 기본구조, 디렉티브, 스크립트 요소
+
+내장객체, 에러처리, 자바빈, 액션 태그
+
+페이지 모듈화와 요청 흐름 제어
+
+쿠키와 세션, 표현언어, JSTL, 커스텀 태그
+
+파일 업로드, 필터, 데이터베이스 연동
+
+MVC 패턴 이해, Model2 구조 설계
+
+MVC 패턴 기반의 게시판 기능 구현
+
+Servlet
+Model2 구조 이해, 서블릿 라이프 사이클
+
+폼 전송방식(get, post), Redirect와 Forward
+
+Connection Pool을 이용한 데이터베이스 연동
+
+MyBatis
+MyBatis 구조 이해
+
+MyBatis를 활용한 CRUD, REST API
+
+DAO 프레임워크
+
+PL/SQL의 프로시저와 함수 호출하기
+
+Spring Boot
+스프링 클라우드 분산처리 개발환경 구축
+
+스프링 컨테이너 이해 및 구조분석
+
+Spring IOC/DI, Spring AOP, Spring JDBC
+
+관점지향적인 프로그래밍 분석 및 설계
+
+트랜잭션 처리기법
+
+Spring MVC, Spring ORM, 인터셉터
+
+Spring MVC 기반의 게시판 기능 구현
+
+Maven/gradle, Spring MVC, Spring ORM
+
+Lombok, Thymeleaf, JPA
+
+클라우드 플랫폼 기반 서비스 운영 실습
+AWS 클라우드 웹서비스 활용
+Public Cloud의 개요
+
+가상화 서버 서비스를 위한 Amazon EC2
+
+클라우드 기반 가용성,확장성 우수 네트워킹 서비스 Amazon Route 53
+
+스토리지 서비스를 위한 Amazon S3
+
+데이터베이스 서비스를 위한 Amazon RDS
+
+대용량 데이터 분석 플랫폼 Amazon Kinesis
+
+이벤트 드리번 솔루션 Amazon SWF, Amazon SQS, Amazon SNS, Amazon Lambda
+
+Amazon ElastiCache를 사용한 캐시솔루션 개발
+
+리소스, 애플리케이션 모니터링 Amazon CloudWatch
+
+애플리케이션 단위로 실행하기 위한 Amazon 컨테이너 서비스
+
+-애플리케이션 호스팅 및 배포 자동화 Amazon Elastic Beanstal"
                           rows="20" defaultValue="">
                       </textarea>
                     </div>
@@ -164,23 +227,23 @@ export default function Home() {
                         <tr>
                           <th><input type="checkbox"/></th>
                           <th>#</th>
-                          <th>First Name</th>
-                          <th>Last Name</th>
-                          <th>Username</th>
-                          <th>Username</th>
-                          <th>Username</th>
-                          <th>Username</th>
+                          <th>이름</th>
+                          <th>주소</th>
+                          <th>연락처</th>
+                          <th>성별</th>
+                          <th>이메일</th>
+                          <th>출석여부</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                           <td><input type="checkbox"/></td>
                           <td>1</td>
-                          <td>Steve</td>
-                          <td>Jobs</td>
-                          <td>@steve</td>
-                          <td>@steve</td>
-                          <td>@steve</td>
+                          <td>김하늘</td>
+                          <td>서울 강남구 논현로</td>
+                          <td>01011112222</td>
+                          <td>M</td>
+                          <td>stdnt001@example.com</td>
                           <td>
                             <span className="label label-info">출석</span>
                           </td>
@@ -188,11 +251,11 @@ export default function Home() {
                         <tr>
                           <td><input type="checkbox"/></td>
                           <td>2</td>
-                          <td>Simon</td>
-                          <td>Philips</td>
-                          <td>@simon</td>
-                          <td>@steve</td>
-                          <td>@steve</td>
+                          <td>이준호</td>
+                          <td>서울 영등포구 여의도동</td>
+                          <td>01022223333</td>
+                          <td>W</td>
+                          <td>stdnt002@example.com</td>
                           <td>
                             <span className="label label-warning">지각</span>
                           </td>
@@ -200,11 +263,11 @@ export default function Home() {
                         <tr>
                           <td><input type="checkbox"/></td>
                           <td>3</td>
-                          <td>Jane</td>
-                          <td>Doe</td>
-                          <td>@jane</td>
-                          <td>@steve</td>
-                          <td>@steve</td>
+                          <td>박서준</td>
+                          <td>서울 중구 명동길</td>
+                          <td>01033334444</td>
+                          <td>M</td>
+                          <td>stdnt003@example.com</td>
                           <td>
                             <span className="label label-danger">결석</span>
                           </td>
@@ -213,11 +276,11 @@ export default function Home() {
                         <tr>
                           <td><input type="checkbox"/></td>
                           <td>3</td>
-                          <td>Jane</td>
-                          <td>Doe</td>
-                          <td>@jane</td>
-                          <td>@steve</td>
-                          <td>@steve</td>
+                          <td>최지우</td>
+                          <td>서울 서대문구 통일로</td>
+                          <td>01044445555</td>
+                          <td>W</td>
+                          <td>stdnt004@example.com</td>
                           <td>
                             <span className="label label-success">출결 전</span>
                           </td>
@@ -352,62 +415,57 @@ export default function Home() {
                         <tr>
                           <th><input type="checkbox"/></th>
                           <th>#</th>
-                          <th>First Name</th>
-                          <th>Last Name</th>
-                          <th>Username</th>
-                          <th>Username</th>
-                          <th>Username</th>
-                          <th>Username</th>
+                          <th>이름</th>
+                          <th>연락처</th>
+                          <th>성별</th>
+                          <th>이메일</th>
+                          <th>제출여부</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                           <td><input type="checkbox"/></td>
                           <td>1</td>
-                          <td>Steve</td>
-                          <td>Jobs</td>
-                          <td>@steve</td>
-                          <td>@steve</td>
-                          <td>@steve</td>
+                          <td>김하늘</td>
+                          <td>01011112222</td>
+                          <td>M</td>
+                          <td>stdnt001@example.com</td>
                           <td>
-                            <span className="label label-info">출석</span>
+                            <span className="label label-success">제출완료</span>
                           </td>
                         </tr>
                         <tr>
                           <td><input type="checkbox"/></td>
                           <td>2</td>
-                          <td>Simon</td>
-                          <td>Philips</td>
-                          <td>@simon</td>
-                          <td>@steve</td>
-                          <td>@steve</td>
+                          <td>이준호</td>
+                          <td>01022223333</td>
+                          <td>W</td>
+                          <td>stdnt002@example.com</td>
                           <td>
-                            <span className="label label-warning">지각</span>
+                            <span className="label label-success">제출완료</span>
                           </td>
                         </tr>
                         <tr>
                           <td><input type="checkbox"/></td>
                           <td>3</td>
-                          <td>Jane</td>
-                          <td>Doe</td>
-                          <td>@jane</td>
-                          <td>@steve</td>
-                          <td>@steve</td>
+                          <td>박서준</td>
+                          <td>01033334444</td>
+                          <td>M</td>
+                          <td>stdnt003@example.com</td>
                           <td>
-                            <span className="label label-danger">결석</span>
+                            <span className="label label-danger">미제출</span>
                           </td>
                         </tr>
 
                         <tr>
                           <td><input type="checkbox"/></td>
                           <td>3</td>
-                          <td>Jane</td>
-                          <td>Doe</td>
-                          <td>@jane</td>
-                          <td>@steve</td>
-                          <td>@steve</td>
+                          <td>최지우</td>
+                          <td>01044445555</td>
+                          <td>W</td>
+                          <td>stdnt004@example.com</td>
                           <td>
-                            <span className="label label-success">출결 전</span>
+                            <span className="label label-success">제출완료</span>
                           </td>
                         </tr>
                         </tbody>
