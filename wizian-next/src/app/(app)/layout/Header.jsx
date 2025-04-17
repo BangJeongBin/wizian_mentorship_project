@@ -129,7 +129,7 @@ const Header = () => {
                         <li className="dropdown">
                             <a href="#" className="dropdown-toggle" data-toggle="dropdown">
                                 <img src="/assets/img/user.png" className="img-circle" alt="Avatar"/>
-                                <span>Samuel</span> <i className="icon-submenu lnr lnr-chevron-down"></i>
+                                <span>김지훈</span> <i className="icon-submenu lnr lnr-chevron-down"></i>
                             </a>
                             <ul className="dropdown-menu">
                                 <li><a href="/mypage/mypage"><i className="lnr lnr-user"></i> <span>내 정보</span></a></li>
